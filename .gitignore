@@ -7,6 +7,12 @@ tags
 /configs/config.json
 .env
 
+# Machine Learning Outputs
+*.pt
+*.model
+*.chkpt
+*.tfevents*
+outputs/
 # Coverage.py output
 .coverage
 htmlcov/

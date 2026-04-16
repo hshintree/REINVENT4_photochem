@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.2
+#       jupytext_version: 1.19.1
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -35,7 +35,7 @@
 # | `rdkit` | SMILES parsing, 3D geometry (ETKDG), descriptors | `conda install -c conda-forge rdkit` |
 # | `xtb-python` | GFN2-xTB semiempirical QM (geometry opt, HOMO-LUMO gap) | `conda install -c conda-forge xtb-python` |
 # | `pyscf` | TD-DFT excitation energies (Stage 3, optional) | `pip install pyscf` |
-# | `chemprop` | Graph-neural-network property predictors | `pip install chemprop==1.6.1` |
+# | `chemprop` | Graph-neural-network property predictors | `pip install chemprop==1.5.2` |
 # | `mordred` | 1800+ 2D/3D molecular descriptors | `pip install mordred` |
 # | `scikit-learn` | Fast surrogate models (RandomForest, etc.) | `pip install scikit-learn` |
 # | `mols2grid` | Molecule grids in Jupyter | `pip install mols2grid` |
@@ -101,17 +101,21 @@
 # **On FarmShare:**
 # ```bash
 # micromamba install -n reinvent4 -c conda-forge xtb-python rdkit -y
-# pip install pyscf chemprop==1.6.1 mordred mols2grid jupytext tensorboard
+# pip install setuptools pyscf chemprop==1.5.2 mordred mols2grid jupytext tensorboard
 # ```
 #
 # **Locally (macOS / Linux):**
 # ```bash
 # conda install -c conda-forge xtb-python rdkit -y
-# pip install pyscf chemprop==1.6.1 mordred mols2grid jupytext tensorboard
+# pip install setuptools pyscf chemprop==1.5.2 mordred mols2grid jupytext tensorboard
 # ```
 #
+# > **Note on `setuptools`**: conda updates sometimes remove `setuptools`, which
+# > breaks both ChemProp (via `hyperopt → pkg_resources`) and REINVENT's plugin
+# > importer.  Always include `pip install setuptools` in environment setup.
+#
 # > **Note on chemprop**: REINVENT4 uses the v1 ChemProp API.
-# > The latest compatible release is `1.6.1` — do not install v2+.
+# > The latest compatible release is `1.5.2` — do not install v2+.
 #
 # ### 1.5 Upload your data
 #
@@ -124,13 +128,18 @@
 #
 # ### 1.6 Get a REINVENT prior model
 #
+# Download `FS_Ro5_10M.model` from the REINVENT4 Zenodo record and place it
+# in the **project root** (same folder as `reinvent_plugins/`, `notebooks/`, etc.):
+#
 # ```bash
-# # Download from the REINVENT Zenodo record — check the latest URL in the REINVENT README
-# # Place in models/priors/reinvent.prior
-# # Example (URL may change):
-# wget -O models/priors/reinvent.prior \
-#   "https://zenodo.org/record/XXXXXXX/files/reinvent.prior"
+# # Local:
+# cp ~/Downloads/FS_Ro5_10M.model /path/to/REINVENT4_photochem/
+#
+# # FarmShare:
+# scp FS_Ro5_10M.model <sunetid>@rice.stanford.edu:~/projects/reinvent_photoswitch/
 # ```
+#
+# The notebook's `PRIOR_FILE` variable (§9) points here by default.
 #
 # ### 1.7 Open JupyterLab (optional — for interactive work on FarmShare)
 #
@@ -177,6 +186,35 @@ except ImportError:
     HAS_MOLS2GRID = False
     print("mols2grid not installed — molecule grids disabled")
 
+# ── Critical: setuptools / pkg_resources ────────────────────────────────────
+# conda updates sometimes drop setuptools.  This breaks ChemProp (hyperopt)
+# and REINVENT's own plugin importer before a single cell runs.
+try:
+    import pkg_resources  # noqa: F401
+except ModuleNotFoundError:
+    # conda-forge setuptools ≥ 80 drops pkg_resources from the distribution.
+    # Downgrade to 68.2.2, the last stable release that still bundles it.
+    print("⚠  pkg_resources missing — installing setuptools==68.2.2 …")
+    subprocess.run(
+        [sys.executable, "-m", "pip", "install", "--force-reinstall",
+         "-q", "setuptools==68.2.2"],
+        check=True,
+    )
+    import importlib
+    importlib.invalidate_caches()
+    try:
+        import pkg_resources  # noqa: F401
+        print("✓  setuptools 68.2.2 installed — please Restart Kernel and Re-run All Cells.")
+        raise SystemExit(0)   # stop here so fresh imports load correctly
+    except ModuleNotFoundError:
+        raise RuntimeError(
+            "\n\nsetuptools was installed but pkg_resources is still not importable.\n"
+            "The pip install wrote to a different Python than this kernel.\n"
+            "Fix (run in a terminal, then restart the kernel):\n"
+            "  /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/pip install "
+            "--force-reinstall setuptools==68.2.2\n"
+        )
+
 # ── Paths (adjust PROJ_ROOT for FarmShare) ──────────────────────────────────
 # Local (this repo):
 PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(""), ".."))
@@ -192,6 +230,63 @@ os.makedirs(PLUGIN_COMP, exist_ok=True)
 print(f"Project root : {PROJ_ROOT}")
 print(f"Data dir     : {DATA_DIR}")
 print(f"Plugin dir   : {PLUGIN_DIR}")
+
+# +
+# ── Run-control flags ────────────────────────────────────────────────────────
+# Set any flag to False to skip that stage.
+# Useful for re-running from a checkpoint or for dry-runs.
+#
+# ⏱  Rough wall-clock estimates on Apple Silicon Mac (CPU only):
+#   RUN_CHEMPROP  : ~10-30 min total (λ_max + t½ models)
+#   RUN_TL        : ~30-90 min  (50 epochs, ~350 SMILES)
+#   RUN_RL1       : ~15-30 min  (400 steps, structural scoring only)
+#   RUN_RL2       : ~2-6 hours  (600 steps, + ChemProp batch scoring)
+#   RUN_RL3       : ~8-24 hours (200 steps, + xTB per molecule — skip on Mac)
+#
+# On FarmShare with a GPU node, divide all times by ~5–10×.
+
+RUN_CHEMPROP = True   # train λ_max and log(t½) surrogate models
+RUN_TL       = True   # transfer learning
+RUN_RL1      = True   # Stage 1 RL (structural filter)
+RUN_RL2      = True   # Stage 2 RL (+ ChemProp property scores)
+RUN_RL3      = False  # Stage 3 RL (+ xTB HOMO-LUMO; slow, needs xtb-python)
+
+# "cpu" locally; "cuda:0" on FarmShare GPU node
+DEVICE = "cpu"
+
+
+def run_reinvent(config_file, log_file, device=None):
+    """
+    Run REINVENT and stream its output line-by-line to the notebook cell.
+    Sets PYTHONPATH so custom plugins are found.
+    Returns exit code (0 = success).
+
+    KMP_DUPLICATE_LIB_OK=TRUE suppresses the macOS OpenMP crash (exit -6) that
+    occurs when PyTorch, NumPy, and SciPy each bundle their own libomp.dylib.
+    """
+    _device = device or DEVICE
+    _env = {
+        **os.environ,
+        "PYTHONPATH":             f"{PLUGIN_DIR}{os.pathsep}{os.environ.get('PYTHONPATH', '')}",
+        "KMP_DUPLICATE_LIB_OK":  "TRUE",   # macOS OpenMP duplicate-library fix
+        "OMP_NUM_THREADS":        "1",      # prevent runaway thread spawning on Mac
+    }
+    cmd = ["reinvent", "-d", _device, "-l", log_file, config_file]
+    print(f"▶ {' '.join(cmd)}\n")
+    try:
+        proc = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, bufsize=1, env=_env,
+        )
+        for line in proc.stdout:
+            print(line, end="", flush=True)
+        proc.wait()
+        status = "✓ Done" if proc.returncode == 0 else f"✗ Exit code {proc.returncode}"
+        print(f"\n{status}")
+        return proc.returncode
+    except FileNotFoundError:
+        print("[ERROR] 'reinvent' command not found — activate the reinvent4 conda env.")
+        return -1
 # -
 
 # ## §3 — Load & Explore the Raw Data
@@ -227,7 +322,6 @@ print(f"photoswitches.csv  : {len(ps)} molecules, {ps.shape[1]} columns")
 print(f"  λ_E_pipi range   : {ps['lam_E_pipi'].min():.0f}–{ps['lam_E_pipi'].max():.0f} nm  (n={ps['lam_E_pipi'].notna().sum()})")
 print(f"  PSS_Z range      : {ps['PSS_Z'].min():.0f}–{ps['PSS_Z'].max():.0f} %      (n={ps['PSS_Z'].notna().sum()})")
 print(f"  t1/2 range       : {ps['t12_s'].min():.1e}–{ps['t12_s'].max():.1e} s   (n={ps['t12_s'].notna().sum()})")
-# -
 
 # +
 # ── fulldata.lambda_train.xlsx  (enlarged training set, ~718 molecules) ────────
@@ -238,7 +332,6 @@ lt["source"] = "lambda_train"
 
 print(f"fulldata.lambda_train : {len(lt)} molecules")
 print(f"  λ range  : {lt['lam_E_pipi'].min():.0f}–{lt['lam_E_pipi'].max():.0f} nm")
-# -
 
 # +
 # Distribution plots
@@ -358,8 +451,10 @@ def inchikey(smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         return None
-    return inchi.MolToInchiKey(inchi.MolToInchi(mol))
-# -
+    inchi_str = inchi.MolToInchi(mol)
+    if inchi_str is None:
+        return None
+    return inchi.InchiToInchiKey(inchi_str)
 
 # +
 # ── Clean photoswitches.csv ──────────────────────────────────────────────────
@@ -368,8 +463,12 @@ def clean_photoswitches(df, strict=False):
     """
     Filter the photoswitches dataframe.
 
-    strict=False  → broad corpus for transfer learning (SMILES only, scaffold check)
-    strict=True   → property-gated set for training RL scoring predictors
+    strict=False  → broad corpus for transfer learning (SMILES + scaffold check only)
+    strict=True   → predictor-training set: must have a measured λ_max (any value);
+                    PSS / t12 / Wiberg filters applied only when measurements exist.
+                    λ_max threshold is intentionally absent here — the ChemProp model
+                    must learn the full wavelength distribution; the RL reward handles
+                    the visible-light preference at scoring time.
     """
     records = []
     for _, row in df.iterrows():
@@ -397,39 +496,46 @@ def clean_photoswitches(df, strict=False):
             pss_e = row.get("PSS_E")
             wb    = row.get("wiberg_idx")
 
-            # λ_max ≥ 380 nm
-            if pd.isna(lam) or lam < 380:
+            # Must have a measured λ_max (any wavelength — no threshold)
+            if pd.isna(lam):
                 continue
 
-            # PSS: at least one isomer ≥ 65 %
-            pss_max = max(
-                pss_z if pd.notna(pss_z) else 0,
-                pss_e if pd.notna(pss_e) else 0,
-            )
-            if pss_max < 65:
-                continue
+            # PSS: only filter when both values are actually measured
+            pss_z_known = pd.notna(pss_z)
+            pss_e_known = pd.notna(pss_e)
+            if pss_z_known or pss_e_known:
+                pss_max = max(
+                    pss_z if pss_z_known else 0,
+                    pss_e if pss_e_known else 0,
+                )
+                if pss_max < 65:
+                    continue
 
-            # Bistability window: 1 h – 100 years
+            # Bistability: only filter when t12 is measured
             if pd.notna(t12) and not (3_600 <= t12 <= 3.15e9):
                 continue
 
-            # Wiberg index sanity check for N=N bonds (1.3–2.1 reasonable range)
+            # Wiberg index sanity check (only when measured)
             if pd.notna(wb) and not (1.3 <= wb <= 2.1):
                 continue
 
+        t12_val = row.get("t12_s")
+        logt12_val = np.log10(t12_val) if pd.notna(t12_val) and t12_val > 0 else None
+
         ik = inchikey(canon)
         records.append({
-            "smiles":       canon,
-            "inchikey":     ik,
-            "lam_E_pipi":  row.get("lam_E_pipi"),
-            "lam_Z_pipi":  row.get("lam_Z_pipi"),
-            "lam_E_npi":   row.get("lam_E_npi"),
-            "PSS_Z":       row.get("PSS_Z"),
-            "PSS_E":       row.get("PSS_E"),
-            "t12_s":       row.get("t12_s"),
-            "wiberg_idx":  row.get("wiberg_idx"),
-            "irr_EtoZ":    row.get("irr_EtoZ"),
-            "source":      "photoswitches_csv",
+            "smiles":      canon,
+            "inchikey":    ik,
+            "lam_E_pipi": row.get("lam_E_pipi"),
+            "lam_Z_pipi": row.get("lam_Z_pipi"),
+            "lam_E_npi":  row.get("lam_E_npi"),
+            "PSS_Z":      row.get("PSS_Z"),
+            "PSS_E":      row.get("PSS_E"),
+            "t12_s":      t12_val,
+            "logt12":     logt12_val,
+            "wiberg_idx": row.get("wiberg_idx"),
+            "irr_EtoZ":   row.get("irr_EtoZ"),
+            "source":     "photoswitches_csv",
         })
 
     out = pd.DataFrame(records).drop_duplicates(subset="inchikey")
@@ -441,12 +547,11 @@ ps_strict = clean_photoswitches(ps, strict=True)   # predictor training
 
 print(f"photoswitches.csv  broad  (TL corpus)      : {len(ps_broad)}")
 print(f"photoswitches.csv  strict (predictor train) : {len(ps_strict)}")
-# -
 
 # +
 # ── Clean fulldata.lambda_train.xlsx ────────────────────────────────────────
 
-def clean_lambda_train(df, lam_min=380, t12_min=3600):
+def clean_lambda_train(df, lam_min=300, t12_min=3600):
     records = []
     for _, row in df.iterrows():
         smiles_raw = str(row.get("smiles", "")).strip()
@@ -488,9 +593,8 @@ def clean_lambda_train(df, lam_min=380, t12_min=3600):
     return pd.DataFrame(records).drop_duplicates(subset="inchikey")
 
 
-lt_clean = clean_lambda_train(lt, lam_min=380, t12_min=3600)
+lt_clean = clean_lambda_train(lt, lam_min=300, t12_min=3600)
 print(f"lambda_train clean : {len(lt_clean)}")
-# -
 
 # +
 # ── Merge both datasets, deduplicate ────────────────────────────────────────
@@ -513,7 +617,6 @@ print(f"Strict set (TL train + predictor training) : {len(combined_strict)}")
 print(f"Broad  set (TL corpus only)                : {len(combined_broad)}")
 print(f"\nλ_max distribution in strict set:")
 print(combined_strict["lam_E_pipi"].describe())
-# -
 
 # +
 # ── Scaffold-aware 80/20 train/val split ────────────────────────────────────
@@ -557,7 +660,6 @@ tl_train, tl_val = scaffold_split(tl_data, train_frac=0.8)
 
 print(f"TL train : {len(tl_train)} molecules")
 print(f"TL val   : {len(tl_val)} molecules")
-# -
 
 # +
 # ── Save TL files ────────────────────────────────────────────────────────────
@@ -633,9 +735,13 @@ def mol_to_xtb_inputs(smiles):
 
 def xtb_homo_lumo_gap(smiles, method="GFN2xTB"):
     """
-    Compute HOMO-LUMO gap (eV) for a molecule using xTB.
+    Compute HOMO-LUMO gap (eV) for a molecule using GFN2-xTB.
 
     Returns float (eV) or None on failure.
+
+    The gap is derived from orbital eigenvalues and occupations rather than
+    a dedicated API call (get_homo_lumo_gap is absent in xtb-python ≥ 22.x).
+    Fermi-smearing artifacts are handled by using occ > 0.5 as the threshold.
 
     Requires: conda install -c conda-forge xtb-python
     """
@@ -655,34 +761,64 @@ def xtb_homo_lumo_gap(smiles, method="GFN2xTB"):
             return None
 
         calc = Calculator(param, atomic_numbers, coords_bohr)
-        calc.set_verbosity(0)        # silent
+        calc.set_verbosity(0)
         res = calc.singlepoint()
 
-        gap_hartree = res.get_homo_lumo_gap()
-        return gap_hartree * 27.2114  # convert Hartree → eV
+        evals = res.get_orbital_eigenvalues()   # Hartree
+        occs  = res.get_orbital_occupations()   # 0.0 or 2.0 (with small Fermi smearing)
+
+        # Use 0.5 threshold to ignore Fermi-smearing residuals (~1e-12)
+        occupied   = evals[occs > 0.5]
+        unoccupied = evals[occs <= 0.5]
+
+        if len(occupied) == 0 or len(unoccupied) == 0:
+            return None
+
+        homo_ha = occupied[-1]
+        lumo_ha = unoccupied[0]
+        gap_ev  = (lumo_ha - homo_ha) * 27.2114  # Hartree → eV
+        return gap_ev if gap_ev > 0 else None
 
     except ImportError:
         print("xtb-python not installed. Run: conda install -c conda-forge xtb-python")
         return None
     except Exception as e:
+        print(f"  [xTB error] {e}")
         return None
 
 
-def xtb_gap_to_lambda_estimate(gap_eV, correction=0.75):
-    """
-    Estimate π→π* λ_max from GFN2-xTB HOMO-LUMO gap.
+# Empirical calibration of GFN2-xTB HOMO-LUMO gap vs experimental λ_max
+# (azobenzene 1.36 eV→320nm, 4-aminoazobenzene 1.34 eV→385nm,
+#  methyl orange 1.25 eV→460nm). Average correction ~2.5.
+# Note: GFN2-xTB gap is NOT a precise predictor of λ_max; it is useful
+# for relative ranking and conjugation assessment in the RL reward.
+_XTB_CORRECTION = 2.5
 
-    correction: empirical scaling (0.7–0.8 for azo compounds).
+
+def xtb_gap_to_lambda_estimate(gap_eV, correction=_XTB_CORRECTION):
+    """
+    Rough estimate of λ_max (nm) from GFN2-xTB HOMO-LUMO gap.
+
+    Uses an empirical correction factor calibrated on azo photoswitches
+    (correction ≈ 2.5).  Accuracy is ±100 nm; treat as a ranking proxy
+    rather than a quantitative prediction.
     Returns λ_max in nm, or None if gap ≤ 0.
     """
     optical_gap = gap_eV * correction
     if optical_gap <= 0:
         return None
     return 1240.0 / optical_gap
-# -
 
 # +
-# ── Demo: compute xTB HOMO-LUMO gap for a few molecules ──────────────────────
+# ── xTB smoke test ────────────────────────────────────────────────────────────
+# If xtb-python is already installed but the cells below still show N/A it means
+# the library was installed *after* the kernel started.
+# Fix: Kernel ▸ Restart Kernel and Re-run All Cells (or just re-run from here).
+#
+# Install (once, in the reinvent4 env):
+#   conda install -c conda-forge xtb-python
+# ─────────────────────────────────────────────────────────────────────────────
+
 DEMO_SMILES = {
     "azobenzene":        "c1ccc(/N=N/c2ccccc2)cc1",
     "4-aminoazobenzene": "Nc1ccc(/N=N/c2ccccc2)cc1",
@@ -700,7 +836,6 @@ for name, smi in DEMO_SMILES.items():
     else:
         print(f"{name:<25} {'N/A':>9} {'N/A':>12} {EXP_LAMBDA[name]:>12}")
         print("  → Install xtb-python to enable xTB calculations")
-# -
 
 # +
 # ── Batch xTB screening (Stage 3 post-processing) ────────────────────────────
@@ -857,41 +992,61 @@ t12_data_train.to_csv(T12_TRAIN_CSV, index=False)
 t12_data_val.to_csv(T12_VAL_CSV, index=False)
 
 print(f"log(t₁/₂) ChemProp  train={len(t12_data_train)}, val={len(t12_data_val)}")
-# -
 
 # +
 # ── Train ChemProp models ─────────────────────────────────────────────────────
-# Requires: pip install chemprop==1.6.1
+# Requires: pip install chemprop==1.5.2
 
 def train_chemprop(train_csv, val_csv, model_dir, target_col,
                    epochs=50, batch_size=50, hidden_size=300, depth=3):
-    """Train a ChemProp regression model via subprocess."""
+    """
+    Train a ChemProp (v1) regression model via subprocess.
+    Uses the ``chemprop_train`` console-script entry point installed by
+    chemprop 1.5.x (``python -m chemprop.train`` does not work because the
+    ``train`` sub-package has no ``__main__.py``).
+    """
+    # Look for chemprop_train next to the running Python to avoid picking up
+    # a stale copy from a different Python installation.
+    env_bin = os.path.dirname(sys.executable)
+    chemprop_bin = os.path.join(env_bin, "chemprop_train")
+    if not os.path.isfile(chemprop_bin):
+        chemprop_bin = shutil.which("chemprop_train")
+    if chemprop_bin is None:
+        print("[ERROR] chemprop_train not found. Install chemprop 1.5.2.")
+        return
+    print(f"  (using {chemprop_bin})")
+
     cmd = [
-        sys.executable, "-m", "chemprop.train",
-        "--data_path",       train_csv,
+        chemprop_bin,
+        "--data_path",         train_csv,
         "--separate_val_path", val_csv,
-        "--dataset_type",    "regression",
-        "--target_columns",  target_col,
-        "--save_dir",        model_dir,
-        "--epochs",          str(epochs),
-        "--batch_size",      str(batch_size),
-        "--hidden_size",     str(hidden_size),
-        "--depth",           str(depth),
-        "--metric",          "rmse",
-        "--quiet",
+        "--dataset_type",      "regression",
+        "--target_columns",    target_col,
+        "--save_dir",          model_dir,
+        "--epochs",            str(epochs),
+        "--batch_size",        str(batch_size),
+        "--hidden_size",       str(hidden_size),
+        "--depth",             str(depth),
+        "--metric",            "rmse",
     ]
-    print(f"Training ChemProp → {model_dir}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode != 0:
-        print("STDERR:", result.stderr[-2000:])
-    else:
-        print("Done.")
-    return result.returncode == 0
+    print(f"▶ Training ChemProp [{target_col}] → {model_dir}")
+    proc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, bufsize=1,
+    )
+    for line in proc.stdout:
+        print(line, end="", flush=True)
+    proc.wait()
+    status = "✓ Done" if proc.returncode == 0 else f"✗ Exit code {proc.returncode}"
+    print(f"\n{status}")
+    return proc.returncode == 0
 
 
-# Uncomment to train (requires chemprop installed):
-# train_chemprop(LAM_TRAIN_CSV, LAM_VAL_CSV, CHEMPROP_LAMBDA_DIR, "lambda_max", epochs=80)
-# train_chemprop(T12_TRAIN_CSV, T12_VAL_CSV, CHEMPROP_T12_DIR,    "logt12",     epochs=80)
+if RUN_CHEMPROP:
+    train_chemprop(LAM_TRAIN_CSV, LAM_VAL_CSV, CHEMPROP_LAMBDA_DIR, "lambda_max", epochs=80)
+    train_chemprop(T12_TRAIN_CSV, T12_VAL_CSV, CHEMPROP_T12_DIR,    "logt12",     epochs=80)
+else:
+    print("Skipping ChemProp training (RUN_CHEMPROP=False).")
 # -
 
 # ## §8 — Custom REINVENT Scoring Plugins
@@ -912,17 +1067,23 @@ def train_chemprop(train_csv, val_csv, model_dir, target_col,
 # ```
 
 # +
-# Write __init__.py files so the plugin package is importable
+# IMPORTANT: reinvent_plugins and reinvent_plugins/components must be
+# *namespace packages* — they must NOT have __init__.py files.
+# REINVENT's importer checks `components.__file__ is None` and raises
+# RuntimeError("No valid component directories found") if it finds an __init__.py.
+# We only ensure the directories exist; Python's namespace-package mechanism
+# (PEP 420) takes care of the rest when PLUGIN_DIR is on PYTHONPATH.
 for pkg_dir in [
     os.path.join(PLUGIN_DIR, "reinvent_plugins"),
     PLUGIN_COMP,
 ]:
-    init_path = os.path.join(pkg_dir, "__init__.py")
-    if not os.path.exists(init_path):
-        open(init_path, "w").close()
+    os.makedirs(pkg_dir, exist_ok=True)
+    bad_init = os.path.join(pkg_dir, "__init__.py")
+    if os.path.exists(bad_init):
+        os.remove(bad_init)
+        print(f"  Removed conflicting {bad_init}")
 
 print(f"Plugin directory: {PLUGIN_COMP}")
-# -
 
 # +
 # ── Plugin 1: Photoswitch scaffold + forbidden alerts ────────────────────────
@@ -1006,7 +1167,6 @@ class PhotoswitchScaffold:
         return ComponentResults([np.array(scores, dtype=float)])
 ''')
 print(f"Written: {PLUGIN_SCAFFOLD}")
-# -
 
 # +
 # ── Plugin 2: Visible absorption score via ChemProp λ_max model ──────────────
@@ -1109,7 +1269,6 @@ class VisibleAbsChemProp:
         return ComponentResults([np.array(scores, dtype=float)])
 ''')
 print(f"Written: {PLUGIN_VIS_ABS}")
-# -
 
 # +
 # ── Plugin 3: Thermal half-life score via ChemProp log(t₁/₂) model ───────────
@@ -1210,7 +1369,6 @@ class HalfLifeChemProp:
         return ComponentResults([np.array(scores, dtype=float)])
 ''')
 print(f"Written: {PLUGIN_T12}")
-# -
 
 # +
 # ── Plugin 4: GFN2-xTB HOMO-LUMO gap (Stage 3 / post-processing) ─────────────
@@ -1219,23 +1377,28 @@ PLUGIN_XTB = os.path.join(PLUGIN_COMP, "comp_xtb_homo_lumo.py")
 with open(PLUGIN_XTB, "w") as fh:
     fh.write('''"""GFN2-xTB HOMO-LUMO gap scorer for REINVENT.
 
-Computes the HOMO-LUMO gap with semiempirical GFN2-xTB via xtb-python.
-The gap (eV) is converted to an estimated λ_max via an empirical correction
-and scored with a Gaussian centred on the target visible range.
+Scores molecules based on their GFN2-xTB HOMO-LUMO gap (eV) as a proxy for
+visible-light absorption.  Scoring is done directly in gap-space rather than
+converting to λ_max, because the GFN2-xTB gap underestimates DFT values by
+~2.5× and the correction is not constant across chemical space.
 
-CAUTION: ~1-3 s/molecule on CPU.  Suitable for Stage 3 with small batches,
-         or for offline post-processing of RL outputs — NOT for Stage 1/2.
+Calibration on azo photoswitches (xtb-python ≥ 22.x):
+  azobenzene      gap=1.36 eV → λ_exp=320 nm
+  4-NH2-azo       gap=1.34 eV → λ_exp=385 nm
+  methyl orange   gap=1.25 eV → λ_exp=460 nm
+Target range for visible absorbers (400–650 nm): gap_min=0.9, gap_max=1.4 eV.
+
+CAUTION: ~1-3 s/molecule on CPU.  Use with small batches (batch_size=40).
 
 [[stage.scoring.component]]
 [stage.scoring.component.XTBHomoLumo]
 
 [[stage.scoring.component.XTBHomoLumo.endpoint]]
 name = "xTB_Gap"
-weight = 0.5
+weight = 0.7
 
-params.target_lambda_min = 400.0    # nm — visible range start
-params.target_lambda_max = 650.0    # nm — visible range end
-params.gap_correction    = 0.75     # empirical optical-gap / HOMO-LUMO-gap ratio
+params.gap_min_ev = [0.9]    # lower bound  (~650 nm visible)
+params.gap_max_ev = [1.4]    # upper bound  (~400 nm visible)
 """
 
 __all__ = ["XTBHomoLumo"]
@@ -1243,7 +1406,7 @@ from typing import List
 
 import numpy as np
 from rdkit import Chem
-from rdkit.Chem import AllChem, Descriptors
+from rdkit.Chem import AllChem
 from pydantic.dataclasses import dataclass
 
 from .component_results import ComponentResults
@@ -1254,26 +1417,23 @@ from .add_tag import add_tag
 @add_tag("__parameters")
 @dataclass
 class Parameters:
-    target_lambda_min: List[float]
-    target_lambda_max: List[float]
-    gap_correction:    List[float]
+    gap_min_ev: List[float]
+    gap_max_ev: List[float]
 
 
 @add_tag("__component")
 class XTBHomoLumo:
     def __init__(self, params: Parameters):
-        self.lam_min   = params.target_lambda_min[0]
-        self.lam_max   = params.target_lambda_max[0]
-        self.corr      = params.gap_correction[0]
-        self._mid      = (self.lam_min + self.lam_max) / 2.0
-        self._width    = (self.lam_max - self.lam_min) / 2.0
+        self.gap_min = params.gap_min_ev[0]
+        self.gap_max = params.gap_max_ev[0]
+        self._mid    = (self.gap_min + self.gap_max) / 2.0
+        self._width  = (self.gap_max - self.gap_min) / 2.0
 
     @molcache
     def __call__(self, mols: List[Chem.Mol]) -> np.array:
-        scores = []
-        for mol in mols:
-            scores.append(self._score_mol(mol))
-        return ComponentResults([np.array(scores, dtype=float)])
+        return ComponentResults([np.array(
+            [self._score_mol(mol) for mol in mols], dtype=float
+        )])
 
     def _score_mol(self, mol):
         if mol is None:
@@ -1281,32 +1441,38 @@ class XTBHomoLumo:
         try:
             from xtb.interface import Calculator, Param
         except ImportError:
-            return 0.0  # xtb-python not available — silent fallback
+            return 0.0
 
         try:
             mol3d = Chem.AddHs(mol)
-            params = AllChem.ETKDGv3()
-            params.randomSeed = 42
-            AllChem.EmbedMolecule(mol3d, params)
+            emb = AllChem.ETKDGv3()
+            emb.randomSeed = 42
+            if AllChem.EmbedMolecule(mol3d, emb) == -1:
+                return 0.0
             AllChem.MMFFOptimizeMolecule(mol3d, maxIters=500)
-            conf = mol3d.GetConformer()
 
-            positions     = conf.GetPositions()
-            atomic_nums   = np.array([a.GetAtomicNum() for a in mol3d.GetAtoms()], dtype=int)
-            coords_bohr   = positions * 1.8897259886
+            positions   = mol3d.GetConformer().GetPositions()
+            atomic_nums = np.array([a.GetAtomicNum() for a in mol3d.GetAtoms()], dtype=int)
+            coords_bohr = positions * 1.8897259886
 
             calc = Calculator(Param.GFN2xTB, atomic_nums, coords_bohr)
             calc.set_verbosity(0)
             res  = calc.singlepoint()
 
-            gap_hartree = res.get_homo_lumo_gap()
-            gap_eV      = gap_hartree * 27.2114
-            optical_gap = gap_eV * self.corr
-            if optical_gap <= 0:
+            evals = res.get_orbital_eigenvalues()   # Hartree
+            occs  = res.get_orbital_occupations()   # 0.0 or 2.0 (± Fermi smearing)
+
+            occupied   = evals[occs > 0.5]
+            unoccupied = evals[occs <= 0.5]
+            if len(occupied) == 0 or len(unoccupied) == 0:
                 return 0.0
 
-            lam = 1240.0 / optical_gap
-            score = float(np.exp(-0.5 * ((lam - self._mid) / self._width) ** 2))
+            gap_ev = (unoccupied[0] - occupied[-1]) * 27.2114
+            if gap_ev <= 0:
+                return 0.0
+
+            # Gaussian centred on [gap_min, gap_max] midpoint
+            score = float(np.exp(-0.5 * ((gap_ev - self._mid) / self._width) ** 2))
             return float(np.clip(score, 0.0, 1.0))
 
         except Exception:
@@ -1318,18 +1484,28 @@ print(f"Written: {PLUGIN_XTB}")
 # ## §9 — Transfer Learning Configuration & Run
 
 # +
-import reinvent
+# ── Prior model file ─────────────────────────────────────────────────────────
+# REINVENT4 ships without a bundled prior.  Download from Zenodo and place in
+# the project root (or point PRIOR_FILE wherever you saved it).
+#   Local:     FS_Ro5_10M.model   (30 MB, Zip/PyTorch)
+#   FarmShare: ~/projects/reinvent_photoswitch/models/priors/FS_Ro5_10M.model
+PRIOR_FILE  = os.path.join(PROJ_ROOT, "FS_Ro5_10M.model")
 
-PRIOR_FILE  = os.path.abspath(os.path.join(reinvent.__path__[0], "..", "priors", "reinvent.prior"))
+if not os.path.isfile(PRIOR_FILE):
+    raise FileNotFoundError(
+        f"Prior model not found at {PRIOR_FILE}\n"
+        "Download it from Zenodo and place it in the project root, or\n"
+        "edit PRIOR_FILE above to point to your copy."
+    )
+print(f"Using prior: {PRIOR_FILE}  ({os.path.getsize(PRIOR_FILE)/1e6:.1f} MB)")
+
 TL_OUT_DIR  = os.path.join(OUT_DIR, "tl_run");  os.makedirs(TL_OUT_DIR, exist_ok=True)
 TL_MODEL    = os.path.join(TL_OUT_DIR, "TL_photoswitch.model")
 TB_TL_DIR   = os.path.join(TL_OUT_DIR, "tb_tl")
 
-# On FarmShare, replace PRIOR_FILE with the path to your downloaded prior.
-
 TL_CONFIG = f"""
 run_type = "transfer_learning"
-device = "cpu"
+device = "{DEVICE}"
 tb_logdir = "{TB_TL_DIR}"
 
 [parameters]
@@ -1355,40 +1531,50 @@ with open(TL_CONFIG_FILE, "w") as f:
     f.write(TL_CONFIG)
 print(f"TL config written: {TL_CONFIG_FILE}")
 print(TL_CONFIG)
-# -
 
 # +
 # ── Run Transfer Learning ─────────────────────────────────────────────────────
-# This will take ~20–60 min on CPU (use GPU on FarmShare for speed).
-# Comment out for a dry-run / config check.
+# Order: TL must complete before any RL stage.
+# Mac estimate: ~30-90 min (50 epochs, CPU).  FarmShare GPU: ~10-20 min.
 
 TL_LOG = os.path.join(TL_OUT_DIR, "tl.log")
-# !reinvent -d cpu -l {TL_LOG} {TL_CONFIG_FILE}
-# -
+
+if RUN_TL:
+    run_reinvent(TL_CONFIG_FILE, TL_LOG)
+else:
+    print("Skipping TL (RUN_TL=False).")
 
 # +
-# ── TL: choose best checkpoint ───────────────────────────────────────────────
-# Look at the TensorBoard log to pick the step with:
-#   1. Lowest validation NLL
-#   2. Valid SMILES fraction still high (>= 0.95)
-#   3. Internal diversity not collapsed
-#
-# Then set TL_BEST_CHKPT below.
+# ── TL: inspect with TensorBoard & choose best checkpoint ────────────────────
+# To view TensorBoard, run this in a terminal (NOT inside the notebook):
+#   tensorboard --logdir <TB_TL_DIR printed below>
+# Then open http://localhost:6006 in your browser.
+# Pick the checkpoint where validation NLL is lowest AND valid-SMILES % is ≥ 95.
 
-# %load_ext tensorboard
-# %tensorboard --bind_all --logdir {TB_TL_DIR}
-
-# Find checkpoints written by TL
 import glob
-chkpts = sorted(glob.glob(os.path.join(TL_OUT_DIR, "*.chkpt")))
-print(f"Found {len(chkpts)} checkpoints:")
+print(f"TensorBoard log dir: {TB_TL_DIR}")
+chkpts = sorted(glob.glob(os.path.join(TL_OUT_DIR, "TL_photoswitch.model.*.chkpt")))
+print(f"Found {len(chkpts)} TL checkpoints:")
 for c in chkpts:
     print(f"  {os.path.basename(c)}")
 
-# Set the chosen checkpoint (update epoch number based on TB inspection):
-TL_EPOCH = 30
+# Auto-select the middle checkpoint as a sensible default;
+# override TL_EPOCH below after inspecting TensorBoard.
+if chkpts:
+    # Default: pick epoch 30, or the latest available if fewer epochs ran
+    available_epochs = sorted(
+        int(os.path.basename(c).split(".")[-2]) for c in chkpts
+    )
+    TL_EPOCH = 30 if 30 in available_epochs else available_epochs[len(available_epochs) // 2]
+else:
+    TL_EPOCH = 30  # will fall back to PRIOR_FILE if file doesn't exist
+
 TL_BEST_CHKPT = os.path.join(TL_OUT_DIR, f"TL_photoswitch.model.{TL_EPOCH}.chkpt")
-print(f"\nUsing checkpoint: {TL_BEST_CHKPT}")
+if os.path.exists(TL_BEST_CHKPT):
+    print(f"\nUsing TL checkpoint: {TL_BEST_CHKPT}")
+else:
+    print(f"\nCheckpoint not found — RL stages will use the prior directly.")
+    print(f"(Run TL first, then re-execute this cell to pick a checkpoint.)")
 # -
 
 # ## §10 — Stage 1 RL: Structural Filter
@@ -1411,7 +1597,7 @@ PLUGIN_PYTHONPATH = PLUGIN_DIR  # parent of reinvent_plugins/
 
 STAGE1_CONFIG = f"""
 run_type = "staged_learning"
-device = "cpu"
+device = "{DEVICE}"
 tb_logdir = "{TB_RL1_DIR}"
 json_out_config = "{RL1_OUT_DIR}/_stage1.json"
 
@@ -1486,15 +1672,16 @@ RL1_CONFIG_FILE = os.path.join(RL1_OUT_DIR, "stage1.toml")
 with open(RL1_CONFIG_FILE, "w") as f:
     f.write(STAGE1_CONFIG)
 print(f"Stage 1 config written: {RL1_CONFIG_FILE}")
-# -
 
 # +
 # ── Run Stage 1 RL ────────────────────────────────────────────────────────────
+# Mac estimate: ~15-30 min (400 steps, structural scoring only — very fast per step).
 RL1_LOG = os.path.join(RL1_OUT_DIR, "stage1.log")
-# Ensure plugin directory is on PYTHONPATH before running:
-os.environ["PYTHONPATH"] = f"{PLUGIN_PYTHONPATH}:{os.environ.get('PYTHONPATH', '')}"
 
-# !reinvent -d cpu -l {RL1_LOG} {RL1_CONFIG_FILE}
+if RUN_RL1:
+    run_reinvent(RL1_CONFIG_FILE, RL1_LOG)
+else:
+    print("Skipping Stage 1 RL (RUN_RL1=False).")
 # -
 
 # ## §11 — Stage 2 RL: Add ML-Predicted Photoswitch Properties
@@ -1510,16 +1697,63 @@ RL2_OUT_DIR = os.path.join(OUT_DIR, "rl_stage2"); os.makedirs(RL2_OUT_DIR, exist
 RL2_CHKPT   = os.path.join(RL2_OUT_DIR, "stage2.chkpt")
 TB_RL2_DIR  = os.path.join(RL2_OUT_DIR, "tb_stage2")
 
+# ChemProp v1 saves each fold as model_0/model.pt inside the checkpoint dir
+_cp_lam_ready = os.path.exists(os.path.join(CHEMPROP_LAMBDA_DIR, "model_0", "model.pt"))
+_cp_t12_ready = os.path.exists(os.path.join(CHEMPROP_T12_DIR,    "model_0", "model.pt"))
+
+if not _cp_lam_ready:
+    print(f"⚠ λ_max ChemProp model not found — VisAbs component will be omitted from Stage 2.")
+    print(f"  Train it first: set RUN_CHEMPROP=True and re-run §7.")
+if not _cp_t12_ready:
+    print(f"⚠ t½ ChemProp model not found — HalfLife component will be omitted from Stage 2.")
+
+# Conditional TOML fragments — only included when models exist
+_STAGE2_VIS_ABS = f"""
+# ── 3. Visible absorption (ChemProp λ_max surrogate) ──────────────────────
+[[stage.scoring.component]]
+[stage.scoring.component.VisibleAbsChemProp]
+
+[[stage.scoring.component.VisibleAbsChemProp.endpoint]]
+name   = "VisAbs"
+weight = 0.8
+
+params.checkpoint_dir = ["{CHEMPROP_LAMBDA_DIR}"]
+params.target_column  = ["lambda_max"]
+params.vis_low        = [400.0]
+params.vis_high       = [650.0]
+params.margin         = [40.0]
+""" if _cp_lam_ready else "# VisAbs component skipped — ChemProp λ_max model not trained yet\n"
+
+_STAGE2_HALFLIFE = f"""
+# ── 4. Thermal half-life (ChemProp log(t1/2) surrogate) ───────────────────
+[[stage.scoring.component]]
+[stage.scoring.component.HalfLifeChemProp]
+
+[[stage.scoring.component.HalfLifeChemProp.endpoint]]
+name   = "HalfLife"
+weight = 0.6
+
+params.checkpoint_dir = ["{CHEMPROP_T12_DIR}"]
+params.target_column  = ["logt12"]
+params.logt12_min     = [3.5]
+params.logt12_max     = [9.0]
+params.margin         = [0.5]
+""" if _cp_t12_ready else "# HalfLife component skipped — ChemProp t½ model not trained yet\n"
+
+_s2_agent = (RL1_CHKPT if os.path.exists(RL1_CHKPT)
+             else (TL_BEST_CHKPT if os.path.exists(TL_BEST_CHKPT)
+                   else PRIOR_FILE))
+
 STAGE2_CONFIG = f"""
 run_type = "staged_learning"
-device = "cpu"
+device = "{DEVICE}"
 tb_logdir = "{TB_RL2_DIR}"
 json_out_config = "{RL2_OUT_DIR}/_stage2.json"
 
 [parameters]
 
 prior_file         = "{PRIOR_FILE}"
-agent_file         = "{RL1_CHKPT if os.path.exists(RL1_CHKPT) else (TL_BEST_CHKPT if os.path.exists(TL_BEST_CHKPT) else PRIOR_FILE)}"
+agent_file         = "{_s2_agent}"
 summary_csv_prefix = "{RL2_OUT_DIR}/stage2"
 batch_size         = 100
 use_checkpoint     = false
@@ -1558,36 +1792,8 @@ params.smarts = [
 [[stage.scoring.component.PhotoswitchScaffold.endpoint]]
 name   = "PS_Scaffold"
 weight = 1.0
-
-# ── 3. Visible absorption (ChemProp λ_max surrogate) ──────────────────────
-[[stage.scoring.component]]
-[stage.scoring.component.VisibleAbsChemProp]
-
-[[stage.scoring.component.VisibleAbsChemProp.endpoint]]
-name   = "VisAbs"
-weight = 0.8
-
-params.checkpoint_dir = ["{CHEMPROP_LAMBDA_DIR}"]
-params.target_column  = ["lambda_max"]
-params.vis_low        = [400.0]
-params.vis_high       = [650.0]
-params.margin         = [40.0]
-
-# ── 4. Thermal half-life (ChemProp log(t1/2) surrogate) ───────────────────
-[[stage.scoring.component]]
-[stage.scoring.component.HalfLifeChemProp]
-
-[[stage.scoring.component.HalfLifeChemProp.endpoint]]
-name   = "HalfLife"
-weight = 0.6
-
-params.checkpoint_dir = ["{CHEMPROP_T12_DIR}"]
-params.target_column  = ["logt12"]
-params.logt12_min     = [3.5]
-params.logt12_max     = [9.0]
-params.margin         = [0.5]
-
-# ── 5. QED ────────────────────────────────────────────────────────────────
+""" + _STAGE2_VIS_ABS + _STAGE2_HALFLIFE + f"""
+# ── QED ───────────────────────────────────────────────────────────────────
 [[stage.scoring.component]]
 [stage.scoring.component.QED]
 
@@ -1611,13 +1817,23 @@ sample_size = 10
 RL2_CONFIG_FILE = os.path.join(RL2_OUT_DIR, "stage2.toml")
 with open(RL2_CONFIG_FILE, "w") as f:
     f.write(STAGE2_CONFIG)
+_active = []
+if _cp_lam_ready: _active.append("VisAbs")
+if _cp_t12_ready: _active.append("HalfLife")
+_base = ["Alerts", "PS_Scaffold", "QED"]
 print(f"Stage 2 config written: {RL2_CONFIG_FILE}")
-# -
+print(f"  Active components: {', '.join(_base + _active)}")
 
 # +
 # ── Run Stage 2 RL ────────────────────────────────────────────────────────────
+# Mac estimate: ~2-6 hours (600 steps; ChemProp batch scoring adds ~0.5-2 s/step).
+# FarmShare GPU: ~30-60 min.
 RL2_LOG = os.path.join(RL2_OUT_DIR, "stage2.log")
-# !reinvent -d cpu -l {RL2_LOG} {RL2_CONFIG_FILE}
+
+if RUN_RL2:
+    run_reinvent(RL2_CONFIG_FILE, RL2_LOG)
+else:
+    print("Skipping Stage 2 RL (RUN_RL2=False).")
 # -
 
 # ## §12 — Stage 3 RL: xTB HOMO-LUMO Gap (Quantum Chemistry Reward)
@@ -1631,18 +1847,39 @@ RL3_OUT_DIR = os.path.join(OUT_DIR, "rl_stage3"); os.makedirs(RL3_OUT_DIR, exist
 RL3_CHKPT   = os.path.join(RL3_OUT_DIR, "stage3.chkpt")
 TB_RL3_DIR  = os.path.join(RL3_OUT_DIR, "tb_stage3")
 
+# Recheck model availability (cell order may differ)
+_cp_lam_ready3 = os.path.exists(os.path.join(CHEMPROP_LAMBDA_DIR, "model_0", "model.pt"))
+if not _cp_lam_ready3:
+    print(f"⚠ λ_max ChemProp model not found — VisAbs component will be omitted from Stage 3.")
+
+_STAGE3_VIS_ABS = f"""
+[[stage.scoring.component]]
+[stage.scoring.component.VisibleAbsChemProp]
+
+[[stage.scoring.component.VisibleAbsChemProp.endpoint]]
+name   = "VisAbs"
+weight = 0.8
+params.checkpoint_dir = ["{CHEMPROP_LAMBDA_DIR}"]
+params.target_column  = ["lambda_max"]
+params.vis_low        = [400.0]
+params.vis_high       = [650.0]
+params.margin         = [40.0]
+""" if _cp_lam_ready3 else "# VisAbs component skipped — ChemProp λ_max model not trained yet\n"
+
+_s3_agent = RL2_CHKPT if os.path.exists(RL2_CHKPT) else PRIOR_FILE
+
 STAGE3_CONFIG = f"""
 run_type = "staged_learning"
-device = "cpu"
+device = "{DEVICE}"
 tb_logdir = "{TB_RL3_DIR}"
 json_out_config = "{RL3_OUT_DIR}/_stage3.json"
 
 [parameters]
 
 prior_file         = "{PRIOR_FILE}"
-agent_file         = "{RL2_CHKPT if os.path.exists(RL2_CHKPT) else PRIOR_FILE}"
+agent_file         = "{_s3_agent}"
 summary_csv_prefix = "{RL3_OUT_DIR}/stage3"
-batch_size         = 40        # smaller batch — xTB is slow
+batch_size         = 40
 use_checkpoint     = false
 
 [learning_strategy]
@@ -1677,19 +1914,7 @@ params.smarts = [
 [[stage.scoring.component.PhotoswitchScaffold.endpoint]]
 name   = "PS_Scaffold"
 weight = 1.0
-
-[[stage.scoring.component]]
-[stage.scoring.component.VisibleAbsChemProp]
-
-[[stage.scoring.component.VisibleAbsChemProp.endpoint]]
-name   = "VisAbs"
-weight = 0.8
-params.checkpoint_dir = ["{CHEMPROP_LAMBDA_DIR}"]
-params.target_column  = ["lambda_max"]
-params.vis_low        = [400.0]
-params.vis_high       = [650.0]
-params.margin         = [40.0]
-
+""" + _STAGE3_VIS_ABS + f"""
 [[stage.scoring.component]]
 [stage.scoring.component.XTBHomoLumo]
 
@@ -1697,9 +1922,8 @@ params.margin         = [40.0]
 name   = "xTB_Gap"
 weight = 0.7
 
-params.target_lambda_min = [400.0]
-params.target_lambda_max = [650.0]
-params.gap_correction    = [0.75]
+params.gap_min_ev = [0.9]
+params.gap_max_ev = [1.4]
 
 [diversity_filter]
 type        = "IdenticalMurckoScaffold"
@@ -1715,13 +1939,29 @@ sample_size = 10
 RL3_CONFIG_FILE = os.path.join(RL3_OUT_DIR, "stage3.toml")
 with open(RL3_CONFIG_FILE, "w") as f:
     f.write(STAGE3_CONFIG)
+_active3 = ["Alerts", "PS_Scaffold"]
+if _cp_lam_ready3: _active3.append("VisAbs")
+_active3.append("xTB_Gap")
 print(f"Stage 3 config written: {RL3_CONFIG_FILE}")
-# -
+print(f"  Active components: {', '.join(_active3)}")
 
 # +
 # ── Run Stage 3 RL ────────────────────────────────────────────────────────────
+# Requires: conda install -c conda-forge xtb-python
+# Mac estimate: ~8-24 hours (200 steps × ~2-3 s/mol xTB × batch 40).
+# Recommended: run on FarmShare or skip and use Stage 2 outputs.
 RL3_LOG = os.path.join(RL3_OUT_DIR, "stage3.log")
-# !reinvent -d cpu -l {RL3_LOG} {RL3_CONFIG_FILE}
+
+if RUN_RL3:
+    try:
+        from xtb.interface import Calculator  # noqa: F401
+        run_reinvent(RL3_CONFIG_FILE, RL3_LOG)
+    except ImportError:
+        print("[SKIP] xtb-python not installed — Stage 3 requires it.")
+        print("  Install: conda install -c conda-forge xtb-python")
+        print("  Then set RUN_RL3 = True and re-run.")
+else:
+    print("Skipping Stage 3 RL (RUN_RL3=False — set True once xtb-python is installed).")
 # -
 
 # ## §13 — Results Analysis
@@ -1747,25 +1987,31 @@ for label, df in [("Stage 1", df_s1), ("Stage 2", df_s2), ("Stage 3", df_s3)]:
         print(f"{label}: no data yet")
     else:
         print(f"{label}: {len(df)} rows, valid SMILES: {(df.get('SMILES_state', pd.Series()) == 1).sum()}")
-# -
 
 # +
 # ── Post-process Stage 2 / 3 outputs ────────────────────────────────────────
 def filter_good_candidates(df, min_total_score=0.6, min_qed=0.4):
-    """Return unique, high-scoring molecules from an RL CSV."""
+    """Return unique, high-scoring molecules from an RL CSV.
+
+    REINVENT writes the aggregate score as 'Score' (capital S).
+    The QED column is named 'QED' when the QED component is active.
+    """
     if df.empty:
         return df
     valid = df[df.get("SMILES_state", pd.Series([1]*len(df))) == 1].copy()
     valid = valid.drop_duplicates(subset=["SMILES"])
-    score_col = "total_score" if "total_score" in valid.columns else None
-    qed_col   = "QED"         if "QED"         in valid.columns else None
+
+    # REINVENT names the aggregate column "Score" — fall back to first numeric col
+    score_col = next((c for c in ("Score", "total_score") if c in valid.columns), None)
+    qed_col   = "QED" if "QED" in valid.columns else None
 
     if score_col:
         valid = valid[valid[score_col] >= min_total_score]
     if qed_col:
         valid = valid[valid[qed_col] >= min_qed]
 
-    return valid.sort_values(score_col or valid.columns[0], ascending=False)
+    sort_col = score_col or valid.columns[0]
+    return valid.sort_values(sort_col, ascending=False)
 
 
 good_s2 = filter_good_candidates(df_s2)
@@ -1777,16 +2023,15 @@ if not good_s2.empty:
     print(good_s2.head(10))
 # -
 
-# +
 # ── Optional: run xTB on top Stage-2 candidates for final ranking ────────────
 if not good_s2.empty:
     top50 = good_s2.head(50)["SMILES"].tolist()
     print("Running xTB on top-50 Stage-2 candidates...")
-    # Uncomment when xtb-python is installed:
-    # xtb_results = batch_xtb_screen(top50, target_lam_min=400, target_lam_max=650)
-    # final = good_s2.head(50).merge(xtb_results, left_on="SMILES", right_on="smiles", how="left")
-    # print(final[["SMILES","total_score","xtb_score","lam_est_nm"]].sort_values("xtb_score", ascending=False))
-# -
+    xtb_results = batch_xtb_screen(top50, target_lam_min=400, target_lam_max=650)
+    _score_col = "Score" if "Score" in good_s2.columns else "total_score"
+    final = good_s2.head(50).merge(xtb_results, left_on="SMILES", right_on="smiles", how="left")
+    display_cols = [c for c in [_score_col, "xtb_score", "lam_est_nm", "gap_eV"] if c in final.columns]
+    print(final[["SMILES"] + display_cols].sort_values("xtb_score", ascending=False).to_string(index=False))
 
 # +
 # ── Optional: run TD-DFT on the very best candidates ────────────────────────
@@ -1796,13 +2041,11 @@ if not good_s2.empty:
 #         print(f"S{r['state']}: λ={r['lambda_nm']:.0f} nm, f={r['osc_strength']:.4f}")
 # -
 
-# +
 # ── Display top candidates as a molecule grid ────────────────────────────────
 if HAS_MOLS2GRID and not good_s2.empty:
     from reinvent.notebooks import create_mol_grid
     grid = create_mol_grid(good_s2.head(50))
     display(grid)
-# -
 
 # ## §14 — FarmShare Batch Job Scripts
 #

@@ -111,11 +111,11 @@ Auto-generated Slurm `sbatch` scripts for each run stage.  Instructions for inte
 ```bash
 # Both local and FarmShare — install into reinvent4 conda env
 conda install -c conda-forge xtb-python rdkit -y
-pip install pyscf chemprop==1.6.1 mordred mols2grid jupytext tensorboard
+pip install pyscf chemprop==1.5.2 mordred mols2grid jupytext tensorboard
 ```
 
-> `chemprop==1.6.1` is the latest v1 release compatible with REINVENT4's scoring API.
-> Do **not** install chemprop v2+ — the API is incompatible.
+> `chemprop==1.5.2` is required by REINVENT 4.7.15 (`>=1.5.2,<1.6`).
+> Installing `1.6.x` or v2+ will break REINVENT's ChemProp scoring component.
 
 ---
 
