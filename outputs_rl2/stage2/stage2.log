@@ -1,0 +1,285 @@
+03:26:28 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-04-16
+03:26:28 <INFO> Command line: /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/reinvent -d cpu -l /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage2/stage2.log /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage2/stage2.toml
+03:26:28 <INFO> Reading run configuration from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage2/stage2.toml using format toml
+03:26:28 <INFO> User hakeemshindy on host DN0a1fe1df.SUNet
+03:26:28 <INFO> Python version 3.10.20
+03:26:28 <INFO> PyTorch version 2.9.1, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+03:26:28 <INFO> PyTorch compiled with CUDA version None
+03:26:28 <INFO> RDKit version 2026.03.1
+03:26:28 <INFO> Platform macOS-26.4-arm64-arm-64bit
+03:26:28 <INFO> Number of PyTorch CUDA devices 0
+03:26:28 <WARN> 'use_cuda' is deprecated, use 'device' instead
+03:26:28 <INFO> Using CPU arm
+03:26:28 <INFO> Writing TensorBoard summary to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage2/tb
+03:26:28 <INFO> Writing JSON config file to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage2/_stage2.json
+03:26:28 <INFO> Starting 1 stage of Reinforcement Learning
+03:26:28 <ERRO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/FS_Ro5_10M.model has invalid hash:
+{ 'comments': ['10M_Random_Freedom4_Ro5', 'TL'],
+  'creation_date': 1744278146.0890813,
+  'date_format': 'UNIX epoch',
+  'hash_id': '9fc2f092e6822351bb29bbcb0b3efd29',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': UUID('f9f3b04a-8da9-49f4-b63e-3ea636896e91'),
+  'model_id_format': 'uuid.uuid4 3.10.16',
+  'origina_data_source': '10M_Random_Freedom4_Ro5',
+  'updates': [1744739484.4790347]}
+03:26:28 <INFO> Number of network parameters: 7,913,771
+03:26:28 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(43, 256)
+  (_rnn): LSTM(256, 512, num_layers=4, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=43, bias=True)
+)
+03:26:28 <INFO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage1/stage1.chkpt has valid hash:
+{ 'comments': [ '10M_Random_Freedom4_Ro5',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'TL',
+                'RL',
+                'RL'],
+  'creation_date': 1744278146.0890813,
+  'date_format': 'UNIX epoch',
+  'hash_id': '6dcc49c84e3a6fe83d4127e92467a2c2',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': UUID('f9f3b04a-8da9-49f4-b63e-3ea636896e91'),
+  'model_id_format': 'uuid.uuid4 3.10.16',
+  'origina_data_source': '10M_Random_Freedom4_Ro5',
+  'updates': [ 1744739484.4790347,
+               1776210112.807711,
+               1776210121.405557,
+               1776210133.920717,
+               1776210142.290011,
+               1776210151.665267,
+               1776210163.4658391,
+               1776210171.657804,
+               1776210180.091753,
+               1776210192.080225,
+               1776210200.819904,
+               1776210209.855453,
+               1776210225.3287628,
+               1776210234.308268,
+               1776210243.4368708,
+               1776210256.258553,
+               1776210264.918088,
+               1776210273.2781801,
+               1776210286.031104,
+               1776210294.690594,
+               1776210303.295528,
+               1776210317.978095,
+               1776210326.273695,
+               1776210335.5529852,
+               1776210348.431942,
+               1776210357.0719712,
+               1776210366.325879,
+               1776210377.808782,
+               1776210385.608905,
+               1776210393.784509,
+               1776210405.482862,
+               1776210414.1248808,
+               1776210422.6002061,
+               1776210434.614911,
+               1776210442.4208908,
+               1776210450.8210602,
+               1776210463.61745,
+               1776210471.529588,
+               1776210480.201343,
+               1776210494.575983,
+               1776210503.154146,
+               1776210511.6105,
+               1776210524.87301,
+               1776210533.045402,
+               1776210541.828602,
+               1776210557.248427,
+               1776210565.694328,
+               1776210574.118112,
+               1776210588.883925,
+               1776210597.1679401,
+               1776210605.918995,
+               1776210617.048117,
+               1776210625.626337,
+               1776210634.03198,
+               1776210646.2882402,
+               1776210654.649736,
+               1776210663.2312331,
+               1776210674.998516,
+               1776210683.309181,
+               1776210692.115695,
+               1776210703.6150558,
+               1776210711.887885,
+               1776210720.722316,
+               1776210733.669743,
+               1776210741.4166558,
+               1776210749.634397,
+               1776210762.464872,
+               1776210771.44753,
+               1776210779.824012,
+               1776210791.629314,
+               1776210799.45981,
+               1776210807.718312,
+               1776210820.023654,
+               1776210830.224076,
+               1776210839.1897879,
+               1776210850.8721259,
+               1776335178.926682,
+               1776335178.996578]}
+03:26:28 <INFO> Number of network parameters: 7,913,771
+03:26:28 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(43, 256)
+  (_rnn): LSTM(256, 512, num_layers=4, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=43, bias=True)
+)
+03:26:28 <INFO> Using generator Reinvent
+03:26:28 <INFO> Prior read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/FS_Ro5_10M.model
+03:26:28 <INFO> Agent read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_rl2/stage1/stage1.chkpt
+03:26:28 <INFO> Using reward strategy dap
+03:26:28 <INFO> Using diversity filter IdenticalMurckoScaffold
+03:26:28 <INFO> Purging diversity filter memories after each stage
+03:26:28 <INFO> No SMILES for inception. Populating from first sampled batch.
+03:26:28 <INFO> Using inception memory
+03:26:28 <INFO> Registered scoring component HalfLifeChemProp
+03:26:28 <INFO> Registered scoring component PhotoswitchScaffold
+03:26:28 <INFO> Registered scoring component VisibleAbsChemProp
+03:26:28 <INFO> Registered scoring component XTBHomoLumo
+03:26:28 <INFO> Registered scoring component XTBIsomerGap
+03:26:28 <INFO> Registered scoring component XTBLambdaFilter
+03:26:28 <INFO> Registered scoring component ROCSSimilarity
+03:26:28 <INFO> Registered scoring component GroupCount
+03:26:28 <INFO> Registered scoring component FragmentQed
+03:26:28 <INFO> Registered scoring component FragmentSlogP
+03:26:28 <INFO> Registered scoring component FragmentMolecularWeight
+03:26:28 <INFO> Registered scoring component FragmentTPSA
+03:26:28 <INFO> Registered scoring component FragmentDistanceMatrix
+03:26:28 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+03:26:28 <INFO> Registered scoring component FragmentHBondAcceptors
+03:26:28 <INFO> Registered scoring component FragmentHBondDonors
+03:26:28 <INFO> Registered scoring component FragmentNumRotBond
+03:26:28 <INFO> Registered scoring component FragmentCsp3
+03:26:28 <INFO> Registered scoring component Fragmentnumsp
+03:26:28 <INFO> Registered scoring component Fragmentnumsp2
+03:26:28 <INFO> Registered scoring component Fragmentnumsp3
+03:26:28 <INFO> Registered scoring component FragmentEffectiveLength
+03:26:28 <INFO> Registered scoring component FragmentGraphLength
+03:26:28 <INFO> Registered scoring component FragmentLengthRatio
+03:26:28 <INFO> Registered scoring component FragmentNumHeavyAtoms
+03:26:28 <INFO> Registered scoring component FragmentNumHeteroAtoms
+03:26:28 <INFO> Registered scoring component FragmentNumRings
+03:26:28 <INFO> Registered scoring component FragmentNumAromaticRings
+03:26:28 <INFO> Registered scoring component FragmentNumAliphaticRings
+03:26:28 <INFO> Registered scoring component FragmentSlogP
+03:26:28 <INFO> Registered scoring component MatchingSubstructure
+03:26:28 <INFO> Registered scoring component MolVolume
+03:26:28 <INFO> Registered scoring component Qed
+03:26:28 <INFO> Registered scoring component LargestRingSize
+03:26:28 <INFO> Registered scoring component MolecularWeight
+03:26:28 <INFO> Registered scoring component GraphLength
+03:26:28 <INFO> Registered scoring component NumAtomStereoCenters
+03:26:28 <INFO> Registered scoring component HBondAcceptors
+03:26:28 <INFO> Registered scoring component HBondDonors
+03:26:28 <INFO> Registered scoring component NumRotBond
+03:26:28 <INFO> Registered scoring component Csp3
+03:26:28 <INFO> Registered scoring component numsp
+03:26:28 <INFO> Registered scoring component numsp2
+03:26:28 <INFO> Registered scoring component numsp3
+03:26:28 <INFO> Registered scoring component NumHeavyAtoms
+03:26:28 <INFO> Registered scoring component NumHeteroAtoms
+03:26:28 <INFO> Registered scoring component NumRings
+03:26:28 <INFO> Registered scoring component NumAromaticRings
+03:26:28 <INFO> Registered scoring component NumAliphaticRings
+03:26:28 <INFO> Registered scoring component SlogP
+03:26:28 <INFO> Registered scoring component LargestRingSize
+03:26:29 <INFO> Registered scoring component PMI
+03:26:29 <INFO> Registered scoring component RDKitDescriptors
+03:26:29 <INFO> Registered scoring component TanimotoSimilarity
+03:26:29 <INFO> Registered scoring component TanimotoDistance
+03:26:29 <INFO> Registered scoring component TPSA
+03:26:29 <INFO> Registered scoring component SAScore
+03:26:29 <INFO> Registered scoring component ChemProp
+03:26:29 <INFO> Registered scoring component CustomAlerts
+03:26:29 <INFO> Registered scoring component DockStream
+03:26:29 <INFO> Registered scoring component ExternalProcess
+03:26:29 <INFO> Registered scoring component REST
+03:26:29 <INFO> Registered scoring component Icolos
+03:26:29 <INFO> Registered scoring component MMP
+03:26:29 <INFO> Registered scoring component Qptuna
+03:26:29 <INFO> Registered scoring component ReactionFilter
+03:26:29 <INFO> Registered scoring component RingPrecedence
+03:26:29 <INFO> Registered scoring component Maize
+03:26:29 <INFO> Registered scoring component SynthSense
+03:26:29 <INFO> Registered scoring component CAZP
+03:26:29 <INFO> Creating filter component custom_alerts
+03:26:29 <INFO> Creating filter component PhotoswitchScaffold
+03:26:29 <INFO> Creating scoring component SAScore

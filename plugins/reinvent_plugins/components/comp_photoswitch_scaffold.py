@@ -1,56 +1,34 @@
 """Photoswitch scaffold filter + custom SMARTS alerts.
-
-Scores 1 if molecule contains a recognised photoswitch motif (azo, etc.)
-and does NOT match any forbidden SMARTS.  Otherwise scores 0.
-
-[[stage.scoring.component]]
-[stage.scoring.component.PhotoswitchScaffold]
-
-[[stage.scoring.component.PhotoswitchScaffold.endpoint]]
-name = "PS_Scaffold"
-weight = 1.0
+Returns 1 if the molecule has an azo/diarylethene/hydrazone core and
+no forbidden substructures, 0 otherwise.
 """
 
 __all__ = ["PhotoswitchScaffold"]
 from typing import List
-
 import numpy as np
 from rdkit import Chem
 from pydantic.dataclasses import dataclass
-
 from .component_results import ComponentResults
 from reinvent_plugins.mol_cache import molcache
 from .add_tag import add_tag
 
-
-PHOTOSWITCH_SMARTS = [
-    "[#6]/N=N/[#6]",     # E-azo
-    "[#6]\\N=N\\[#6]",  # Z-azo
-    "[#6]N=N[#6]",       # any azo
-    "[#6]/C=N/[#7]",     # hydrazone
-    "[#6]/N=C/[#6]",     # imine
+CORE_SMARTS = [
+    Chem.MolFromSmarts("[#6]/N=N/[#6]"),
+    Chem.MolFromSmarts("[#6]\\N=N\\[#6]"),
+    Chem.MolFromSmarts("[#6]N=N[#6]"),
+    Chem.MolFromSmarts("c1cc2ccc1CC=2"),
+    Chem.MolFromSmarts("[#6]/C=N/[#7]"),
 ]
-
-FORBIDDEN_SMARTS = [
-    "[*;r8]", "[*;r9]", "[*;r10]", "[*;r11]", "[*;r12]",
-    "[#8][#8]", "[#6;+]", "[#16][#16]",
-    "[Fe,Co,Ni,Cu,Zn,Ru,Rh,Pd,Ag,Os,Ir,Pt,Au]",
-]
-
 
 @add_tag("__parameters")
 @dataclass
 class Parameters:
-    pass  # no configurable parameters — scaffold + forbidden SMARTS are hardcoded
+    pass
 
-
-@add_tag("__component", "filter")
+@add_tag("__component")
 class PhotoswitchScaffold:
     def __init__(self, params: Parameters):
-        self.ps_templates = [Chem.MolFromSmarts(s) for s in PHOTOSWITCH_SMARTS]
-        self.forbidden_templates = [
-            t for t in [Chem.MolFromSmarts(s) for s in FORBIDDEN_SMARTS] if t
-        ]
+        pass
 
     @molcache
     def __call__(self, mols: List[Chem.Mol]) -> np.array:
@@ -59,17 +37,6 @@ class PhotoswitchScaffold:
             if mol is None:
                 scores.append(0.0)
                 continue
-
-            # Must match a photoswitch motif
-            if not any(mol.HasSubstructMatch(t) for t in self.ps_templates if t):
-                scores.append(0.0)
-                continue
-
-            # Must not match forbidden
-            if any(mol.HasSubstructMatch(t) for t in self.forbidden_templates):
-                scores.append(0.0)
-                continue
-
-            scores.append(1.0)
-
+            has_core = any(mol.HasSubstructMatch(pat) for pat in CORE_SMARTS if pat)
+            scores.append(1.0 if has_core else 0.0)
         return ComponentResults([np.array(scores, dtype=float)])

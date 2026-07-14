@@ -91,7 +91,7 @@
     "reaction_solvent": false,
     "reproducibility": {
         "command_line": "python /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/chemprop_train --data_path /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs/chemprop_lambda/train.csv --separate_val_path /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs/chemprop_lambda/val.csv --dataset_type regression --target_columns lambda_max --save_dir /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs/chemprop_lambda --epochs 80 --batch_size 50 --hidden_size 300 --depth 3 --metric rmse",
-        "time": "Tue Apr 14 16:41:32 2026"
+        "time": "Thu Apr 16 15:07:51 2026"
     },
     "resume_experiment": false,
     "save_dir": "/Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs/chemprop_lambda",
