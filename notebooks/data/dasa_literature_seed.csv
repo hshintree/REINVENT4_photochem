@@ -1,0 +1,11 @@
+smiles_open,smiles_closed,donor_class,acceptor_class,lambda_max_open_nm,solvent,pct_open_equilibrium,solvatochromic_slope_nm,switches_in_water,source
+CCN(/C=C/C=C/C(O)=C1C(=O)OC(C)(C)OC1=O)CC,,dialkyl_amine,meldrum,545,toluene,,,False,"Helmy JOC 2014 (Meldrum's, diethylamine)"
+CC1(C)OC(=O)C(=C(O)/C=C/C=C/N2CCOCC2)C(=O)O1,,morpholine,meldrum,545,toluene,,,False,"Helmy JOC 2014 (Meldrum's, morpholine)"
+CCN(/C=C/C=C/C(O)=C1C(=O)N(C)C(=O)N(C)C1=O)CC,,dialkyl_amine,barbituric,570,toluene,,,False,"Helmy JOC 2014 (1,3-dimethylbarbituric, diethylamine)"
+CN1C(=O)C(=C(O)/C=C/C=C/N2CCCC2)C(=O)N(C)C1=O,,dialkyl_amine,barbituric,570,toluene,,,False,"Helmy JOC 2014 (1,3-dimethylbarbituric, pyrrolidine)"
+CCN(/C=C/C=C/C(O)=C1C(=O)c2ccccc2C1=O)CC,,dialkyl_amine,indandione,600,toluene,,,False,"Helmy JOC 2014 (indandione, diethylamine)"
+CN(/C=C/C=C/C(O)=C1C(=O)NC(=O)NC1=O)c1ccccc1,,aniline,barbituric,628,CHCl3,,,False,"Hemmer JACS 2018 (barbituric, aniline)"
+CC1=NOC(=O)C1=C(O)/C=C/C=C/N(C)c1ccccc1,,aniline,isoxazolone,626,CHCl3,,,False,"Hemmer 2021 (methylisoxazolone, aniline)"
+CN(/C=C/C=C/C(O)=C1C(=O)ON=C1C(F)(F)F)c1ccccc1,,aniline,isoxazolone,649,CHCl3,,,False,"Hemmer 2021 (CF3-isoxazolone, aniline)"
+CN(/C=C/C=C/C(O)=C1C(=O)c2ccccc2C1=O)c1ccccc1,,aniline,indandione,654,CHCl3,,,False,"Hemmer 2021 (indandione, aniline)"
+CN(/C=C/C=C/C(O)=C1C(=O)N(c2ccccc2)N=C1C(F)(F)F)c1ccccc1,,aniline,pyrazolone,669,CHCl3,,,False,"Hemmer 2021 (CF3-pyrazolone, aniline)"

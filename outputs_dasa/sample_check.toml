@@ -1,0 +1,7 @@
+run_type = "sampling"
+device = "cpu"
+[parameters]
+model_file = "/Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/TL_dasa_real.model"
+output_file = "/Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/tl_samples.csv"
+num_smiles = 300
+unique_molecules = true

@@ -1,0 +1,39 @@
+run_type = "staged_learning"
+device = "cpu"
+[parameters]
+prior_file = "/Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior"
+agent_file = "/Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/TL_dasa_real.model"
+summary_csv_prefix = "outputs_dasa/probe/s2"
+batch_size = 40
+use_checkpoint = false
+[learning_strategy]
+type = "dap"
+sigma = 128
+rate = 0.0001
+[[stage]]
+max_score = 1.0
+max_steps = 2
+chkpt_file = "outputs_dasa/probe/s2.chkpt"
+[stage.scoring]
+type = "geometric_mean"
+[[stage.scoring.component]]
+[stage.scoring.component.DASAScaffold]
+[[stage.scoring.component.DASAScaffold.endpoint]]
+name = "DASA"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.XTBHomoLumo]
+[[stage.scoring.component.XTBHomoLumo.endpoint]]
+name = "xTB_Gap"
+weight = 0.3
+params.gap_min_ev = 1.50
+params.gap_max_ev = 2.10
+[[stage.scoring.component]]
+[stage.scoring.component.DASASwitchability]
+[[stage.scoring.component.DASASwitchability.endpoint]]
+name = "WaterSwitch"
+weight = 0.8
+params.dipole_target_au = 4.0
+params.dipole_sigma_au = 1.6
+params.solv_diff_target_kcal = 0.0
+params.solv_diff_sigma_kcal = 6.0

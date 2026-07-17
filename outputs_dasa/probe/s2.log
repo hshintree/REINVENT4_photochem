@@ -1,0 +1,158 @@
+00:15:53 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-07-16
+00:15:53 <INFO> Command line: /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/reinvent -d cpu -l outputs_dasa/probe/s2.log outputs_dasa/probe/s2probe.toml
+00:15:53 <INFO> Reading run configuration from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/probe/s2probe.toml using format toml
+00:15:53 <INFO> User hakeemshindy on host Mac-307.lan
+00:15:53 <INFO> Python version 3.10.20
+00:15:53 <INFO> PyTorch version 2.9.1, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+00:15:53 <INFO> PyTorch compiled with CUDA version None
+00:15:53 <INFO> RDKit version 2026.03.1
+00:15:53 <INFO> Platform macOS-26.4-arm64-arm-64bit
+00:15:53 <INFO> Number of PyTorch CUDA devices 0
+00:15:53 <WARN> 'use_cuda' is deprecated, use 'device' instead
+00:15:53 <INFO> Using CPU arm
+00:15:53 <INFO> Starting 1 stage of Reinforcement Learning
+00:15:53 <ERRO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+00:15:53 <INFO> Number of network parameters: 5,805,602
+00:15:53 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+00:15:53 <INFO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/TL_dasa_real.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '2eefaad0e735d29d74c3aa26cfda40ce',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1783998373.960653]}
+00:15:53 <INFO> Number of network parameters: 5,805,602
+00:15:53 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+00:15:53 <INFO> Using generator Reinvent
+00:15:53 <INFO> Prior read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior
+00:15:53 <INFO> Agent read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/TL_dasa_real.model
+00:15:53 <INFO> Using reward strategy dap
+00:15:53 <INFO> Purging diversity filter memories after each stage
+00:15:53 <WARN> Inception disabled but may speed up convergence
+00:15:53 <INFO> Registered scoring component ROCSSimilarity
+00:15:53 <INFO> Registered scoring component GroupCount
+00:15:53 <INFO> Registered scoring component FragmentQed
+00:15:53 <INFO> Registered scoring component FragmentSlogP
+00:15:53 <INFO> Registered scoring component FragmentMolecularWeight
+00:15:53 <INFO> Registered scoring component FragmentTPSA
+00:15:53 <INFO> Registered scoring component FragmentDistanceMatrix
+00:15:53 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+00:15:53 <INFO> Registered scoring component FragmentHBondAcceptors
+00:15:53 <INFO> Registered scoring component FragmentHBondDonors
+00:15:53 <INFO> Registered scoring component FragmentNumRotBond
+00:15:53 <INFO> Registered scoring component FragmentCsp3
+00:15:53 <INFO> Registered scoring component Fragmentnumsp
+00:15:53 <INFO> Registered scoring component Fragmentnumsp2
+00:15:53 <INFO> Registered scoring component Fragmentnumsp3
+00:15:53 <INFO> Registered scoring component FragmentEffectiveLength
+00:15:53 <INFO> Registered scoring component FragmentGraphLength
+00:15:53 <INFO> Registered scoring component FragmentLengthRatio
+00:15:53 <INFO> Registered scoring component FragmentNumHeavyAtoms
+00:15:53 <INFO> Registered scoring component FragmentNumHeteroAtoms
+00:15:53 <INFO> Registered scoring component FragmentNumRings
+00:15:53 <INFO> Registered scoring component FragmentNumAromaticRings
+00:15:53 <INFO> Registered scoring component FragmentNumAliphaticRings
+00:15:53 <INFO> Registered scoring component FragmentSlogP
+00:15:53 <INFO> Registered scoring component MatchingSubstructure
+00:15:53 <INFO> Registered scoring component MolVolume
+00:15:53 <INFO> Registered scoring component Qed
+00:15:53 <INFO> Registered scoring component LargestRingSize
+00:15:53 <INFO> Registered scoring component MolecularWeight
+00:15:53 <INFO> Registered scoring component GraphLength
+00:15:53 <INFO> Registered scoring component NumAtomStereoCenters
+00:15:53 <INFO> Registered scoring component HBondAcceptors
+00:15:53 <INFO> Registered scoring component HBondDonors
+00:15:53 <INFO> Registered scoring component NumRotBond
+00:15:53 <INFO> Registered scoring component Csp3
+00:15:53 <INFO> Registered scoring component numsp
+00:15:53 <INFO> Registered scoring component numsp2
+00:15:53 <INFO> Registered scoring component numsp3
+00:15:53 <INFO> Registered scoring component NumHeavyAtoms
+00:15:53 <INFO> Registered scoring component NumHeteroAtoms
+00:15:53 <INFO> Registered scoring component NumRings
+00:15:53 <INFO> Registered scoring component NumAromaticRings
+00:15:53 <INFO> Registered scoring component NumAliphaticRings
+00:15:53 <INFO> Registered scoring component SlogP
+00:15:53 <INFO> Registered scoring component LargestRingSize
+00:15:53 <INFO> Registered scoring component PMI
+00:15:53 <INFO> Registered scoring component RDKitDescriptors
+00:15:53 <INFO> Registered scoring component TanimotoSimilarity
+00:15:53 <INFO> Registered scoring component TanimotoDistance
+00:15:53 <INFO> Registered scoring component TPSA
+00:15:53 <INFO> Registered scoring component SAScore
+00:15:54 <ERRO> Component reinvent_plugins.components.comp_chemprop could not be imported: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+00:15:54 <INFO> Registered scoring component CustomAlerts
+00:15:54 <INFO> Registered scoring component DockStream
+00:15:54 <INFO> Registered scoring component ExternalProcess
+00:15:54 <INFO> Registered scoring component REST
+00:15:54 <INFO> Registered scoring component Icolos
+00:15:54 <INFO> Registered scoring component MMP
+00:15:54 <INFO> Registered scoring component Qptuna
+00:15:54 <INFO> Registered scoring component ReactionFilter
+00:15:54 <INFO> Registered scoring component RingPrecedence
+00:15:54 <INFO> Registered scoring component Maize
+00:15:54 <INFO> Registered scoring component SynthSense
+00:15:54 <INFO> Registered scoring component CAZP
+00:15:54 <INFO> Registered scoring component AqueousSolubility
+00:15:54 <INFO> Registered scoring component DASAScaffold
+00:15:54 <INFO> Registered scoring component DASASwitchability
+00:15:54 <INFO> Registered scoring component HalfLifeChemProp
+00:15:54 <INFO> Registered scoring component PhotoswitchScaffold
+00:15:54 <INFO> Registered scoring component VisibleAbsChemProp
+00:15:54 <INFO> Registered scoring component XTBHomoLumo
+00:15:54 <INFO> Registered scoring component XTBIsomerGap
+00:15:54 <INFO> Registered scoring component XTBLambdaFilter
+00:15:54 <INFO> Creating scoring component DASAScaffold
+00:15:54 <INFO> Creating scoring component XTBHomoLumo
+00:15:54 <INFO> Creating scoring component DASASwitchability
+00:15:54 <INFO> Writing tabular data for stage to outputs_dasa/probe/s2_1.csv
+00:15:54 <INFO> Starting stage 1 <<<
+00:16:08 <INFO> Score: 0.44 Agent NLL: 12.39 Valid: 100% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state DASA DASA (raw) xTB_Gap xTB_Gap (raw) WaterSwitch WaterSwitch (raw)
+ | 7.8526 49.3718 36.9622 0.6744845 CC(=CC=CC(O)=C1C(=O)N(C)C(=S)N(C)C1=O)N1CCCC1 1 1.0000000 1.0000 0.5871085 0.5871 0.4342922 0.4343
+ | 9.3067 45.9383 7.7576 0.4194990 CC(=CC=CC(O)=C1C(=O)N(c2ccccc2)N=C1C(F)(F)F)N1CCCC1 1 1.0000000 1.0000 0.0233408 0.0233 0.4184322 0.4184
+ | 19.4637 36.4917 -36.4916 0.0000001 C(=CN1CCOCC1)C=NC=CN=Cc1ccccc1 1 0.0000000 0.0000 0.9605593 0.9606 0.0000000 0.0000
+ | 11.7792 40.8316 -40.8316 0.0000001 O=C1NC(=S)NC(=O)C1=C(O)C=CN1CCCCC1 1 0.0000000 0.0000 0.7963503 0.7964 0.0000000 0.0000
+ | 14.8694 30.5687 -30.5687 0.0000001 CC(=CC=CC(=O)N1CCN(C)CC1)N(C)C 1 0.0000000 0.0000 0.0385843 0.0386 0.0000000 0.0000
+ | 21.4945 26.5033 -26.5033 0.0000001 COC1=CC(=O)c2c[nH]c(=NC(C)=O)cc2C1=O 1 0.0000000 0.0000 0.1999678 0.2000 0.0000000 0.0000
+ | 12.6780 42.6163 9.3241 0.4057845 CC1(C)OC(=O)C(=C(O)C=CC=CN2CCc3ccccc32)C(=O)O1 1 1.0000000 1.0000 0.0205160 0.0205 0.4024770 0.4025
+ | 15.1480 24.9134 -24.9134 0.0000001 CCN1C(=O)SC(=CN2CCN(C)CC2)C1=O 1 0.0000000 0.0000 0.4545202 0.4545 0.0000000 0.0000
+ | 14.8254 59.0246 -11.9223 0.3679868 CCCCCCCCCCCN(C=CC=CC(O)=C1C(=O)N(C)C(=S)N(C)C1=O)CCCCCCCC 1 1.0000000 1.0000 0.3369106 0.3369 0.1090164 0.1090
+ | 12.3459 35.1735 51.7261 0.6789031 CC(=CC=CC(O)=C1C(=O)c2ccccc2C1=O)N(C)C 1 1.0000000 1.0000 0.6427436 0.6427 0.4270526 0.4271
+00:16:20 <INFO> Score: 0.47 Agent NLL: 14.02 Valid: 100% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state DASA DASA (raw) xTB_Gap xTB_Gap (raw) WaterSwitch WaterSwitch (raw)
+ | 11.4255 48.9062 53.6780 0.8014391 CC(C=CN1CCOCC1)=CC(O)=C1C(=O)ON=C1C 1 1.0000000 1.0000 0.8622864 0.8623 0.5912767 0.5913
+ | 12.0998 52.3284 50.8908 0.8063998 CCN(CC)C(C)=CC=CC(O)=C1C(=O)N(C)C(=O)N(CC)C1=O 1 1.0000000 1.0000 0.7621836 0.7622 0.6293939 0.6294
+ | 22.3873 40.5816 -40.5815 0.0000001 CC(=CC=CC=CC1=NNC(C)C1)N1CCCCC1 1 0.0000000 0.0000 0.9506657 0.9507 0.0000000 0.0000
+ | 10.1174 47.0777 48.6843 0.7481405 CCN(C=CC=CC(O)=C1C(=O)NC(=S)NC1=O)c1ccccc1 1 1.0000000 1.0000 0.4557943 0.4558 0.6268556 0.6269
+ | 12.1233 69.2046 18.2421 0.6831771 CC(=CC=CC(O)=C1C(=O)N(C)C(=S)N(C)C1=O)N1CCNC(=O)C1=O 1 1.0000000 1.0000 0.1769125 0.1769 0.7042721 0.7043
+ | 10.7719 63.3202 37.5564 0.7880982 CC(C=CN(C)CCCN=[N+]=[N-])=CC(O)=C1C(=O)N(C)C(=S)N(C)C1=O 1 1.0000000 1.0000 0.5592957 0.5593 0.6655150 0.6655
+ | 20.1790 31.6476 -31.6476 0.0000001 CCCCCCCCCNC(=O)C=CC=C(C)N1CCN(C)CC1 1 0.0000000 0.0000 0.0982974 0.0983 0.0000000 0.0000
+ | 7.7207 43.1816 6.7479 0.3900735 CCCCN(C=CC=CC(O)=C1C(=O)NC(=O)NC1=O)CCCC 1 1.0000000 1.0000 0.0069041 0.0069 0.5458750 0.5459
+ | 10.2898 57.4905 52.6476 0.8604537 CCCCN(C=CC=CC(O)=C1C(=O)NNC1=O)CCCC 1 1.0000000 1.0000 0.9082789 0.9083 0.6987592 0.6988
+ | 10.7050 52.7174 34.3867 0.6805013 CN1C(=O)C(=C(O)C=CC=CN2CCSCC2)C(=O)N(C)C1=S 1 1.0000000 1.0000 0.4070417 0.4070 0.5099898 0.5100
+00:16:20 <WARN> Maximum number of steps of 2 reached in stage 1. Terminating all stages.
+00:16:20 <INFO> Peak main memory usage: 564.422 MiB
+00:16:20 <INFO> Finished REINVENT on 2026-07-16

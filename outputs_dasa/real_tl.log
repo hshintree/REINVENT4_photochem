@@ -1,0 +1,43 @@
+23:03:48 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-07-13
+23:03:48 <INFO> Command line: /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/reinvent -d cpu -l outputs_dasa/real_tl.log outputs_dasa/real_tl.toml
+23:03:48 <INFO> Reading run configuration from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/real_tl.toml using format toml
+23:03:48 <INFO> User hakeemshindy on host Mac.lan
+23:03:48 <INFO> Python version 3.10.20
+23:03:48 <INFO> PyTorch version 2.9.1, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+23:03:48 <INFO> PyTorch compiled with CUDA version None
+23:03:48 <INFO> RDKit version 2026.03.1
+23:03:48 <INFO> Platform macOS-26.4-arm64-arm-64bit
+23:03:48 <INFO> Number of PyTorch CUDA devices 0
+23:03:48 <WARN> 'use_cuda' is deprecated, use 'device' instead
+23:03:48 <INFO> Using CPU arm
+23:03:48 <INFO> Writing TensorBoard summary to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/tb_real_tl
+23:03:48 <INFO> Starting Transfer Learning
+23:03:48 <ERRO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+23:03:48 <INFO> Number of network parameters: 5,805,602
+23:03:48 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+23:03:48 <INFO> Using generator Reinvent
+23:03:48 <INFO> Applying filter default to input SMILES
+23:03:48 <INFO> Read 702 input SMILES from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/trial_corpus.smi
+23:03:49 <INFO> Read 702 validation SMILES from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/trial_corpus.smi
+23:06:12 <INFO> Sampled SMILES C(N=c1cc2[nH][nH]c(=O)c2cn1)(C)C(C)C failed to sanitize.
+23:06:12 <INFO> Sampled SMILES C(F)(F)(C(C(F)(F)F)(O)C)=C1CCN(C)CC1 failed to sanitize.
+23:06:12 <INFO> Sampled SMILES CC(N1CCN(C=CC=CC(O)=C2C(=O)N(C)C(=O)N(C)C2=O)=NC1)=O failed to sanitize.
+23:06:12 <INFO> Sampled SMILES O(C)C(=CC=C(C)N(CC)CC)=C1C(=O)N(C)C(=S)N(C)C1=O failed to sanitize.
+23:06:13 <INFO> Best validation loss (15.686) was at epoch 30
+23:06:13 <WARN> No clear minimum found in validation loss. Consider training your model for additional epochs.
+23:06:14 <INFO> Peak main memory usage: 907.734 MiB
+23:06:14 <INFO> Finished REINVENT on 2026-07-13

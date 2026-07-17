@@ -1,0 +1,642 @@
+23:17:15 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-07-16
+23:17:15 <INFO> Command line: /Users/hakeemshindy/miniconda3/envs/reinvent4/bin/reinvent -d cpu -l /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/stage1.log /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/stage1.toml
+23:17:15 <INFO> Reading run configuration from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/stage1.toml using format toml
+23:17:15 <INFO> User hakeemshindy on host Mac-477.lan
+23:17:15 <INFO> Python version 3.10.20
+23:17:15 <INFO> PyTorch version 2.9.1, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+23:17:15 <INFO> PyTorch compiled with CUDA version None
+23:17:15 <INFO> RDKit version 2026.03.1
+23:17:15 <INFO> Platform macOS-26.4-arm64-arm-64bit
+23:17:15 <INFO> Number of PyTorch CUDA devices 0
+23:17:15 <WARN> 'use_cuda' is deprecated, use 'device' instead
+23:17:15 <INFO> Using CPU arm
+23:17:15 <INFO> Writing TensorBoard summary to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/tb
+23:17:15 <INFO> Writing JSON config file to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/_stage1.json
+23:17:15 <INFO> Starting 1 stage of Reinforcement Learning
+23:17:15 <ERRO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+23:17:15 <INFO> Number of network parameters: 5,805,602
+23:17:15 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+23:17:15 <INFO> /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/tl_run/TL_dasa.model.30.chkpt has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '8a1a3ff36ea1e3a29088f541d9d9b2b8',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1784258189.1497018]}
+23:17:15 <INFO> Number of network parameters: 5,805,602
+23:17:15 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+23:17:15 <INFO> Using generator Reinvent
+23:17:15 <INFO> Prior read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/reinvent.prior
+23:17:15 <INFO> Agent read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/tl_run/TL_dasa.model.30.chkpt
+23:17:15 <INFO> Using reward strategy dap
+23:17:15 <INFO> Using diversity filter IdenticalMurckoScaffold
+23:17:15 <INFO> Purging diversity filter memories after each stage
+23:17:15 <INFO> Inception SMILES read from /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/dasa_tl_train.smi
+23:17:15 <INFO> Using inception memory
+23:17:15 <INFO> Registered scoring component AqueousSolubility
+23:17:15 <INFO> Registered scoring component DASAScaffold
+23:17:15 <INFO> Registered scoring component DASASwitchability
+23:17:15 <INFO> Registered scoring component HalfLifeChemProp
+23:17:15 <INFO> Registered scoring component PhotoswitchScaffold
+23:17:15 <INFO> Registered scoring component VisibleAbsChemProp
+23:17:15 <INFO> Registered scoring component XTBHomoLumo
+23:17:15 <INFO> Registered scoring component XTBIsomerGap
+23:17:15 <INFO> Registered scoring component XTBLambdaFilter
+23:17:16 <INFO> Registered scoring component ROCSSimilarity
+23:17:16 <INFO> Registered scoring component GroupCount
+23:17:16 <INFO> Registered scoring component FragmentQed
+23:17:16 <INFO> Registered scoring component FragmentSlogP
+23:17:16 <INFO> Registered scoring component FragmentMolecularWeight
+23:17:16 <INFO> Registered scoring component FragmentTPSA
+23:17:16 <INFO> Registered scoring component FragmentDistanceMatrix
+23:17:16 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+23:17:16 <INFO> Registered scoring component FragmentHBondAcceptors
+23:17:16 <INFO> Registered scoring component FragmentHBondDonors
+23:17:16 <INFO> Registered scoring component FragmentNumRotBond
+23:17:16 <INFO> Registered scoring component FragmentCsp3
+23:17:16 <INFO> Registered scoring component Fragmentnumsp
+23:17:16 <INFO> Registered scoring component Fragmentnumsp2
+23:17:16 <INFO> Registered scoring component Fragmentnumsp3
+23:17:16 <INFO> Registered scoring component FragmentEffectiveLength
+23:17:16 <INFO> Registered scoring component FragmentGraphLength
+23:17:16 <INFO> Registered scoring component FragmentLengthRatio
+23:17:16 <INFO> Registered scoring component FragmentNumHeavyAtoms
+23:17:16 <INFO> Registered scoring component FragmentNumHeteroAtoms
+23:17:16 <INFO> Registered scoring component FragmentNumRings
+23:17:16 <INFO> Registered scoring component FragmentNumAromaticRings
+23:17:16 <INFO> Registered scoring component FragmentNumAliphaticRings
+23:17:16 <INFO> Registered scoring component FragmentSlogP
+23:17:16 <INFO> Registered scoring component MatchingSubstructure
+23:17:16 <INFO> Registered scoring component MolVolume
+23:17:16 <INFO> Registered scoring component Qed
+23:17:16 <INFO> Registered scoring component LargestRingSize
+23:17:16 <INFO> Registered scoring component MolecularWeight
+23:17:16 <INFO> Registered scoring component GraphLength
+23:17:16 <INFO> Registered scoring component NumAtomStereoCenters
+23:17:16 <INFO> Registered scoring component HBondAcceptors
+23:17:16 <INFO> Registered scoring component HBondDonors
+23:17:16 <INFO> Registered scoring component NumRotBond
+23:17:16 <INFO> Registered scoring component Csp3
+23:17:16 <INFO> Registered scoring component numsp
+23:17:16 <INFO> Registered scoring component numsp2
+23:17:16 <INFO> Registered scoring component numsp3
+23:17:16 <INFO> Registered scoring component NumHeavyAtoms
+23:17:16 <INFO> Registered scoring component NumHeteroAtoms
+23:17:16 <INFO> Registered scoring component NumRings
+23:17:16 <INFO> Registered scoring component NumAromaticRings
+23:17:16 <INFO> Registered scoring component NumAliphaticRings
+23:17:16 <INFO> Registered scoring component SlogP
+23:17:16 <INFO> Registered scoring component LargestRingSize
+23:17:16 <INFO> Registered scoring component PMI
+23:17:16 <INFO> Registered scoring component RDKitDescriptors
+23:17:16 <INFO> Registered scoring component TanimotoSimilarity
+23:17:16 <INFO> Registered scoring component TanimotoDistance
+23:17:16 <INFO> Registered scoring component TPSA
+23:17:16 <INFO> Registered scoring component SAScore
+23:17:16 <ERRO> Component reinvent_plugins.components.comp_chemprop could not be imported: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+23:17:16 <INFO> Registered scoring component CustomAlerts
+23:17:16 <INFO> Registered scoring component DockStream
+23:17:16 <INFO> Registered scoring component ExternalProcess
+23:17:16 <INFO> Registered scoring component REST
+23:17:16 <INFO> Registered scoring component Icolos
+23:17:16 <INFO> Registered scoring component MMP
+23:17:16 <INFO> Registered scoring component Qptuna
+23:17:16 <INFO> Registered scoring component ReactionFilter
+23:17:16 <INFO> Registered scoring component RingPrecedence
+23:17:16 <INFO> Registered scoring component Maize
+23:17:16 <INFO> Registered scoring component SynthSense
+23:17:16 <INFO> Registered scoring component CAZP
+23:17:16 <INFO> Creating scoring component DASAScaffold
+23:17:16 <INFO> Creating scoring component AqueousSolubility
+23:17:16 <INFO> Creating scoring component SAScore
+23:17:16 <INFO> Writing tabular data for stage to /Users/hakeemshindy/Downloads/REINVENT4_photochem/outputs_dasa/rl_stage1/stage1_1.csv
+23:17:16 <INFO> Starting stage 1 <<<
+23:17:19 <INFO> Score: 0.00 Agent NLL: 26.68 Valid: 100% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.6443 21.6270 -21.6143 0.0000994 OC(COc1ccccc1)CN1CCN(CC(O)COC(c2ccccc2)c2ccccc2)CC1 1 c1ccc(OCCCN2CCN(CCCOC(c3ccccc3)c3ccccc3)CC2)cc1 0.0000000 0.0000 0.2696562 0.2697 0.9577338 2.9671
+ | 17.6120 17.6294 -17.6126 0.0001310 CCc1c(C)[nH]c(N2CCCCC2)nc1=O 1 O=c1cc[nH]c(N2CCCCC2)n1 0.0000000 0.0000 0.6078054 0.6078 0.9847437 2.2852
+ | 31.1421 31.5213 -31.5043 0.0001328 O=C1C=C2CCCC(F)(F)C2C(=O)C1=O 1 O=C1C=C2CCCCC2C(=O)C1=O 0.0000000 0.0000 0.6951076 0.6951 0.8377937 3.9304
+ | 26.8721 27.1427 -27.1256 0.0001336 COC(=O)c1n[nH]c(=O)c(O)c1-c1ccccc1 1 O=c1cc(-c2ccccc2)cn[nH]1 0.0000000 0.0000 0.6455071 0.6455 0.9848522 2.2805
+ | 21.6950 23.1999 -23.1839 0.0001248 COCCNC(=O)C1CCCN(Cc2cccc(OC)c2)CC1 1 c1ccc(CN2CCCCCC2)cc1 0.0000000 0.0000 0.5253148 0.5253 0.9858768 2.2342
+ | 36.4737 37.2089 -37.1932 0.0001230 CCCc1nnnn1CC1=C(C)CC(C)(C2CC2)OC1=O 1 O=C1OC(C2CC2)CC=C1Cn1cnnn1 0.0000000 0.0000 0.5336050 0.5336 0.8912411 3.6297
+ | 21.6399 22.3262 -22.3131 0.0001030 Cc1ccc(NC(=O)CSc2nnc(CCNC(=O)OC(C)(C)C)o2)cc1 1 O=C(CSc1nnco1)Nc1ccccc1 0.0000000 0.0000 0.2956763 0.2957 0.9865021 2.2043
+ | 21.4216 22.2130 -22.1981 0.0001169 NC(=O)c1ccc(-c2cc(=NCCc3ccccc3)[nH]cn2)cc1 1 c1ccc(CCN=c2cc(-c3ccccc3)nc[nH]2)cc1 0.0000000 0.0000 0.4341530 0.4342 0.9764655 2.5731
+ | 18.8672 19.2092 -19.1945 0.0001148 COc1ccc(NC(=O)OCCN2C(=O)c3ccccc3C2=O)cc1 1 O=C(Nc1ccccc1)OCCN1C(=O)c2ccccc2C1=O 0.0000000 0.0000 0.4072541 0.4073 0.9920232 1.8580
+ | 23.8280 24.2174 -24.2039 0.0001051 CS(=O)(=O)Nc1ccc(Cl)c(-c2cn3ccccc3n2)c1 1 c1ccc(-c2cn3ccccc3n2)cc1 0.0000000 0.0000 0.3142367 0.3142 0.9854319 2.2547
+23:17:20 <INFO> Sampled SMILES c1(=O)ccc(=O)n(CCc2cc3c(=N)[nH]cnn3cc2=O)n1C failed to sanitize.
+23:17:23 <INFO> Score: 0.01 Agent NLL: 27.30 Valid:  99% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 30.7447 31.2431 -31.2286 0.0001137 COCCCN(CC(=O)NCc1ccc(F)cc1)C(=O)COc1ccc(C(C)=O)cc1 1 O=C(CNC(=O)COc1ccccc1)NCc1ccccc1 0.0000000 0.0000 0.3968936 0.3969 0.9883298 2.1083
+ | 14.7944 15.6668 -15.6492 0.0001382 NC1=NCC(Cc2ccccc2)C(N)=N1 1 C1=NC=NCC1Cc1ccccc1 0.0000000 0.0000 0.7367040 0.7367 0.9334420 3.2797
+ | 24.6750 23.7192 -23.7022 0.0001326 CS(=O)(=O)N1CCC(C(=O)Nc2cccc(S(=O)(=O)N3CCOCC3)c2)CC1 1 O=C(Nc1cccc(S(=O)(=O)N2CCOCC2)c1)C1CCNCC1 0.0000000 0.0000 0.6296176 0.6296 0.9873495 2.1615
+ | 41.6264 41.8614 -41.8434 0.0001405 CN(CC(=O)NC(CC(=O)O)C(=O)NC(CC(=O)O)C(=O)O)c1nc2ccccc2[nH]1 1 c1ccc2[nH]cnc2c1 0.0000000 0.0000 0.7711492 0.7711 0.9378386 3.2321
+ | 23.4409 23.1597 -23.1441 0.0001218 COc1ccccc1Oc1ncnc2[nH]ncc12 1 c1ccc(Oc2ncnc3[nH]ncc23)cc1 0.0000000 0.0000 0.4888243 0.4888 0.9852865 2.2612
+ | 25.8589 29.0720 -29.0583 0.0001074 CC1(C)C(=O)N2CCc3ccc(N4CCOCC4)cc3C2N(C2CCCC2)C1=O 1 O=C1CC(=O)N(C2CCCC2)C2c3cc(N4CCOCC4)ccc3CCN12 0.0000000 0.0000 0.3465677 0.3466 0.9294039 3.3209
+ | 35.5755 35.0389 -35.0246 0.0001110 CCCc1cc(CN(C)CCNC(=O)c2cccs2)ccn1 1 O=C(NCCNCc1ccncc1)c1cccs1 0.0000000 0.0000 0.3703381 0.3703 0.9854465 2.2540
+ | 26.3442 24.9366 -24.9291 0.0000581 Cc1onc(-c2ccccc2)c1C(=O)Nc1sc2c(c1C#N)CCCCCC2 1 O=C(Nc1cc2c(s1)CCCCCC2)c1conc1-c1ccccc1 0.0000000 0.0000 0.0532263 0.0532 0.9831324 2.3517
+ | 31.4949 32.8146 -32.7982 0.0001277 CCN1CC2CCc3ccccc3CC2C1NC(=O)NCCO 1 c1ccc2c(c1)CCC1CNCC1C2 0.0000000 0.0000 0.5969016 0.5969 0.8917671 3.6262
+ | 18.9649 20.8460 -20.8339 0.0000944 COC(=O)C1=C(C)N=C2CC(C)(C)CC(=O)C2C1c1ccc([N+](=O)[O-])cc1 1 O=C1CCCC2=NC=CC(c3ccccc3)C12 0.0000000 0.0000 0.2360849 0.2361 0.9252902 3.3606
+23:17:26 <INFO> Score: 0.02 Agent NLL: 26.25 Valid: 100% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.7163 21.0053 -20.9885 0.0001310 ON=C(O)c1ccc(CN=c2nccc[nH]2)cc1 1 c1ccc(CN=c2nccc[nH]2)cc1 0.0000000 0.0000 0.6252271 0.6252 0.9384917 3.2248
+ | 21.7910 24.6347 -24.6206 0.0001099 CC=Cc1ccc(OC)c(OCCN2CCCC2)c1 1 c1ccc(OCCN2CCCC2)cc1 0.0000000 0.0000 0.3582481 0.3582 0.9904608 1.9755
+ | 21.0904 26.2745 -26.2569 0.0001377 Cc1ccccc1N1C(=O)C(=O)C(C(N)=S)C1=O 1 O=C1CC(=O)N(c2ccccc2)C1=O 0.0000000 0.0000 0.7180556 0.7181 0.9573233 2.9737
+ | 25.6609 29.2676 -29.2561 0.0000901 CC(C)C1=CC(=Nc2ccccc2)C(=O)N(c2ccccc2)C1=O 1 O=C1C=CC(=Nc2ccccc2)C(=O)N1c1ccccc1 0.0000000 0.0000 0.1985680 0.1986 0.9789174 2.4998
+ | 19.7308 20.3694 -20.3545 0.0001164 O=C(C=Cc1cccnc1)c1cccc(O)c1 1 O=C(C=Cc1cccnc1)c1ccccc1 0.0000000 0.0000 0.4253843 0.4254 0.9899823 2.0077
+ | 22.1308 23.0719 -23.0546 0.0001351 Cn1c(=O)c2c(ncn2CC(=O)NCCC2=CCCCC2)n(C)c1=O 1 O=C(Cn1cnc2[nH]c(=O)[nH]c(=O)c21)NCCC1=CCCCC1 0.0000000 0.0000 0.6702009 0.6702 0.9766804 2.5670
+ | 21.3141 20.9181 -20.9081 0.0000781 Cc1ccc(NC(=O)CSc2ccccc2)c(Br)c1 1 O=C(CSc1ccccc1)Nc1ccccc1 0.0000000 0.0000 0.1283467 0.1283 0.9936436 1.7090
+ | 39.7039 38.5642 -38.5553 0.0000691 O=C1CSC(c2nc(-c3cccc([N+](=O)[O-])c3)c[nH]2)=NC1=Cc1ccc(Cl)cc1 1 O=C1CSC(c2nc(-c3ccccc3)c[nH]2)=NC1=Cc1ccccc1 0.0000000 0.0000 0.0911376 0.0911 0.9509047 3.0694
+ | 21.6957 23.6223 -23.6127 0.0000751 CCCN1CCC(=C2c3ccc(F)cc3CCc3cccnc32)CC1 1 c1ccc2c(c1)CCc1cccnc1C2=C1CCNCC1 0.0000000 0.0000 0.1152415 0.1152 0.9790600 2.4953
+ | 22.1311 25.3695 -25.3512 0.0001431 C=CCNC(=S)N1CCOCC1CO 1 C1COCCN1 0.0000000 0.0000 0.8220302 0.8220 0.9240099 3.3726
+23:17:27 <INFO> Sampled SMILES N1C(=O)CC(c2c([N+](=O)[O-])cccc2)N=c2ssc(=C)c12 failed to sanitize.
+23:17:30 <INFO> Score: 0.03 Agent NLL: 26.17 Valid:  99% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 21.3648 21.6461 -21.6308 0.0001193 CCCCC(=O)Nc1cccc([N+](=O)[O-])c1 1 c1ccccc1 0.0000000 0.0000 0.4573496 0.4573 0.9942671 1.6413
+ | 23.7073 27.3522 -27.3368 0.0001210 CN1C(=O)C(NC(=O)C(O)=NO)c2ccccc2-c2ccccc21 1 O=C1Cc2ccccc2-c2ccccc2N1 0.0000000 0.0000 0.4881992 0.4882 0.9527608 3.0430
+ | 26.0062 26.2310 -26.2194 0.0000906 CC(C)(C)c1ccc(C#Cc2ccc(CO)s2)cc1 1 C(#Cc1cccs1)c1ccccc1 0.0000000 0.0000 0.2015445 0.2015 0.9812292 2.4226
+ | 37.2295 39.3273 -39.3178 0.0000737 COC(=O)NC(C(=O)N1CC(c2ccccc2)CC1C(=O)NC(Cc1ccccc1)C(=O)C(=O)N1CC(F)CCC1C(=O)NC(C)(C)C)C(C)(C)C 1 O=C(NC(Cc1ccccc1)C(=O)C(=O)N1CCCCC1)C1CC(c2ccccc2)CN1 0.0000000 0.0000 0.1331191 0.1331 0.6857329 4.4917
+ | 25.2202 24.6865 -24.6749 0.0000905 C=CCOc1ccccc1C(=O)Nc1ccc(CC)cc1 1 O=C(Nc1ccccc1)c1ccccc1 0.0000000 0.0000 0.1992565 0.1993 0.9936599 1.7073
+ | 30.2916 31.2884 -31.2708 0.0001374 NC(=O)COC(=O)Cn1c(=O)c2ccccc2[s+]1[O-] 1 O=c1[nH][sH+]c2ccccc12 0.0000000 0.0000 0.7541917 0.7542 0.8683161 3.7713
+ | 26.7183 26.5425 -26.5330 0.0000747 CCCN(CCC)C(=O)C1CNCC(C(c2ccccc2)c2ccccc2)C1 1 c1ccc(C(c2ccccc2)C2CCCNC2)cc1 0.0000000 0.0000 0.1154815 0.1155 0.9452317 3.1445
+ | 16.7829 17.2568 -17.2412 0.0001216 O=C1C(=Cc2cccnc2)Oc2cc(O)cc(O)c21 1 O=C1C(=Cc2cccnc2)Oc2ccccc21 0.0000000 0.0000 0.4883956 0.4884 0.9773753 2.5468
+ | 32.5919 33.7940 -33.7775 0.0001288 O=c1ccn(CCCCC2CCCC(F)O2)c(=O)[nH]1 1 O=c1ccn(CCCCC2CCCCO2)c(=O)[nH]1 0.0000000 0.0000 0.6083381 0.6083 0.9015781 3.5571
+ | 30.6950 31.9719 -31.9556 0.0001271 CN(C)C1CCN(c2cc(N3CCCC3)nc(C#CC(C)(C)O)n2)C1 1 c1nc(N2CCCC2)cc(N2CCCC2)n1 0.0000000 0.0000 0.5740041 0.5740 0.9286644 3.3282
+23:17:33 <INFO> Score: 0.04 Agent NLL: 26.74 Valid: 100% Step: 5
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 27.4387 27.6189 -27.6042 0.0001147 OCC1OC(n2cc(Cc3ccc4c(c3)OCCO4)c3cccc(Cl)c32)C(O)C(O)C1O 1 c1ccc2c(c1)c(Cc1ccc3c(c1)OCCO3)cn2C1CCCCO1 0.0000000 0.0000 0.4413949 0.4414 0.8576438 3.8301
+ | 14.0737 18.8813 -18.8655 0.0001235 O=C1NC(=O)N(Cc2ccco2)C(=O)C1=Cc1ccccc1 1 O=C1NC(=O)N(Cc2ccco2)C(=O)C1=Cc1ccccc1 0.0000000 0.0000 0.5093584 0.5094 0.9873225 2.1629
+ | 35.8531 34.0836 -34.0780 0.0000437 CC(C)CC1C(=O)N(C(C)C(=O)O)c2c(Br)cc(Br)cc2C(=O)N1Cc1ccc(Br)cc1F 1 O=C1CN(Cc2ccccc2)C(=O)c2ccccc2N1 0.0000000 0.0000 0.0239877 0.0240 0.8814794 3.6929
+ | 21.9618 23.6583 -23.6446 0.0001072 CCN1CCC(COC(=O)c2cccc(Cl)c2)CC1 1 O=C(OCC1CCNCC1)c1ccccc1 0.0000000 0.0000 0.3321815 0.3322 0.9917698 1.8785
+ | 37.1760 39.9456 -39.9336 0.0000936 CC(C)(C)C(=O)N1CCCCN(C(=S)NC(=O)C=Cc2ccc(F)cc2)C1=S 1 O=C(C=Cc1ccccc1)NC(=S)N1CCCCNC1=S 0.0000000 0.0000 0.2239286 0.2239 0.9683755 2.7710
+ | 27.1838 27.6101 -27.6034 0.0000526 O=C(C=CC=Cc1cccnc1)C=Cc1cn(Cc2ccccc2)c2ccccc12 1 O=C(C=CC=Cc1cccnc1)C=Cc1cn(Cc2ccccc2)c2ccccc12 0.0000000 0.0000 0.0394550 0.0395 0.9781007 2.5251
+ | 48.5401 50.5282 -50.5169 0.0000885 COCCN1C(=O)c2ccc(C(C)(C)C(=O)N=c3[nH]nc(CCCCc4n[nH]c(=NC(=O)C5(c6cccs6)COC5)s4)s3)cc2C1=O 1 O=C(Cc1ccc2c(c1)C(=O)NC2=O)N=c1[nH]nc(CCCCc2n[nH]c(=NC(=O)C3(c4cccs4)COC3)s2)s1 0.0000000 0.0000 0.2127120 0.2127 0.7901543 4.1363
+ | 51.5370 51.5918 -51.5823 0.0000735 CC=C1C2=C(C(=O)OC)C(c3ccccc3)C(C#N)(C(=O)OC)C1C1c3ccccc3CCN1C(OC)C2O 1 C=C1C2=CC(c3ccccc3)CC1C1c3ccccc3CCN1CC2 0.0000000 0.0000 0.1934234 0.1934 0.3508741 5.4008
+ | 36.7926 39.3147 -39.3008 0.0001089 C=C(C)c1cc(C(=O)N2CC(O)CC2C(=O)N2CCN(C(=O)OC(C)(C)C)CC2)cs1 1 O=C(C1CCCN1C(=O)c1ccsc1)N1CCNCC1 0.0000000 0.0000 0.3654964 0.3655 0.9096928 3.4952
+ | 17.1977 47.7238 63.0003 0.8650323 CN(C=CC=CC(O)=C1C(=O)NC(=O)N(C2CCCC2)C1=O)CCO 1 C=C1C(=O)NC(=O)N(C2CCCC2)C1=O 1.0000000 1.0000 0.6710328 0.6710 0.9388975 3.2202
+23:17:34 <INFO> Sampled SMILES C1N(C)CCc2n(C3CCN(C)CC3)nc(=O)c21 failed to sanitize.
+23:17:34 <INFO> Sampled SMILES c1cc(C)ccc1SC(=CC(C=C(C=CC1(O)C(C)=CC(=O)C(C)=C1)=O)C)=O failed to sanitize.
+23:17:34 <INFO> Sampled SMILES c1c(=N)nc2c(CCCO)nccc2c1N failed to sanitize.
+23:17:36 <INFO> Score: 0.02 Agent NLL: 26.75 Valid:  98% Step: 6
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.6967 26.3015 -26.2876 0.0001088 O=C1CN(Cc2ccn3[nH]cnc(=Nc4cccc(-c5ccccc5)c4)c23)CCN1 1 O=C1CN(Cc2ccn3[nH]cnc(=Nc4cccc(-c5ccccc5)c4)c23)CCN1 0.0000000 0.0000 0.3560522 0.3561 0.9482432 3.1056
+ | 20.8346 20.5818 -20.5681 0.0001068 O=C1CCc2cc(S(=O)(=O)N3CCN(c4cccc(Cl)c4)CC3)ccc2N1 1 O=C1CCc2cc(S(=O)(=O)N3CCN(c4ccccc4)CC3)ccc2N1 0.0000000 0.0000 0.3292849 0.3293 0.9869158 2.1837
+ | 36.2715 35.6922 -35.6828 0.0000738 CC(=N)Oc1ccc(C(NCC(C)C)C2CCCCC2)cc1 1 c1ccc(CC2CCCCC2)cc1 0.0000000 0.0000 0.1103054 0.1103 0.9582807 2.9583
+ | 34.1890 32.7239 -32.7164 0.0000590 Cc1cc(-c2c(C(=O)Nc3cccc(Cl)c3)c(C)nc3ccccc23)no1 1 O=C(Nc1ccccc1)c1cnc2ccccc2c1-c1ccon1 0.0000000 0.0000 0.0556216 0.0556 0.9850304 2.2726
+ | 18.2487 17.9521 -17.9383 0.0001079 COc1cc(C2c3cc4c(cc3CC3COC(=O)C32)OCO4)cc(OC)c1O 1 O=C1OCC2Cc3cc4c(cc3C(c3ccccc3)C12)OCO4 0.0000000 0.0000 0.3599925 0.3600 0.8930885 3.6172
+ | 23.5148 29.1644 -29.1470 0.0001363 COCCN1C(=O)CN(C)C(=O)C1CC(=O)Nc1ccc(F)cc1 1 O=C(CC1NC(=O)CNC1=O)Nc1ccccc1 0.0000000 0.0000 0.6906846 0.6907 0.9707056 2.7195
+ | 31.0844 33.2165 -33.2067 0.0000767 CCC1(CCCCO)C(C)=NN(c2ccccc2)C1Oc1ccc(C(=O)O)cc1 1 C1=NN(c2ccccc2)C(Oc2ccccc2)C1 0.0000000 0.0000 0.1274843 0.1275 0.9115064 3.4807
+ | 29.9522 31.0120 -30.9940 0.0001405 CC(=O)NCC(=O)OC1C(=O)N2C1SC(C)(C)C2C(=O)O 1 O=C1CC2SCCN12 0.0000000 0.0000 0.8074874 0.8075 0.8673389 3.7768
+ | 30.9138 32.7754 -32.7598 0.0001212 COc1ccccc1C1c2ccn(C)c2CCN1C(=O)CN1CCN(C)CC1 1 O=C(CN1CCNCC1)N1CCc2[nH]ccc2C1c1ccccc1 0.0000000 0.0000 0.4892510 0.4893 0.9590530 2.9456
+ | 39.6493 40.3036 -40.2933 0.0000808 CC=Cc1cccc2c1OCC1NC(=O)C(C(O)(c3ccccc3)c3ccccc3)OC21 1 O=C1NC2COc3ccccc3C2OC1C(c1ccccc1)c1ccccc1 0.0000000 0.0000 0.1581320 0.1581 0.8239824 3.9945
+23:17:37 <INFO> Sampled SMILES c1nccc(C=CC=CC(=C2C(=O)N(CCC)c3ccccc32)=O)c1 failed to sanitize.
+23:17:37 <INFO> Sampled SMILES c1(=O)c(OC2C(O)C(O)C(O)C(CO)O2)c(OC2C(O)C(O)C(O)C(CO)O2)c(-c2ccc(O)cc2)oc1O failed to sanitize.
+23:17:37 <INFO> Sampled SMILES c1c2c(c(O)n3c1CCC3)cc(C#N)cc2 failed to sanitize.
+23:17:39 <INFO> Score: 0.03 Agent NLL: 26.35 Valid:  97% Step: 7
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 11.6690 45.1576 71.4221 0.9107784 CN1C(=O)NC(=O)C(=C(O)C=CC=CN2CCNCC2)C1=O 1 O=C1NC(=O)C(=CC=CC=CN2CCNCC2)C(=O)N1 1.0000000 1.0000 0.7876139 0.7876 0.9297550 3.3174
+ | 25.2632 26.6213 -26.6041 0.0001348 CC(C)CCNC(=O)N1CCCC1C(=O)N1CCOCC1 1 O=C(C1CCCN1)N1CCOCC1 0.0000000 0.0000 0.6672218 0.6672 0.9741105 2.6368
+ | 28.5762 28.4903 -28.4805 0.0000760 COc1ccc(-c2cn(C3CCN(C(=O)OC(C)(C)C)CC3)c3ncnc(C)c23)cn1 1 c1cncc(-c2cn(C3CCNCC3)c3ncncc23)c1 0.0000000 0.0000 0.1195099 0.1195 0.9732735 2.6581
+ | 16.1625 21.2001 -21.1818 0.0001435 CC1(C)NC(=O)N(CCCC(=O)O)C1=O 1 O=C1CNC(=O)N1 0.0000000 0.0000 0.7994460 0.7994 0.9862612 2.2159
+ | 26.8441 31.6234 -31.6075 0.0001245 Cc1sc(=NC=C2C(=O)NC(=N)N2c2ccccc2)[nH]c1O 1 N=C1NC(=O)C(=CN=c2[nH]ccs2)N1c1ccccc1 0.0000000 0.0000 0.5564239 0.5564 0.8796686 3.7041
+ | 21.0154 21.3014 -21.2836 0.0001393 O=C(NS(=O)(=O)CCCOCn1ccc(=O)[nH]c1=O)c1ccccc1 1 O=C(NS(=O)(=O)CCCOCn1ccc(=O)[nH]c1=O)c1ccccc1 0.0000000 0.0000 0.7324168 0.7324 0.9808685 2.4352
+ | 48.0724 48.6771 -48.6657 0.0000889 CN(C)C12CCC(CNCc3ccc4sc5ccccc5c(=O)c4n3)CN(CC1)C2 1 O=c1c2ccccc2sc2ccc(CNCC3CCC4CCN(C4)C3)nc12 0.0000000 0.0000 0.2484111 0.2484 0.6163656 4.6911
+ | 22.5156 23.0376 -23.0219 0.0001222 N=c1nc(N2CCOCC2)nc(SCCCN2CCN(c3ccc(F)cc3)CC2)[nH]1 1 N=c1nc(N2CCOCC2)nc(SCCCN2CCN(c3ccccc3)CC2)[nH]1 0.0000000 0.0000 0.4981455 0.4981 0.9692597 2.7519
+ | 20.2961 22.5288 -22.5120 0.0001311 CCOC(=O)C(=Cc1ccc(O)c(O)c1)OC 1 c1ccccc1 0.0000000 0.0000 0.6104991 0.6105 0.9822382 2.3859
+ | 23.1729 26.4821 -26.4634 0.0001459 COCCN(C)CCOCCn1ccc(=O)[nH]c1=O 1 O=c1cc[nH]c(=O)[nH]1 0.0000000 0.0000 0.8426932 0.8427 0.9793459 2.4861
+23:17:40 <INFO> Sampled SMILES COc1ccc(NC(N2CC=C(c3cc4c(-c5cccc(N6C(=O)c7c(F)cc(C8CC8)cc7OCC6)c5)nccn43)CC2)=O)cc1 failed to sanitize.
+23:17:40 <INFO> Sampled SMILES O=C1CC(CCC)(CCC)OC(=O)C1Sc1nn2c(n1)c(C(O)=O)cn2 failed to sanitize.
+23:17:42 <INFO> Score: 0.02 Agent NLL: 26.42 Valid:  98% Step: 8
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.4292 26.1671 -26.1497 0.0001363 Cc1cn2c3c(nc2cn1)CNCC3 1 c1cn2c3c(nc2cn1)CNCC3 0.0000000 0.0000 0.6982147 0.6982 0.9518920 3.0554
+ | 22.9405 23.4528 -23.4414 0.0000893 CCN1C(NCc2ccccc2OC)=NC(c2ccc(F)cc2)C(C(=O)OC)=C1C 1 C1=CC(c2ccccc2)N=C(NCc2ccccc2)N1 0.0000000 0.0000 0.1956879 0.1957 0.9583365 2.9574
+ | 26.7535 30.7211 -30.7022 0.0001479 CN(C)CCNC(=O)C#CCN(C)CCO 1  0.0000000 0.0000 0.8898860 0.8899 0.9585244 2.9543
+ | 27.5417 28.4481 -28.4359 0.0000955 c1ccc(N2CCN(c3c4c(nc5ccccc35)NCC4)CC2)cc1 1 c1ccc(N2CCN(c3c4c(nc5ccccc35)NCC4)CC2)cc1 0.0000000 0.0000 0.2355537 0.2356 0.9846348 2.2899
+ | 16.1434 19.1902 -19.1717 0.0001445 CCOC(=O)CCN(C)C 1  0.0000000 0.0000 0.8136239 0.8136 0.9924120 1.8252
+ | 29.8278 31.5940 -31.5794 0.0001138 CC(C)n1cnc2c(Cl)c(N3CCCC3)ncc2c1=O 1 O=c1[nH]cnc2cc(N3CCCC3)ncc12 0.0000000 0.0000 0.4019193 0.4019 0.9730117 2.6646
+ | 26.5585 26.0335 -26.0182 0.0001195 COc1cc2c(cc1OC)CN(Cc1cc(C)cc[n+]1[O-])CC2 1 c1ccc(CN2CCc3ccccc3C2)[nH+]c1 0.0000000 0.0000 0.4648614 0.4649 0.9745932 2.6242
+ | 26.3225 25.5042 -25.4890 0.0001186 COc1ccc(C(=O)N2CCc3cc(O)ccc32)c(O)c1 1 O=C(c1ccccc1)N1CCc2ccccc21 0.0000000 0.0000 0.4504087 0.4504 0.9891099 2.0627
+ | 23.9724 24.7671 -24.7566 0.0000822 COc1ccc2c(c1)C(NC(=O)Nc1ccccc1F)CC(C)(C)O2 1 O=C(Nc1ccccc1)NC1CCOc2ccccc21 0.0000000 0.0000 0.1510390 0.1510 0.9739203 2.6417
+ | 21.4646 21.1546 -21.1372 0.0001363 CC(=O)Oc1ccc([N+](=O)[O-])cc1N 1 c1ccccc1 0.0000000 0.0000 0.6834651 0.6835 0.9893916 2.0454
+23:17:43 <INFO> Sampled SMILES CC(C)N(CCC(CC(C)C)C(C(=O)N1C(C(=O)NC(C)(C)C)C(C)(C)SC1)N)=O failed to sanitize.
+23:17:44 <INFO> Score: 0.04 Agent NLL: 25.41 Valid:  99% Step: 9
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 15.5158 28.2273 -28.2099 0.0001359 O=C(O)C(O)=C1C(=O)c2ccccc2C1=O 1 C=C1C(=O)c2ccccc2C1=O 0.0000000 0.0000 0.6797705 0.6798 0.9835684 2.3343
+ | 23.3375 23.3570 -23.3444 0.0000980 COC(=O)c1cc2c(c(C)c1C)CCCC2(C)C 1 c1ccc2c(c1)CCCC2 0.0000000 0.0000 0.2550958 0.2551 0.9800810 2.4620
+ | 23.2127 22.6161 -22.6074 0.0000675 Cc1ccc(-c2ccc(CCC(=O)O)n2-c2ccc(C)cc2C)cc1 1 c1ccc(-c2cccn2-c2ccccc2)cc1 0.0000000 0.0000 0.0830894 0.0831 0.9878688 2.1338
+ | 19.4607 20.1735 -20.1611 0.0000968 CCOC(=O)C1=C(c2ccccc2)OC(=N)C(C#N)C1c1ccco1 1 N=C1CC(c2ccco2)C=C(c2ccccc2)O1 0.0000000 0.0000 0.2584468 0.2584 0.9005516 3.5646
+ | 24.7780 24.0081 -23.9931 0.0001174 CCN(C(=O)COC(=O)c1cc(Cl)c(N)cc1OC)c1c(N)n(Cc2ccccc2)c(=O)[nH]c1=O 1 O=C(COC(=O)c1ccccc1)Nc1cn(Cc2ccccc2)c(=O)[nH]c1=O 0.0000000 0.0000 0.4402648 0.4403 0.9773517 2.5475
+ | 28.5598 43.6332 -43.6211 0.0000946 CCC=C(O)C=CC(C=NO)=Cc1ccccc1 1 c1ccccc1 0.0000000 0.0000 0.2371497 0.2371 0.9246978 3.3662
+ | 33.1467 32.4857 -32.4719 0.0001084 COc1c2ccoc2c(OC)c2oc(=NN=C(C)C)c(C(=O)NCCN3CCOCC3)cc12 1 N=c1oc2cc3occc3cc2cc1C(=O)NCCN1CCOCC1 0.0000000 0.0000 0.3537284 0.3537 0.9405092 3.2016
+ | 24.2351 26.0711 -26.0549 0.0001264 COC(=O)c1cc2ccccc2n1CC(=O)NCC1CCCO1 1 O=C(Cn1ccc2ccccc21)NCC1CCCO1 0.0000000 0.0000 0.5490390 0.5490 0.9749102 2.6158
+ | 21.3382 22.4998 -22.4832 0.0001298 CN(C)S(=O)(=O)c1cccc(C(=O)NCc2ccncc2)c1 1 O=C(NCc1ccncc1)c1ccccc1 0.0000000 0.0000 0.5895665 0.5896 0.9919881 1.8608
+ | 30.0164 39.1553 -39.1370 0.0001428 CCN1C(=O)C(=O)C(=O)N(CCCCN2CCN(CCCO)CC2)C1=S 1 O=C1NC(=S)N(CCCCN2CCNCC2)C(=O)C1=O 0.0000000 0.0000 0.7903578 0.7904 0.9783126 2.5186
+23:17:48 <INFO> Score: 0.02 Agent NLL: 26.15 Valid:  99% Step: 10
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 39.0773 39.3019 -39.2881 0.0001072 Cc1c(CCC(=O)NCCc2ccccc2)c(=O)oc2sc(CCC(N)=O)cc12 1 O=C(CCc1cc2ccsc2oc1=O)NCCc1ccccc1 0.0000000 0.0000 0.3359384 0.3359 0.9738147 2.6444
+ | 25.2692 32.0930 -32.0772 0.0001233 CNC(C)C(=O)NC1C(=O)N(CC(=O)O)c2ccccc2N(CC(=O)N(c2ccccc2)C(C)C)C1=O 1 O=C(CN1C(=O)CC(=O)Nc2ccccc21)Nc1ccccc1 0.0000000 0.0000 0.5275273 0.5275 0.9202314 3.4069
+ | 20.7209 23.4630 -23.4504 0.0000983 O=C(CCCN1C(=O)SC(=Cc2ccccc2)C1=O)NC1CCCC1 1 O=C(CCCN1C(=O)SC(=Cc2ccccc2)C1=O)NC1CCCC1 0.0000000 0.0000 0.2568129 0.2568 0.9881868 2.1163
+ | 25.3893 25.0280 -25.0118 0.0001273 O=C(COC(=O)c1cccc(S(=O)(=O)N2CCOCC2)c1)Nc1ccc2[nH]c(=O)[nH]c2c1 1 O=C(COC(=O)c1cccc(S(=O)(=O)N2CCOCC2)c1)Nc1ccc2[nH]c(=O)[nH]c2c1 0.0000000 0.0000 0.5585059 0.5585 0.9838274 2.3238
+ | 25.1343 24.3178 -24.3047 0.0001028 CCOC(=O)c1c(S(=O)(=O)N2CCC(C(=O)N3CCc4ccccc4C3)CC2)c(C)n(C)c1C 1 O=C(C1CCN(S(=O)(=O)c2cc[nH]c2)CC1)N1CCc2ccccc2C1 0.0000000 0.0000 0.2952238 0.2952 0.9773948 2.5462
+ | 34.8162 36.2591 -36.2418 0.0001352 CC(C)(NC(=O)Cn1cc2c(c1O)C(O)CCC2)C(=O)O 1 c1[nH]cc2c1CCCC2 0.0000000 0.0000 0.6991299 0.6991 0.9129547 3.4689
+ | 27.5271 28.7886 -28.7696 0.0001487 CC(=O)NCCCCC(NC(=O)C(N)CN)C(=O)O 1  0.0000000 0.0000 0.9014814 0.9015 0.9613801 2.9059
+ | 27.8275 27.1867 -27.1712 0.0001207 CCOc1ccc2[nH]c(=NC(=O)Cc3nc(C)no3)sc2c1 1 O=C(Cc1ncno1)N=c1[nH]c2ccccc2s1 0.0000000 0.0000 0.4832400 0.4832 0.9584630 2.9553
+ | 24.2280 23.0178 -23.0037 0.0001106 CCC(=O)N(Cc1ccccc1)c1cccc(-c2nn[nH]n2)c1 1 c1ccc(CNc2cccc(-c3nn[nH]n3)c2)cc1 0.0000000 0.0000 0.3659692 0.3660 0.9870585 2.1765
+ | 38.1855 37.3870 -37.3837 0.0000254 O=C(O)CCc1ccc2cc(-c3cc4c(-c5ccccc5)cc(-c5ccccc5)cc4[nH]3)ccc2c1 1 c1ccc(-c2cc(-c3ccccc3)c3cc(-c4ccc5ccccc5c4)[nH]c3c2)cc1 0.0000000 0.0000 0.0044120 0.0044 0.9846696 2.2884
+23:17:51 <INFO> Score: 0.01 Agent NLL: 26.01 Valid:  99% Step: 11
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.8187 26.3348 -26.3227 0.0000945 CCCCCC(O)C=CC1CCC(=O)C(=O)C1CC=CCCCC(=O)O 1 O=C1CCCCC1=O 0.0000000 0.0000 0.2480978 0.2481 0.8496944 3.8716
+ | 26.5759 28.9554 -28.9384 0.0001327 COCCn1c(C(=O)OC)cc(=Cc2sc(=O)[nH]c2O)c1=C(C)C 1 C=c1[nH]ccc1=Cc1c[nH]c(=O)s1 0.0000000 0.0000 0.6640656 0.6641 0.9028351 3.5479
+ | 36.9627 53.3273 -53.3144 0.0001002 COCCOc1cc(=O)n2c(c1C(C)=O)C(=C(O)C=CC=CC=NC(C)C)CC2 1 C=C1CCn2c1cccc2=O 0.0000000 0.0000 0.2881355 0.2881 0.8902435 3.6364
+ | 28.3509 28.7978 -28.7833 0.0001126 CCOCCCNC(=O)C(=O)N(C1CC1)C(C(=O)NC1CCCC1)c1ccc(C)cc1 1 O=C(NC1CCCC1)C(NC1CC1)c1ccccc1 0.0000000 0.0000 0.3923077 0.3923 0.9609358 2.9136
+ | 18.4082 22.0293 -22.0141 0.0001190 COc1ccc(-c2nnc3n2N=C(C)CS3)cc1OC 1 C1=Nn2c(nnc2-c2ccccc2)SC1 0.0000000 0.0000 0.4584393 0.4584 0.9750964 2.6108
+ | 23.9913 24.5757 -24.5649 0.0000842 O=C(CSc1nc2ccccc2[nH]1)NCc1cccc2ccccc12 1 O=C(CSc1nc2ccccc2[nH]1)NCc1cccc2ccccc12 0.0000000 0.0000 0.1612206 0.1612 0.9906643 1.9613
+ | 31.9760 31.7914 -31.7817 0.0000759 Cc1ccc[nH]c1=NC(=O)NCc1ccccc1Sc1ccc2[nH]c(=N)sc2c1 1 N=c1[nH]c2ccc(Sc3ccccc3CNC(=O)N=c3cccc[nH]3)cc2s1 0.0000000 0.0000 0.1223950 0.1224 0.9286239 3.3286
+ | 20.5356 22.8085 -22.7915 0.0001331 CC(C)N1CCN(CCCCn2c(O)c3n(c2=O)CCC3)CC1 1 O=c1n(CCCCN2CCNCC2)cc2n1CCC2 0.0000000 0.0000 0.6412595 0.6413 0.9756474 2.5959
+ | 31.1224 30.4325 -30.4227 0.0000770 COc1cc(Cl)cc2[nH]c3cc4ccccc4nc3c12 1 c1ccc2nc3c(cc2c1)[nH]c1ccccc13 0.0000000 0.0000 0.1233865 0.1234 0.9856866 2.2430
+ | 31.0176 31.8467 -31.8357 0.0000859 COC(=O)C1=CC(Cc2ccccc2)CC(OCc2ccc(C(C)=O)cc2)O1 1 C1=CC(Cc2ccccc2)CC(OCc2ccccc2)O1 0.0000000 0.0000 0.1760360 0.1760 0.9397131 3.2108
+23:17:53 <INFO> Score: 0.03 Agent NLL: 25.81 Valid: 100% Step: 12
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 32.4614 33.3552 -33.3426 0.0000979 COc1cc(O)cc(C2CC(=O)NC23CCN(CCCOc2ccccc2)CC3)c1 1 O=C1CC(c2ccccc2)C2(CCN(CCCOc3ccccc3)CC2)N1 0.0000000 0.0000 0.2678603 0.2679 0.8948504 3.6051
+ | 25.4598 34.0428 -34.0327 0.0000786 CC1=C(C=CC=C2Nc3sc4c(c3C2(C)C)CCCC4)C(=O)N(CCCC(=O)O)C1=O 1 O=C1C=C(C=CC=C2Cc3c(sc4c3CCCC4)N2)C(=O)N1 0.0000000 0.0000 0.1378929 0.1379 0.9053294 3.5291
+ | 33.4492 33.8847 -33.8786 0.0000479 COC(=O)C1(C)CCC2(C)CCC3(C(=O)O)C4=C(CCC3(C)C2C1)C1(C)CC(O)C(O)C(C)(C)C1CC4 1 C1CCC2C3=C(CCC2C1)C1CCC2CCCCC2C1CC3 0.0000000 0.0000 0.0463987 0.0464 0.4539052 5.1205
+ | 22.9084 29.6208 -29.6112 0.0000749 CC(C)(C)OC(=O)N1CCC(Oc2ccc3c(c2)C(=O)C(=Cc2ccncc2)O3)CC1 1 O=C1C(=Cc2ccncc2)Oc2ccc(OC3CCNCC3)cc21 0.0000000 0.0000 0.1143104 0.1143 0.9757010 2.5944
+ | 25.3197 25.7508 -25.7338 0.0001330 CC(=O)c1cc(N=CC2NCCN2)c(C)cc1O 1 C(=Nc1ccccc1)C1NCCN1 0.0000000 0.0000 0.6606386 0.6606 0.9213547 3.3969
+ | 23.4206 23.4454 -23.4300 0.0001207 CC(=O)c1c(O)oc(=O)c(C=Nc2ccc(N(C)C)cc2)c1O 1 O=c1occcc1C=Nc1ccccc1 0.0000000 0.0000 0.4828948 0.4829 0.9590455 2.9457
+ | 35.6703 35.9967 -35.9831 0.0001057 NC(=NN=c1[nH]c2ccsc2c(=O)n1-c1ccccc1)c1cnc2ccccc2n1 1 O=c1c2sccc2[nH]c(=NN=Cc2cnc3ccccc3n2)n1-c1ccccc1 0.0000000 0.0000 0.3252209 0.3252 0.9565489 2.9859
+ | 30.6237 33.1127 -33.0997 0.0001012 CCCN=C(CCc1ccccc1)C1=NNC(C)(C)C1 1 N=C(CCc1ccccc1)C1=NNCC1 0.0000000 0.0000 0.2857317 0.2857 0.9539843 3.0250
+ | 22.8759 23.5711 -23.5563 0.0001159 O=C(CSc1nc(=O)c2ccccc2[nH]1)Nc1cccc(O)c1 1 O=C(CSc1nc(=O)c2ccccc2[nH]1)Nc1ccccc1 0.0000000 0.0000 0.4196271 0.4196 0.9899070 2.0126
+ | 15.8209 18.6974 -18.6849 0.0000974 O=C1NC(=Nc2ccccc2)SC1=Cc1ccccc1 1 O=C1NC(=Nc2ccccc2)SC1=Cc1ccccc1 0.0000000 0.0000 0.2512389 0.2512 0.9786450 2.5083
+23:17:54 <INFO> Sampled SMILES c1ncc(CNC2CN(CCN=c3c4c(cccc4)n[nH]c3C)CC2)nc1 failed to sanitize.
+23:17:54 <INFO> Sampled SMILES O=C(Nc1ccc2c(c1)OCO2)c1cc(C)c2c(c1)nc(=O)c(C(C)(C)C)n2CC1CCCCC1 failed to sanitize.
+23:17:56 <INFO> Score: 0.03 Agent NLL: 25.59 Valid:  98% Step: 13
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 26.0297 28.5782 -28.5603 0.0001400 CNC1C(=O)C(C)(O)C(=O)C=C1C 1 O=C1C=CCC(=O)C1 0.0000000 0.0000 0.8465790 0.8466 0.7836450 4.1616
+ | 28.0014 28.1659 -28.1511 0.0001155 O=c1c2ccc(Cl)cc2[nH]c(=S)n1CCC1OCCO1 1 O=c1c2ccccc2[nH]c(=S)n1CCC1OCCO1 0.0000000 0.0000 0.4196545 0.4197 0.9748836 2.6165
+ | 35.9271 35.6359 -35.6239 0.0000944 COc1cc2c3c(c1OC)N(C)C(C)(C)C3C=CC2C 1 C1=CC2CNc3cccc(c32)C1 0.0000000 0.0000 0.2522883 0.2523 0.8222482 4.0022
+ | 23.9245 25.0092 -24.9932 0.0001250 CCCCCCCNC(=S)NCC1CCNCC1 1 C1CCNCC1 0.0000000 0.0000 0.5281862 0.5282 0.9856347 2.2454
+ | 19.7810 20.0999 -20.0832 0.0001301 O=C(O)c1cc2ncccc2cc1O 1 c1ccc2ncccc2c1 0.0000000 0.0000 0.5932836 0.5933 0.9907969 1.9519
+ | 27.9086 25.5961 -25.5880 0.0000630 CCOc1ccc(-n2c(O)c(O)c(C(=O)c3ccco3)c2-c2cccc(OCC)c2)cc1 1 O=C(c1ccco1)c1ccn(-c2ccccc2)c1-c1ccccc1 0.0000000 0.0000 0.0680218 0.0680 0.9751981 2.6081
+ | 27.7178 27.6483 -27.6317 0.0001299 CCCNCC(=O)N=c1c2c([nH]n1-c1ccc(F)cc1)CS(=O)(=O)C2 1 N=c1c2c([nH]n1-c1ccccc1)CS(=O)(=O)C2 0.0000000 0.0000 0.6127885 0.6128 0.9305260 3.3096
+ | 22.5311 22.5405 -22.5240 0.0001290 O=C1CCC2(CCNCC2)CN1c1cccnc1 1 O=C1CCC2(CCNCC2)CN1c1cccnc1 0.0000000 0.0000 0.5933597 0.5934 0.9489084 3.0967
+ | 19.5083 21.2681 -21.2527 0.0001202 CN1CCN(C(=O)c2cc3ccccc3s2)CC1 1 O=C(c1cc2ccccc2s1)N1CCNCC1 0.0000000 0.0000 0.4686968 0.4687 0.9912191 1.9211
+ | 23.8315 25.5124 -25.4951 0.0001353 CCCCN(C)CCN=c1[nH]cnc2c1ncn2C1OC(CO)C(O)C1O 1 N=c1[nH]cnc2c1ncn2C1CCCO1 0.0000000 0.0000 0.7823583 0.7824 0.7501143 4.2839
+23:17:58 <INFO> Sampled SMILES N1(CCNc2cc3[nH]cc4c3c(c3c(c4)cccc3)c2C)CCCC1 failed to sanitize.
+23:17:58 <INFO> Sampled SMILES Fc1ccc(-c2n(C(C)=O)c(O)c3c2c(O)n(-c2ccccc2)c3O)cc1 failed to sanitize.
+23:18:01 <INFO> Score: 0.01 Agent NLL: 25.31 Valid:  98% Step: 14
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 11.8194 41.1665 -41.1665 0.0000000 O=C1C(=C(O)C=CC=CN(CCO)CCO)C(=O)c2ccccc21 1 C=C1C(=O)c2ccccc2C1=O 1.0000000 1.0000 0.6271539 0.6272 0.9496695 3.0864
+ | 56.6989 59.1806 -59.1683 0.0000962 CC1CC(O)CC2OC(=O)C3C(C(=O)C4=C(C(N)CC5CC(O)CCC53C)C4CO)C12 1 O=C1OC2CCCCC2C2C(=O)C3=C(CCC4CCCCC4C12)C3 0.0000000 0.0000 0.5550358 0.5550 0.2279934 5.7945
+ | 24.2834 25.6120 -25.5956 0.0001281 CCCC(=O)NN=C(C)c1ccc(C)cn1 1 c1ccncc1 0.0000000 0.0000 0.5680469 0.5680 0.9861601 2.2208
+ | 22.2545 22.5367 -22.5210 0.0001232 O=C(NNC(=O)c1ccc2c(c1)OCO2)Nc1ccccc1 1 O=C(NNC(=O)c1ccc2c(c1)OCO2)Nc1ccccc1 0.0000000 0.0000 0.5040063 0.5040 0.9921014 1.8515
+ | 27.7855 26.8646 -26.8498 0.0001155 Cc1ccc(N2CCC3(CCN(C(=O)c4cccnc4)C3)CC2)nn1 1 O=C(c1cccnc1)N1CCC2(CCN(c3cccnn3)CC2)C1 0.0000000 0.0000 0.4228094 0.4228 0.9598169 2.9328
+ | 9.9814 20.4021 -20.3836 0.0001448 CN(C)C=C1C(=O)N(C)C(=O)N(C)C1=O 1 C=C1C(=O)NC(=O)NC1=O 0.0000000 0.0000 0.8291853 0.8292 0.9692717 2.7516
+ | 20.7150 22.1059 -22.0893 0.0001294 Cc1noc(C)c1C(=O)NCCN1CCC(C)CC1 1 O=C(NCCN1CCCCC1)c1cnoc1 0.0000000 0.0000 0.5849155 0.5849 0.9877684 2.1392
+ | 15.2999 19.3130 -19.2962 0.0001316 O=C(C=Cc1ccccc1)OCCN1CCOCC1 1 O=C(C=Cc1ccccc1)OCCN1CCOCC1 0.0000000 0.0000 0.6142746 0.6143 0.9911350 1.9273
+ | 20.2764 21.4841 -21.4701 0.0001090 CCC1CCCCN1C(=O)NC1CCCCC1 1 O=C(NC1CCCCC1)N1CCCCC1 0.0000000 0.0000 0.3512942 0.3513 0.9802605 2.4560
+ | 25.0180 25.2923 -25.2783 0.0001096 Cc1nc(C(=O)NCC(O)CN2CCCCC2)c(C)n1-c1ccccc1Cl 1 O=C(NCCCN1CCCCC1)c1cn(-c2ccccc2)cn1 0.0000000 0.0000 0.3608463 0.3608 0.9648803 2.8416
+23:18:02 <INFO> Sampled SMILES c12cc(O)c(=C(C)C)c(O)c1c(O)c(=C(C=CC=C(C)C)OC(C=C(C)C)=O)cc2O failed to sanitize.
+23:18:02 <INFO> Sampled SMILES c1cccc2c1c(Nc1ccc(C)c(N=c3nc(-c4cc(OC)c(OC)cc4)nc4c3[nH]cn4)c1)ccc2 failed to sanitize.
+23:18:04 <INFO> Score: 0.04 Agent NLL: 25.24 Valid:  98% Step: 15
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.2055 20.1499 -20.1364 0.0001061 CCCCCCCCCCCCS(=O)(=O)NCCCNCCCNCCCCNCCCN 1  0.0000000 0.0000 0.3244204 0.3244 0.9767814 2.5641
+ | 24.0241 23.8580 -23.8423 0.0001219 C[n+]1ccc(N)c2ccc(Br)cc21 1 c1ccc2[nH+]cccc2c1 0.0000000 0.0000 0.4957916 0.4958 0.9656233 2.8272
+ | 24.3074 24.9137 -24.8976 0.0001258 CN1CCN(c2cnc3ccccc3c2C=NO)CC1 1 c1ccc2ncc(N3CCNCC3)cc2c1 0.0000000 0.0000 0.5403325 0.5403 0.9804155 2.4508
+ | 20.3575 22.0869 -22.0732 0.0001072 COc1cc2c(cc1O)C(C)=C(CN1CCCC1)CC2 1 C1=C(CN2CCCC2)CCc2ccccc21 0.0000000 0.0000 0.3341142 0.3341 0.9811621 2.4249
+ | 18.9682 19.4022 -19.3843 0.0001394 CC(=O)Nc1ccccc1C(N)=O 1 c1ccccc1 0.0000000 0.0000 0.7286076 0.7286 0.9953837 1.4995
+ | 22.3666 23.2767 -23.2585 0.0001418 CCCC#CC(O)C(=O)O 1  0.0000000 0.0000 0.8230507 0.8231 0.8794693 3.7053
+ | 18.8112 37.7868 -37.7732 0.0001060 CC=CCC=CC=CC=CC(O)=C1C(=O)OC(C)(C)OC1=O 1 C=C1C(=O)OCOC1=O 0.0000000 0.0000 0.3382663 0.3383 0.9045912 3.5347
+ | 41.2892 50.1479 -50.1418 0.0000475 COC(=O)C(O)CC=C(C)C=CC=CC=CC=CC=CC(C)CC=CC(O)C(O)C=CCCC=CC=CCC(=O)O 1  0.0000000 0.0000 0.0456129 0.0456 0.4473050 5.1378
+ | 32.9338 33.1545 -33.1423 0.0000954 CNC(=O)c1cccc(COc2cc(OC)cc3oc(-c4cn5nc(OC)nc(C)c5n4)cc23)n1 1 c1ccc(COc2cccc3oc(-c4cn5ncncc5n4)cc23)nc1 0.0000000 0.0000 0.2395633 0.2396 0.9533251 3.0348
+ | 11.0121 44.3779 75.5208 0.9367087 O=C1NC(=O)C(=C(O)C=CC=CN(CCO)CCO)C(=O)N1 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8626767 0.8627 0.9187340 3.4201
+23:18:09 <INFO> Score: 0.03 Agent NLL: 26.06 Valid:  99% Step: 16
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.9954 33.8274 -33.8136 0.0001078 CC=CC=CC=CC(C)(O)C(=O)OC1=CC(=O)c2ccccc2C1=O 1 O=C1C=CC(=O)c2ccccc21 0.0000000 0.0000 0.3623353 0.3623 0.8779894 3.7144
+ | 16.2806 17.4147 -17.4026 0.0000942 Clc1ccc(OCCCCN2CCCCC2)cc1 1 c1ccc(OCCCCN2CCCCC2)cc1 0.0000000 0.0000 0.2251208 0.2251 0.9945903 1.6033
+ | 40.8361 41.4549 -41.4450 0.0000777 N=c1nc(-c2cccc(OCCCCCCCCC(=O)O)c2)c2sc(N3CCNCC3)cc2[nH]1 1 N=c1nc(-c2ccccc2)c2sc(N3CCNCC3)cc2[nH]1 0.0000000 0.0000 0.1296219 0.1296 0.9486438 3.1002
+ | 29.3278 29.2680 -29.2533 0.0001150 CC(=O)N1CCC(N(C)Cc2cc(-c3ccc(F)cc3)on2)C1 1 c1ccc(-c2cc(CNC3CCNC3)no2)cc1 0.0000000 0.0000 0.4161269 0.4161 0.9681363 2.7760
+ | 24.5023 24.7591 -24.7429 0.0001266 Cc1c2n(c3ccc(O)cc13)CCCNC2=O 1 O=C1NCCCn2c1cc1ccccc12 0.0000000 0.0000 0.5520814 0.5521 0.9770121 2.5574
+ | 28.3825 30.1953 -30.1804 0.0001166 NC(=O)c1cccc2c(=NCCCCCCNC(=O)C3CCCC3)[nH]cnc12 1 O=C(NCCCCCCN=c1[nH]cnc2ccccc12)C1CCCC1 0.0000000 0.0000 0.4333189 0.4333 0.9674755 2.7899
+ | 14.8835 18.2877 -18.2714 0.0001271 COc1ccc(C=C2SC(=O)N(CC(=O)O)C2=O)cc1 1 O=C1NC(=O)C(=Cc2ccccc2)S1 0.0000000 0.0000 0.5533310 0.5533 0.9903960 1.9800
+ | 22.0619 21.3405 -21.3236 0.0001317 Nc1ccc(OCCn2cccn2)cc1 1 c1ccc(OCCn2cccn2)cc1 0.0000000 0.0000 0.6164822 0.6165 0.9909668 1.9397
+ | 28.0476 28.9636 -28.9464 0.0001341 N=C(N)NC(=O)Cn1cc(-c2ccc3cnccc3c2)nn1 1 c1cc2cc(-c3c[nH]nn3)ccc2cn1 0.0000000 0.0000 0.6573058 0.6573 0.9734721 2.6531
+ | 23.5960 23.2573 -23.2436 0.0001076 COc1cccc(-c2nn(-c3ccc(O)cc3)cc2C(=O)O)c1 1 c1ccc(-c2ccn(-c3ccccc3)n2)cc1 0.0000000 0.0000 0.3359348 0.3359 0.9903548 1.9828
+23:18:10 <INFO> Sampled SMILES C1CC(N=c2nc3c(cc(Oc4cc(F)ccc4)c(C(=O)NC)c3)[nH]c2)CCN1 failed to sanitize.
+23:18:10 <INFO> Sampled SMILES C(F)(F)N1CCN(CCCNC(CN2C(=O)C(=Cc3ccc(C)o3)N=C2N)C)=CC1 failed to sanitize.
+23:18:11 <INFO> Score: 0.03 Agent NLL: 25.28 Valid:  98% Step: 17
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 35.3193 34.6931 -34.6813 0.0000924 CC(C)(C)OCCCN(CC(O)C(Cc1ccccc1)NC(=O)OC1COC2OCCC12)S(=O)(=O)c1ccc(C(=O)O)cc1 1 O=C(NC(CCNS(=O)(=O)c1ccccc1)Cc1ccccc1)OC1COC2OCCC12 0.0000000 0.0000 0.2432425 0.2432 0.7843965 4.1587
+ | 21.9171 21.7463 -21.7289 0.0001361 CCc1cc(OC)c2[nH]c(=O)c(=O)[nH]c2c1 1 O=c1[nH]c2ccccc2[nH]c1=O 0.0000000 0.0000 0.6821912 0.6822 0.9832519 2.3470
+ | 27.0662 27.3844 -27.3699 0.0001139 OCCN1CCN(c2ncnc3[nH]cc(-c4cnc5ccccc5c4)c23)CC1 1 c1ccc2ncc(-c3c[nH]c4ncnc(N5CCNCC5)c34)cc2c1 0.0000000 0.0000 0.4009015 0.4009 0.9782493 2.5205
+ | 26.8539 28.6806 -28.6669 0.0001076 CN(C)C1(C)C(=O)c2cc3c(cc2C1=O)C(C)(C)CCC3 1 O=C1CC(=O)c2cc3c(cc21)CCCC3 0.0000000 0.0000 0.3538598 0.3539 0.9052556 3.5297
+ | 19.3672 19.7831 -19.7661 0.0001327 CN(C)CCCNCc1cccs1 1 c1ccsc1 0.0000000 0.0000 0.6309360 0.6309 0.9897503 2.0228
+ | 8.5442 34.5728 -34.5728 0.0000000 O=C1C(=C(O)C=CC=CN(CCO)CCO)C(=O)c2ccccc21 1 C=C1C(=O)c2ccccc2C1=O 1.0000000 1.0000 0.6271539 0.6272 0.9496695 3.0864
+ | 7.4552 44.1307 73.2622 0.9171323 CN(C=CC=CC(O)=C1C(=O)NC(=O)N(C)C1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8053864 0.8054 0.9273860 3.3406
+ | 8.8890 29.8376 -29.8376 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)c2ccccc2C1=O 1 C=C1C(=O)c2ccccc2C1=O 1.0000000 1.0000 0.4573009 0.4573 0.9671258 2.7971
+ | 26.9242 32.2514 -32.2355 0.0001240 C=CCN1CCN(CC2ON=C3c4ccccc4C(O)CC32)CC1 1 c1ccc2c(c1)CCC1C2=NOC1CN1CCNCC1 0.0000000 0.0000 0.5554626 0.5555 0.8652794 3.7884
+ | 26.7142 26.0245 -26.0138 0.0000837 Cc1ccc(-c2c[nH]c(=NCc3ccc(Cl)s3)n2C)cc1 1 c1ccc(-c2c[nH]c(=NCc3cccs3)[nH]2)cc1 0.0000000 0.0000 0.1613645 0.1614 0.9537567 3.0284
+23:18:12 <INFO> Sampled SMILES c1cccc(-c2c3c(C)ncn3c3cccc(C)n3c2=O)n1 failed to sanitize.
+23:18:12 <INFO> Sampled SMILES c1ccc2c(c1)c1c3c(C#N)c(=O)[nH]c1c1ccccc1c3cc2 failed to sanitize.
+23:18:14 <INFO> Score: 0.05 Agent NLL: 26.77 Valid:  98% Step: 18
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 27.8295 32.6249 -32.6084 0.0001290 CCCc1cnc2c(c1C)C(=O)CC(=O)C2O 1 O=C1CC(=O)c2cccnc2C1 0.0000000 0.0000 0.6138876 0.6139 0.8939827 3.6111
+ | 30.7660 32.5674 -32.5492 0.0001424 CC(N)C(=O)NC(CCCN=C(N)N)CC(=O)NC(CN)Cc1ccccc1 1 c1ccccc1 0.0000000 0.0000 0.8129203 0.8129 0.9182833 3.4240
+ | 22.3534 23.7960 -23.7855 0.0000816 COc1cc(-c2ccccc2)ccc1-n1c(=O)ccc2cc(S(=O)(=O)N=c3cco[nH]3)ccc21 1 O=c1ccc2cc(S(=O)(=O)N=c3cco[nH]3)ccc2n1-c1ccc(-c2ccccc2)cc1 0.0000000 0.0000 0.1498841 0.1499 0.9548152 3.0126
+ | 25.8517 24.6904 -24.6800 0.0000814 CN(N=Cc1ccsc1)c1nc(-c2ccccc2)cs1 1 C(=NNc1nc(-c2ccccc2)cs1)c1ccsc1 0.0000000 0.0000 0.1469013 0.1469 0.9768107 2.5632
+ | 16.3738 19.4872 -19.4723 0.0001160 Cc1coc2c1C(=O)C(=O)c1ccccc1-2 1 O=C1C(=O)c2ccoc2-c2ccccc21 0.0000000 0.0000 0.4233452 0.4233 0.9823167 2.3830
+ | 23.2283 21.9242 -21.9111 0.0001030 Cc1cc(O)c2c(C)c(CC(=O)NCc3ccc(F)cc3)c(=O)oc2c1 1 O=C(Cc1cc2ccccc2oc1=O)NCc1ccccc1 0.0000000 0.0000 0.2954223 0.2954 0.9859248 2.2319
+ | 20.3194 20.9387 -20.9221 0.0001299 CC(C)(Cl)Cn1cnc2c(=N)[nH]cnc21 1 N=c1[nH]cnc2[nH]cnc12 0.0000000 0.0000 0.6309630 0.6310 0.8845247 3.6737
+ | 31.3115 31.5499 -31.5330 0.0001317 O=C(O)CC1CCC(Cn2c(=O)[nH]c3ccc(F)cc3c2=O)O1 1 O=c1[nH]c2ccccc2c(=O)n1CC1CCCO1 0.0000000 0.0000 0.6333422 0.6333 0.9434809 3.1662
+ | 29.7452 58.4642 7.0636 0.5119356 CC(C)=CC=CC=CC1(O)C(=O)C(=C(O)C=CC=CN2CCOCC2)C=CC1(C)C 1 O=C1CCC=CC1=CC=CC=CN1CCOCC1 1.0000000 1.0000 0.1663626 0.1664 0.6863304 4.4899
+ | 19.8344 22.2767 -22.2612 0.0001209 CN(C)c1cccc2c(S(=O)(=O)NC(CCCN=C(N)N)C(=O)N3CCCCC3)cccc12 1 O=C(CNS(=O)(=O)c1cccc2ccccc12)N1CCCCC1 0.0000000 0.0000 0.4856713 0.4857 0.9577144 2.9674
+23:18:18 <INFO> Score: 0.06 Agent NLL: 26.79 Valid:  99% Step: 19
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 26.1223 29.6670 -29.6494 0.0001374 CCOC(=O)C1(C)COC(C)OC1=O 1 O=C1CCOCO1 0.0000000 0.0000 0.7715996 0.7716 0.8345511 3.9458
+ | 21.2263 25.0550 -25.0474 0.0000593 C=C1C(=CC=C2CCCC3(C)C2CCC3C(C)CCCCC(=O)O)CC(O)CC1O 1 C=C1CCCCC1=CC=C1CCCC2CCCC12 0.0000000 0.0000 0.0670421 0.0670 0.7314585 4.3472
+ | 27.4324 32.2873 -32.2707 0.0001296 CCOc1ccc(C2C3C(=O)C(=O)OCC3=NN2C(C)=O)cc1 1 O=C1OCC2=NNC(c3ccccc3)C2C1=O 0.0000000 0.0000 0.6207342 0.6207 0.8998619 3.5696
+ | 26.6314 25.6565 -25.6420 0.0001135 Cc1cnn(Cc2nc(-c3sccc3C)no2)c1 1 c1csc(-c2noc(Cn3cccn3)n2)c1 0.0000000 0.0000 0.3985526 0.3986 0.9742886 2.6322
+ | 31.1618 30.9703 -30.9550 0.0001197 CC(c1ccc(F)cc1)N1CCN(CCOCCS)CC1 1 c1ccc(CN2CCNCC2)cc1 0.0000000 0.0000 0.4676617 0.4677 0.9718013 2.6940
+ | 33.3023 39.0197 -39.0095 0.0000796 CCCCN1C(=O)C(CC(C)C)N=C(NC(=O)N=c2cc3scc(C)c3c[nH]2)C1C 1 O=C1CN=C(NC(=O)N=c2cc3sccc3c[nH]2)CN1 0.0000000 0.0000 0.1678943 0.1679 0.6875978 4.4861
+ | 12.2913 35.5714 -35.5714 0.0000000 CN(C=CC=CC(O)=C1C(=O)OC(C)(C)OC1=O)CCO 1 C=C1C(=O)OCOC1=O 1.0000000 1.0000 0.7177074 0.7177 0.9048977 3.5324
+ | 23.3018 24.3406 -24.3301 0.0000823 Cc1ccc(CN2CCCCC(Cc3ccccc3)C2=O)cc1 1 O=C1C(Cc2ccccc2)CCCCN1Cc1ccccc1 0.0000000 0.0000 0.1509649 0.1510 0.9844736 2.2968
+ | 36.4127 38.9323 -38.9215 0.0000847 Cc1ccc2c(c1)C1(C)CCCC(C=CC(=O)O)(C2=O)C1C 1 O=C1c2ccccc2C2CCCC1C2 0.0000000 0.0000 0.2138843 0.2139 0.6231901 4.6723
+ | 30.1151 30.2669 -30.2608 0.0000475 CCOC(=O)C1C(=N)N(c2ccc(O)cc2)C2=CC(C)(C)CC(=O)C2C1c1cc2ccccc2nc1Cl 1 N=C1CC(c2cnc3ccccc3c2)C2C(=O)CCC=C2N1c1ccccc1 0.0000000 0.0000 0.0328542 0.0329 0.7922904 4.1279
+23:18:19 <INFO> Sampled SMILES C1CN(CC=C)CCN1CCCNC(O)=c1c(=N)n(=O)c(=CNNC=O)c2c1cccc2 failed to sanitize.
+23:18:22 <INFO> Score: 0.05 Agent NLL: 25.33 Valid:  99% Step: 20
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 28.2520 29.2701 -29.2571 0.0001016 CC1(O)CCC2C(C)(C)C(O)C23CC1CC3=O 1 O=C1CC2CCCC3CCC13C2 0.0000000 0.0000 0.6273259 0.6273 0.2454869 5.7315
+ | 19.6255 20.3261 -20.3116 0.0001133 CCCNC(=O)NC1N=C(c2ccccc2)c2ccccc2N(C)C1=O 1 O=C1CN=C(c2ccccc2)c2ccccc2N1 0.0000000 0.0000 0.3963907 0.3964 0.9733450 2.6563
+ | 19.7847 22.1506 -22.1342 0.0001283 CC(=O)N1CCN(C(=O)Nc2cccc(C)c2)CC1 1 O=C(Nc1ccccc1)N1CCNCC1 0.0000000 0.0000 0.5687584 0.5688 0.9934699 1.7266
+ | 19.7645 22.5112 -22.4958 0.0001208 O=C(CC1C(=O)NCCN1CC1CCCCC1)NCCc1cccs1 1 O=C(CC1C(=O)NCCN1CC1CCCCC1)NCCc1cccs1 0.0000000 0.0000 0.4831568 0.4832 0.9629858 2.8771
+ | 52.6263 51.2230 -51.2125 0.0000815 Cc1[nH]nc2oc3cc(S(=O)(=O)n4cc(Cl)c5ccccc54)cc(NCC(=O)O)c3c12 1 O=S(=O)(c1ccc2c(c1)oc1n[nH]cc12)n1ccc2ccccc21 0.0000000 0.0000 0.1497223 0.1497 0.9509555 3.0686
+ | 23.4259 23.7738 -23.7604 0.0001050 N#Cc1ccc(N=c2[nH]ccc(=NS(=O)(=O)c3ccc(OC(F)(F)F)cc3)[nH]2)cc1 1 O=S(=O)(N=c1cc[nH]c(=Nc2ccccc2)[nH]1)c1ccccc1 0.0000000 0.0000 0.3224843 0.3225 0.9380478 3.2297
+ | 24.2770 25.1598 -25.1414 0.0001437 NC(=O)CC(NC(=O)c1cccc(C(=O)O)c1)C(=O)O 1 c1ccccc1 0.0000000 0.0000 0.8032896 0.8033 0.9857754 2.2389
+ | 21.1221 29.6509 -29.6329 0.0001406 NC(N=Cc1ccccc1)=C1C(=O)N(O)C1=O 1 O=C1NC(=O)C1=CN=Cc1ccccc1 0.0000000 0.0000 0.7619694 0.7620 0.9638948 2.8603
+ | 33.4865 34.7695 -34.7594 0.0000793 C=C1CNc2ccc(N=c3[nH]c(=Nc4ccc5c(c4)CCC5=NO)[nH]cc3Cl)cc21 1 C=C1CNc2ccc(N=c3cc[nH]c(=Nc4ccc5c(c4)CCC5=N)[nH]3)cc21 0.0000000 0.0000 0.1479903 0.1480 0.8361155 3.9384
+ | 25.2401 26.2668 -26.2482 0.0001453 COC(=O)C(CSC(C)=O)NC(N)=O 1  0.0000000 0.0000 0.8411665 0.8412 0.9620070 2.8948
+23:18:25 <INFO> Score: 0.04 Agent NLL: 23.84 Valid: 100% Step: 21
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 27.3550 28.3976 -28.3881 0.0000742 CC(C)CCn1c(=O)c(C2=NS(=O)(=O)c3ccc(C(=O)NCc4ccccc4)cc3N2)c(O)c2ccccc21 1 O=C(NCc1ccccc1)c1ccc2c(c1)NC(c1cc3ccccc3[nH]c1=O)=NS2(=O)=O 0.0000000 0.0000 0.1116379 0.1116 0.9659631 2.8205
+ | 27.6949 28.2548 -28.2420 0.0000995 O=C(NCCN1CCCCC1)c1c2nc3ccccc3nc2c2ccccn12 1 O=C(NCCN1CCCCC1)c1c2nc3ccccc3nc2c2ccccn12 0.0000000 0.0000 0.2670772 0.2671 0.9803895 2.4516
+ | 26.8514 28.0904 -28.0815 0.0000697 CCCCN(CCCC)CC(O)(CCC)c1ccc(Cl)cc1 1 c1ccccc1 0.0000000 0.0000 0.0925049 0.0925 0.9662808 2.8142
+ | 18.1621 19.9970 -19.9844 0.0000985 CCN(CC)CCN=c1c2ccccc2[nH]c2ccccc12 1 N=c1c2ccccc2[nH]c2ccccc12 0.0000000 0.0000 0.2595797 0.2596 0.9800893 2.4617
+ | 24.5829 26.7122 -26.6989 0.0001043 O=C(O)c1ccccc1S(=O)(=O)N1CCC(C(=O)NC2CCCCCCC2)CC1 1 O=C(NC1CCCCCCC1)C1CCN(S(=O)(=O)c2ccccc2)CC1 0.0000000 0.0000 0.3062253 0.3062 0.9880313 2.1249
+ | 22.8083 24.1936 -24.1789 0.0001151 C=C(C(=O)N1CCCCC1)c1cc(OC)c(OC)c(OC)c1 1 C=C(C(=O)N1CCCCC1)c1ccccc1 0.0000000 0.0000 0.4117751 0.4118 0.9868879 2.1851
+ | 29.2552 32.6997 -32.6836 0.0001252 CN(C)C(=O)C12CC(NC1=O)C(O)C(O)C2O 1 O=C1NC2CCCC1C2 0.0000000 0.0000 0.9203340 0.9203 0.3768610 5.3276
+ | 39.9500 39.0791 -39.0666 0.0000971 CCCNCC(O)COc1ccc2c(c1)C(O)(C(F)(F)F)c1cc(-c3cc[nH]c(=N)n3)ccc1-2 1 N=c1nc(-c2ccc3c(c2)Cc2ccccc2-3)cc[nH]1 0.0000000 0.0000 0.2689456 0.2689 0.8521579 3.8589
+ | 26.5548 26.6573 -26.6407 0.0001295 CC(C)C(N)CNC(=O)c1c[nH]c(=O)c(Cc2ccc(F)cc2)n1 1 O=c1[nH]ccnc1Cc1ccccc1 0.0000000 0.0000 0.5973907 0.5974 0.9555634 3.0012
+ | 24.4518 28.8153 -28.7968 0.0001443 CC(=O)NC(Cc1ccccc1)C(=O)NC(C=O)C(O)NC(CCCN=C(N)N)C(N)=O 1 c1ccccc1 0.0000000 0.0000 0.8830427 0.8830 0.8532947 3.8530
+23:18:26 <INFO> Sampled SMILES N1(C)CCC(Cn2c(C)nc3c2=NC(=O)CC(c2cc(OC)c(OC)cc2)C=N3)C1 failed to sanitize.
+23:18:28 <INFO> Score: 0.07 Agent NLL: 23.81 Valid:  98% Step: 22
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 22.2130 23.6645 -23.6471 0.0001364 CN1CCN(CC(=O)C2COc3ccccc3O2)CC1 1 O=C(CN1CCNCC1)C1COc2ccccc2O1 0.0000000 0.0000 0.6912648 0.6913 0.9718049 2.6939
+ | 31.5103 30.7184 -30.7091 0.0000727 C=CCCCCCCC1Cc2c[nH]c3cccc(c23)N1 1 c1cc2c3c(c[nH]c3c1)CCN2 0.0000000 0.0000 0.1064763 0.1065 0.9443393 3.1556
+ | 7.3154 43.3536 64.0702 0.8392483 CN(C)C=CC=CC(O)=C1C(=O)NC(=O)N(C2CCCC2)C1=O 1 C=C1C(=O)NC(=O)N(C2CCCC2)C1=O 1.0000000 1.0000 0.6074882 0.6075 0.9533089 3.0350
+ | 13.6634 45.2935 -45.2935 0.0000000 CN(C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.7736070 0.7736 0.9253395 3.3602
+ | 33.4033 33.5547 -33.5443 0.0000813 CCOc1cccc(NC(=S)NC2COC(C)(C)Oc3ccccc32)c1 1 S=C(Nc1ccccc1)NC1COCOc2ccccc21 0.0000000 0.0000 0.1469590 0.1470 0.9646713 2.8456
+ | 27.5658 28.3687 -28.3579 0.0000846 Cc1c(C(=O)NCC2CCCO2)c2ccccc2c(=O)n1CCC1=CCCCC1 1 O=C(NCC1CCCO1)c1cn(CCC2=CCCCC2)c(=O)c2ccccc12 0.0000000 0.0000 0.1667877 0.1668 0.9575500 2.9701
+ | 28.4554 31.8288 -31.8202 0.0000672 C=CCOc1c(Br)cc(C=CC(=O)OCC(=O)N=c2[nH]cc(C(F)(F)F)cc2Cl)cc1OC 1 O=C(COC(=O)C=Cc1ccccc1)N=c1cccc[nH]1 0.0000000 0.0000 0.0841256 0.0841 0.9406313 3.2002
+ | 20.3545 20.3157 -20.2968 0.0001481 N=C(N)NCCCCC(N)C(=O)O 1  0.0000000 0.0000 0.8855821 0.8856 0.9711061 2.7103
+ | 24.4108 24.1641 -24.1512 0.0001004 Cc1c(O)c(C)c2c(c1O)C(=O)CC(c1ccc(O)cc1)C2 1 O=C1CC(c2ccccc2)Cc2ccccc21 0.0000000 0.0000 0.2783631 0.2784 0.9596214 2.9361
+ | 21.2265 21.6990 -21.6822 0.0001308 CCNC(=O)N1CCN(Cc2cccs2)CC1 1 c1csc(CN2CCNCC2)c1 0.0000000 0.0000 0.6040608 0.6041 0.9903257 1.9848
+23:18:29 <INFO> Sampled SMILES Cn1c2ccccc2c2c(N)c3cccc(O)c3c(=O)c21 failed to sanitize.
+23:18:32 <INFO> Score: 0.05 Agent NLL: 24.27 Valid:  99% Step: 23
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 30.2057 27.8644 -27.8503 0.0001101 Nc1cccc(-n2nncc2C=Cc2ccc3c(c2)OCO3)c1 1 C(=Cc1cnnn1-c1ccccc1)c1ccc2c(c1)OCO2 0.0000000 0.0000 0.3638999 0.3639 0.9725999 2.6747
+ | 24.4098 24.5016 -24.4892 0.0000971 Cc1nc(-n2cccc2)sc1C(=O)N1CCc2ccccc2C1 1 O=C(c1cnc(-n2cccc2)s1)N1CCc2ccccc2C1 0.0000000 0.0000 0.2481368 0.2481 0.9836237 2.3321
+ | 36.5317 37.7824 -37.7661 0.0001270 O=C1CCC2(CCN(c3ccc4c(n3)C(=O)OCCN4)CC2)CN1 1 O=C1CCC2(CCN(c3ccc4c(n3)C(=O)OCCN4)CC2)CN1 0.0000000 0.0000 0.5871580 0.5872 0.8901756 3.6368
+ | 33.2383 33.6909 -33.6800 0.0000852 CC12OC3CCC4(O)C1=C(CCC34C)C(=O)C(=O)C2c1ccoc1 1 O=C1C(=O)C(c2ccoc2)C2OC3CCC4C2=C1CCC34 0.0000000 0.0000 0.4458148 0.4458 0.1778558 5.9973
+ | 40.3943 44.4724 -44.4599 0.0000978 O=C(O)C1=C(C(=O)O)C2C(C=Cc3ccccn3)C(=O)N2C(C(=O)O)=C1CCc1cnc2ccccc2c1 1 O=C1C(C=Cc2ccccn2)C2C=CC(CCc3cnc4ccccc4c3)=CN12 0.0000000 0.0000 0.2779221 0.2779 0.8367425 3.9354
+ | 31.5368 28.9391 -28.9319 0.0000563 CC(=O)c1nn(-c2ccc(Cl)cc2Cl)c(-c2ccc(Cl)cc2)c1CC(=O)NC1CC1 1 O=C(Cc1cnn(-c2ccccc2)c1-c1ccccc1)NC1CC1 0.0000000 0.0000 0.0482571 0.0483 0.9818179 2.4014
+ | 30.7365 34.9428 -34.9314 0.0000892 Cc1ccc(N2CCC(C)(C(=O)NC(Cc3ccc(NC(=O)c4c(Cl)cncc4Cl)cc3)C(=O)O)C2=O)nn1 1 O=C(Nc1ccc(CCNC(=O)C2CCN(c3cccnn3)C2=O)cc1)c1ccncc1 0.0000000 0.0000 0.2037252 0.2037 0.8865325 3.6608
+ | 17.7763 20.3480 -20.3312 0.0001314 COC1=CC(=O)c2cc(OC)ccc2C1=O 1 O=C1C=CC(=O)c2ccccc21 0.0000000 0.0000 0.6134312 0.6134 0.9879500 2.1294
+ | 8.6563 40.9600 -40.9600 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)C(=Nc2ccccc2)N(C)C1=O 1 C=C1C(=O)NC(=Nc2ccccc2)C1=O 1.0000000 1.0000 0.4797922 0.4798 0.9354041 3.2588
+ | 16.8193 19.4027 -19.3853 0.0001359 O=C(O)C1=C(C(=O)O)C2CCC1CC2 1 C1=CC2CCC1CC2 0.0000000 0.0000 0.6993765 0.6994 0.9349670 3.2635
+23:18:33 <INFO> Sampled SMILES O=C1N(CC(NC)=O)C(=O)C(=C([N-]C(C)=O)=O)C1=O failed to sanitize.
+23:18:33 <INFO> Sampled SMILES COc1c2c(cc(O)c1OC)CCC(NCC=C)c1cc(=O)c(=CC)ccc1-2 failed to sanitize.
+23:18:36 <INFO> Score: 0.09 Agent NLL: 23.00 Valid:  98% Step: 24
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.8857 21.9258 -21.9156 0.0000803 O=C1C(Cl)=C(N2CCN(c3ccccc3)CC2)C(=O)N1c1cccc(Cl)c1Cl 1 O=C1C=C(N2CCN(c3ccccc3)CC2)C(=O)N1c1ccccc1 0.0000000 0.0000 0.1401887 0.1402 0.9849970 2.2741
+ | 27.2668 27.3401 -27.3254 0.0001149 CCOC(=O)c1cn(CN2CCOCC2)cc1-c1ccccc1 1 c1ccc(-c2ccn(CN3CCOCC3)c2)cc1 0.0000000 0.0000 0.4105749 0.4106 0.9831303 2.3517
+ | 21.7532 46.7667 51.9482 0.7712097 CN(C)C=CC=CC(O)=C1C(=O)NC(=O)N1c1ccc(F)cc1 1 C=C1C(=O)NC(=O)N1c1ccccc1 1.0000000 1.0000 0.4719556 0.4720 0.9513241 3.0635
+ | 8.8395 31.7411 66.0849 0.7642661 CN(C=CC=CC(O)=C1C(=O)CCCC1(C)C)CCO 1 C=C1CCCCC1=O 1.0000000 1.0000 0.4765864 0.4766 0.8918385 3.6257
+ | 8.9127 29.8376 -29.8376 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)c2ccccc2C1=O 1 C=C1C(=O)c2ccccc2C1=O 1.0000000 1.0000 0.4573009 0.4573 0.9671258 2.7971
+ | 23.6848 24.1883 -24.1744 0.0001091 CN(C)CCN(C(=O)c1cccc(S(=O)(=O)N2CCOCC2)c1)c1nc2cc3c(cc2s1)OCO3 1 O=C(Nc1nc2cc3c(cc2s1)OCO3)c1cccc(S(=O)(=O)N2CCOCC2)c1 0.0000000 0.0000 0.3538741 0.3539 0.9744293 2.6285
+ | 17.2988 19.4993 -19.4848 0.0001133 CC1CCCN(C(=O)C=Cc2ccccc2)C1 1 O=C(C=Cc1ccccc1)N1CCCCC1 0.0000000 0.0000 0.3937986 0.3938 0.9846483 2.2893
+ | 13.0968 46.0423 65.6733 0.8727774 CC1(C)OC(=O)C(=C(O)C=CC=CN(O)C=O)C(=O)O1 1 C=C1C(=O)OCOC1=O 1.0000000 1.0000 0.7268930 0.7269 0.8554016 3.8420
+ | 21.2615 21.6421 -21.6291 0.0001016 CCc1ccc(NC(=O)CN2C(=O)CSc3ccccc32)cc1 1 O=C(CN1C(=O)CSc2ccccc21)Nc1ccccc1 0.0000000 0.0000 0.2824703 0.2825 0.9908584 1.9475
+ | 19.0792 27.0852 -27.0666 0.0001453 O=C1C(=O)N(CC2CC2)C(=O)N1O 1 O=C1NC(=O)N(CC2CC2)C1=O 0.0000000 0.0000 0.8427472 0.8427 0.9605702 2.9199
+23:18:37 <INFO> Sampled SMILES C1CC(=O)C=C2C1(C)C1=c3n(-c4ccccc4)c(=O)n(C)c(=O)c3CCC1(C)CC2O failed to sanitize.
+23:18:40 <INFO> Score: 0.04 Agent NLL: 24.73 Valid:  98% Step: 25
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 51.7741 53.0148 -53.0029 0.0000925 Oc1cc(C(O)NC(O)c2cn(CC(F)(F)F)nc2-c2cccc(Cl)c2)cn1C1CCNC1 1 c1ccc(-c2n[nH]cc2CNCc2ccn(C3CCNC3)c2)cc1 0.0000000 0.0000 0.2604896 0.2605 0.7010698 4.4447
+ | 23.2901 24.3368 -24.3218 0.0001175 CNC(=O)C(C#N)=Cc1cn(CC(=O)N2CCCCC2)c2ccccc12 1 O=C(Cn1ccc2ccccc21)N1CCCCC1 0.0000000 0.0000 0.4395879 0.4396 0.9821740 2.3883
+ | 17.1589 17.3232 -17.3091 0.0001103 O=C1CCC(c2ccc(-c3ccccc3)cc2)=NN1 1 O=C1CCC(c2ccc(-c3ccccc3)cc2)=NN1 0.0000000 0.0000 0.3616692 0.3617 0.9907432 1.9558
+ | 18.3679 18.8354 -18.8174 0.0001406 CCc1cc(CO)on1 1 c1cnoc1 0.0000000 0.0000 0.7553761 0.7554 0.9786341 2.5087
+ | 24.4999 25.3482 -25.3311 0.0001335 O=C(O)c1ccc2c(n1)C(=O)CC=C2 1 O=C1CC=Cc2cccnc21 0.0000000 0.0000 0.6497411 0.6497 0.9683359 2.7718
+ | 23.2161 24.5442 -24.5270 0.0001342 COc1ccc2oc(CN(CCO)CCO)cc2c1 1 c1ccc2occc2c1 0.0000000 0.0000 0.6547600 0.6548 0.9842836 2.3048
+ | 37.8415 40.8922 -40.8810 0.0000873 CC(=CCBr)COC(O)C1=CCC(C)(Cl)CC1 1 C1=CCCCC1 0.0000000 0.0000 0.2469531 0.2470 0.5664673 4.8258
+ | 46.6309 51.0635 -51.0635 0.0000000 O=C1C2C(C(=NO)c3ccccc3)CC3C3N=CC2=C(C)C1=O 0 -- 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000
+ | 25.4344 24.5283 -24.5130 0.0001195 CCNC(=O)Nc1ccc2c3c(cccc13)C(=O)N(CCOC)C2=O 1 O=C1NC(=O)c2cccc3cccc1c23 0.0000000 0.0000 0.4607421 0.4607 0.9870653 2.1761
+ | 17.3648 35.7057 -35.6903 0.0001208 CCN1C(=CC(O)=C2C(=O)NC(=O)N(C)C2=O)Sc2ccccc21 1 O=C1NC(=O)C(=CC=C2Nc3ccccc3S2)C(=O)N1 0.0000000 0.0000 0.4829684 0.4830 0.9620368 2.8943
+23:18:44 <INFO> Score: 0.03 Agent NLL: 26.64 Valid: 100% Step: 26
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 8.3787 43.6344 -43.6344 0.0000000 CN1C(=O)NC(=O)C(=C(O)C=CC=CN2CCCC2)C1=O 1 O=C1NC(=O)C(=CC=CC=CN2CCCC2)C(=O)N1 1.0000000 1.0000 0.7031503 0.7032 0.9438587 3.1616
+ | 26.2536 27.0753 -27.0585 0.0001313 COCCOc1ccc(OCC(O)CN(C)Cc2cnn(C)c2)cc1 1 c1ccc(OCCCNCc2cn[nH]c2)cc1 0.0000000 0.0000 0.6175370 0.6175 0.9717911 2.6942
+ | 28.8948 27.3822 -27.3673 0.0001167 COc1cc(C(=O)N=c2[nH]c3c(c(=O)[nH]2)N(Cc2ccccc2)CN3)cc(OC)c1OC 1 O=C(N=c1[nH]c2c(c(=O)[nH]1)N(Cc1ccccc1)CN2)c1ccccc1 0.0000000 0.0000 0.4382138 0.4382 0.9536043 3.0307
+ | 27.7803 28.7442 -28.7314 0.0001001 COc1c(CC=C(C)C)c(O)c(CO)c2ccccc12 1 c1ccc2ccccc2c1 0.0000000 0.0000 0.2724610 0.2725 0.9787288 2.5057
+ | 35.3025 33.0961 -33.0797 0.0001279 COc1ncc(-c2cc3c(cn2)OCC(C)N3C)cc(=O)n1 1 O=c1cc(-c2cc3c(cn2)OCCN3)cncn1 0.0000000 0.0000 0.5911181 0.5911 0.9130877 3.4679
+ | 27.2752 27.5210 -27.5072 0.0001078 CN(CC(=O)Nc1ccc(N2CCCCC2)cc1)C1=NS(=O)(=O)c2ccccc21 1 O=C(CNC1=NS(=O)(=O)c2ccccc21)Nc1ccc(N2CCCCC2)cc1 0.0000000 0.0000 0.3392079 0.3392 0.9825713 2.3734
+ | 47.6940 50.1729 -50.1646 0.0000651 C=C1CCC2C(=C)C1C1(C)CC(O)C3(C)C(CC(=O)C4(C)COC(=O)CC43)C21 1 C=C1CCC2C(=C)C1C1CCC3C4CC(=O)OCC4C(=O)CC3C21 0.0000000 0.0000 0.2141470 0.2141 0.1554208 6.1027
+ | 12.4580 38.2742 75.5473 0.8892303 CN(C=CC=CC(O)=C1C(=O)NC(=O)C1(C)O)CCO 1 C=C1CC(=O)NC1=O 1.0000000 1.0000 0.8307941 0.8308 0.7468123 4.2953
+ | 10.9867 49.1679 63.4172 0.8795712 CC1=C(CC(=O)O)OC(=O)C1=C(O)C=CC=CN(CCO)CCO 1 C=C1C=COC1=O 1.0000000 1.0000 0.7329655 0.7330 0.8780649 3.7139
+ | 23.9807 26.3029 -26.2837 0.0001504 NC(=O)CC(NC(=O)CCC(=O)O)C(N)=O 1  0.0000000 0.0000 0.9230653 0.9231 0.9792982 2.4876
+23:18:48 <INFO> Score: 0.05 Agent NLL: 23.92 Valid: 100% Step: 27
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.0398 24.4628 -24.4514 0.0000896 CCN1CCCCC1CC(=O)Nc1cccc2ccccc12 1 O=C(CC1CCCCN1)Nc1cccc2ccccc12 0.0000000 0.0000 0.1948632 0.1949 0.9833447 2.3433
+ | 39.4336 37.9108 -37.8962 0.0001138 CCCn1c(=O)c2[nH]c(C(=O)CC)c(Cl)c2n(CC2CCCO2)c1=N 1 N=c1[nH]c(=O)c2[nH]ccc2n1CC1CCCO1 0.0000000 0.0000 0.4207721 0.4208 0.8959067 3.5977
+ | 31.5650 29.9770 -29.9645 0.0000977 Cc1nc(-c2ccccc2)n(-c2ccnc(N3CCCCCC3)n2)n1 1 c1ccc(-c2ncnn2-c2ccnc(N3CCCCCC3)n2)cc1 0.0000000 0.0000 0.2527126 0.2527 0.9845830 2.2921
+ | 25.5792 26.9222 -26.9129 0.0000732 C=CC(C)(C)c1c2c(c(OC)c3occc13)CC(C(=C)C)O2 1 c1cc2cc3c(cc2o1)CCO3 0.0000000 0.0000 0.1158782 0.1159 0.8423464 3.9083
+ | 29.4785 30.1686 -30.1518 0.0001314 O=C(C1CCNCC1)N1CCC(N=c2[nH]c(Cl)nc(=NC3CC3)[nH]2)CC1 1 O=C(C1CCNCC1)N1CCC(N=c2[nH]cnc(=NC3CC3)[nH]2)CC1 0.0000000 0.0000 0.6486910 0.6487 0.8957945 3.5985
+ | 24.2659 24.8465 -24.8320 0.0001135 CCCCCCCCCCN=Cc1c(N)[nH]cnc1=N 1 N=c1cc[nH]cn1 0.0000000 0.0000 0.4050178 0.4050 0.9460523 3.1341
+ | 33.0675 34.8113 -34.8034 0.0000615 COC1OC(C)(C2CCC3(C)C2C(O)CC2C4(C)CCC(O)C(C)(C)C4CCC23C)CC(O)C1OC 1 C1CCC(C2CCC3C2CCC2C4CCCCC4CCC23)OC1 0.0000000 0.0000 0.1018429 0.1018 0.4227580 5.2029
+ | 26.7813 25.4714 -25.4562 0.0001182 O=[N+]([O-])c1ccc(N2CCN(CCCNS(=O)(=O)c3cccs3)CC2)cc1 1 O=S(=O)(NCCCN1CCN(c2ccccc2)CC1)c1cccs1 0.0000000 0.0000 0.4460622 0.4461 0.9865655 2.2011
+ | 23.9198 23.2658 -23.2538 0.0000939 O=C(Nc1ccccc1F)c1ccc(NC(=O)N2CCCC2)cc1 1 O=C(Nc1ccccc1)c1ccc(NC(=O)N2CCCC2)cc1 0.0000000 0.0000 0.2232189 0.2232 0.9940673 1.6638
+ | 22.6939 22.4150 -22.4051 0.0000769 COc1cccc(-c2ccc(CCC(=O)N=C3CCCCC3C(=O)O)cc2)c1 1 O=C(CCc1ccc(-c2ccccc2)cc1)N=C1CCCCC1 0.0000000 0.0000 0.1243854 0.1244 0.9635145 2.8674
+23:18:49 <INFO> Sampled SMILES c1ccc(COC(=O)C(C=C(C)C=CC=CC(=CC(C)CC(C)C(OC)=O)=O)O)cn1 failed to sanitize.
+23:18:51 <INFO> Score: 0.08 Agent NLL: 23.68 Valid:  99% Step: 28
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 8.0558 41.7977 -41.7977 0.0000000 CN(C=CC=CC(O)=C1C(=O)NC(=O)N(C)C1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8053864 0.8054 0.9273860 3.3406
+ | 33.8761 34.8315 -34.8174 0.0001098 CC(=O)NCCn1cc(C(C)=O)c(=O)c2cc(-c3cccc(O)c3)ccc21 1 O=c1cc[nH]c2ccc(-c3ccccc3)cc12 0.0000000 0.0000 0.3581935 0.3582 0.9845030 2.2955
+ | 25.8328 25.6094 -25.5941 0.0001195 Cc1ccc(N2CCN(c3ncc(C(O)=NO)cn3)CC2)c(C)c1 1 c1ccc(N2CCN(c3ncccn3)CC2)cc1 0.0000000 0.0000 0.4635350 0.4635 0.9788455 2.5020
+ | 13.3132 22.3253 -22.3062 0.0001490 CN1CC(=O)N(C)C(=O)C1=O 1 O=C1CNC(=O)C(=O)N1 0.0000000 0.0000 0.8983533 0.8984 0.9802396 2.4567
+ | 22.3160 21.9536 -21.9416 0.0000936 COC(=O)c1ccc(-c2nccc3cc(OC)c(OC)cc23)cc1 1 c1ccc(-c2nccc3ccccc23)cc1 0.0000000 0.0000 0.2212334 0.2212 0.9911100 1.9292
+ | 7.5848 43.3497 75.2783 0.9267814 CN(C=CC=CC(O)=C1C(=O)NC(=O)NC1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8336890 0.8337 0.9223033 3.3883
+ | 24.0801 28.0121 -27.9955 0.0001303 O=C(NCCO)C1CCN(C(O)c2cc(O)n(C3CCCC3)c2)CC1 1 c1cn(C2CCCC2)cc1CN1CCCCC1 0.0000000 0.0000 0.6201055 0.6201 0.9267067 3.3472
+ | 21.4661 21.0944 -21.0803 0.0001099 CC1CC(O)(CC(=O)O)c2ccc(Cl)c(Cl)c2O1 1 c1ccc2c(c1)CCCO2 0.0000000 0.0000 0.3821742 0.3822 0.8848068 3.6719
+ | 8.8216 42.9884 66.9931 0.8592301 CN1C(=O)NC(=O)C(=C(O)C=CC=CN2CCCCC2)C1=O 1 O=C1NC(=O)C(=CC=CC=CN2CCCCC2)C(=O)N1 1.0000000 1.0000 0.6542109 0.6542 0.9474769 3.1157
+ | 39.5385 46.1772 -46.1772 0.0000000 c1ccc(COC(=O)C(C=C(C)C=CC=CC(=CC(C)CC(C)C(OC)=O)=O)O)cn1 0 -- 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000
+23:18:54 <INFO> Score: 0.06 Agent NLL: 23.13 Valid: 100% Step: 29
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 15.3015 43.0083 62.2967 0.8226955 CSC1=C(C)C(=C(O)C=CC=CN(C)C)C(=O)NC1=O 1 C=C1C=CC(=O)NC1=O 1.0000000 1.0000 0.5906197 0.5906 0.9020206 3.5539
+ | 19.4782 21.9597 -21.9449 0.0001160 CC1CCCN(CCC(O)c2ccccc2)C1 1 c1ccc(CCCN2CCCCC2)cc1 0.0000000 0.0000 0.4245680 0.4246 0.9767878 2.5639
+ | 19.7247 20.2063 -20.1917 0.0001137 CC1(C)C=Cc2c(ccc3c2C(=O)C=CC3=O)O1 1 O=C1C=CC(=O)c2c1ccc1c2C=CCO1 0.0000000 0.0000 0.4030149 0.4030 0.9606753 2.9181
+ | 35.4036 35.6304 -35.6130 0.0001359 COc1ccc(OCCC(=O)NC2(C(=O)O)CCOC2)cc1 1 O=C(CCOc1ccccc1)NC1CCOC1 0.0000000 0.0000 0.6829974 0.6830 0.9736382 2.6489
+ | 24.7138 25.7805 -25.7641 0.0001279 CN(Cc1ccncc1)C(=O)N=c1cccc[nH]1 1 O=C(N=c1cccc[nH]1)NCc1ccncc1 0.0000000 0.0000 0.5764107 0.5764 0.9560808 2.9932
+ | 24.1101 25.4035 -25.3875 0.0001257 CC1CCCCN1CCCN1C(=O)c2cccnc2C1=O 1 O=C1c2cccnc2C(=O)N1CCCN1CCCCC1 0.0000000 0.0000 0.5411524 0.5412 0.9712493 2.7070
+ | 32.1218 34.7646 -34.7551 0.0000739 C=C1C(=O)C23CCC(OC(=O)C=Cc4ccccc4)C=C2C(OC(C)=O)CC(C)C1C3O 1 C=C1C(=O)C23CCC(OC(=O)C=Cc4ccccc4)C=C2CCCC1C3 0.0000000 0.0000 0.2398232 0.2398 0.2479269 5.7229
+ | 18.0130 19.1335 -19.1166 0.0001317 CCCCC#Cc1nc(=N)c2ncn(C3OC(CO)C(O)C3O)c2[nH]1 1 N=c1nc[nH]c2c1ncn2C1CCCO1 0.0000000 0.0000 0.7469845 0.7470 0.7077043 4.4240
+ | 18.7592 37.4464 -37.4304 0.0001248 CCC=CC(O)=C1C(=O)NC(=O)C(Cl)=C1Cl 1 C=C1C=CC(=O)NC1=O 0.0000000 0.0000 0.5426794 0.5427 0.9325567 3.2889
+ | 22.4237 21.3770 -21.3605 0.0001287 Cn1cc(O)c(C(=O)Nc2ccc3c(c2)OCO3)c1O 1 O=C(Nc1ccc2c(c1)OCO2)c1cc[nH]c1 0.0000000 0.0000 0.5794165 0.5794 0.9773093 2.5487
+23:18:55 <INFO> Sampled SMILES CN1CCn2ccc3c(ccc(-c4sccc4)c3)c21 failed to sanitize.
+23:18:55 <INFO> Sampled SMILES c1ccccc1C(c1c(Cl)cc(CN(S(=O)(=O)CC(N(C)C)=O)=O)cc1)C failed to sanitize.
+23:18:57 <INFO> Score: 0.11 Agent NLL: 23.89 Valid:  98% Step: 30
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 26.1596 30.0172 -30.0011 0.0001257 CCC(C)C1C(=O)OC1C(=O)Nc1ccccc1O 1 O=C1CC(C(=O)Nc2ccccc2)O1 0.0000000 0.0000 0.5589244 0.5589 0.9183450 3.4235
+ | 24.6307 23.2895 -23.2760 0.0001051 Nc1ccccc1SCC(=O)c1cccs1 1 O=C(CSc1ccccc1)c1cccs1 0.0000000 0.0000 0.3133097 0.3133 0.9892121 2.0565
+ | 18.0543 21.0357 -21.0181 0.0001373 O=C1NC=NCC1Cc1c[nH]cn1 1 O=C1NC=NCC1Cc1c[nH]cn1 0.0000000 0.0000 0.8129048 0.8129 0.7583929 4.2548
+ | 12.5111 41.4286 74.1293 0.9027960 O=C1NC(=O)C(=C(O)C=CC=CN2CCCC2)C1=O 1 O=C1NC(=O)C(=CC=CC=CN2CCCC2)C1=O 1.0000000 1.0000 0.7637349 0.7637 0.9369059 3.2424
+ | 27.0497 27.8769 -27.8680 0.0000701 Oc1cccc(-c2c[nH]c(-c3cccc(-c4ccccc4)c3O)n2)c1 1 c1ccc(-c2cccc(-c3nc(-c4ccccc4)c[nH]3)c2)cc1 0.0000000 0.0000 0.0935657 0.0936 0.9804184 2.4507
+ | 19.4446 20.2205 -20.2040 0.0001290 Cc1ccc(-c2nnc3n2NC(=O)CS3)cc1 1 O=C1CSc2nnc(-c3ccccc3)n2N1 0.0000000 0.0000 0.5836855 0.5837 0.9753182 2.6048
+ | 6.9759 43.3497 -43.3497 0.0000000 CN(C=CC=CC(O)=C1C(=O)NC(=O)NC1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8336890 0.8337 0.9223033 3.3883
+ | 22.7078 22.2041 -22.1876 0.0001290 COC(=O)NC1CC(N2CCc3c(-c4cnc(=N)[nH]c4)nc(N4CCOCC4)nc32)C1 1 N=c1ncc(-c2nc(N3CCOCC3)nc3c2CCN3C2CCC2)c[nH]1 0.0000000 0.0000 0.5987816 0.5988 0.9334126 3.2800
+ | 22.2489 65.3502 7.1447 0.5663664 CC1=CC(=C(O)C=CC=CN(C)CCO)C(=O)C(=C(O)C=CC(C)=C2OC(C)(C)OC2=O)C1 1 C=C1C=CCC(=CC=CC=C2OCOC2=O)C1=O 1.0000000 1.0000 0.2183046 0.2183 0.7251059 4.3681
+ | 27.2531 29.2845 -29.2694 0.0001177 Cc1ccc(S(=O)(=O)N2CCC(C(=O)N3CCN(C4CCCC4)CC3)C2)cc1 1 O=C(C1CCN(S(=O)(=O)c2ccccc2)C1)N1CCN(C2CCCC2)CC1 0.0000000 0.0000 0.4437271 0.4437 0.9764720 2.5729
+23:19:00 <INFO> Score: 0.09 Agent NLL: 23.84 Valid: 100% Step: 31
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 17.1797 37.7372 -37.7249 0.0000962 CC1=NN(c2ccccc2)C(=O)C1=C(O)C(Cl)(Cl)Cl 1 C=C1C=NN(c2ccccc2)C1=O 0.0000000 0.0000 0.2426968 0.2427 0.9696998 2.7422
+ | 26.9050 32.6601 -32.6506 0.0000750 CCCCC(C=CC=CC=CCC=CCCCC(=O)O)=NOC 1  0.0000000 0.0000 0.1177118 0.1177 0.9321553 3.2930
+ | 27.6394 26.2875 -26.2749 0.0000989 Cc1cccc(N2CCC(N3CCC(C)CC3)CC2)c1C#N 1 c1ccc(N2CCC(N3CCCCC3)CC2)cc1 0.0000000 0.0000 0.2621817 0.2622 0.9836531 2.3309
+ | 19.2036 19.4949 -19.4841 0.0000848 NC(=O)c1ccc2nc(-c3ccccc3)c(-c3ccccc3)nc2c1 1 c1ccc(-c2nc3ccccc3nc2-c2ccccc2)cc1 0.0000000 0.0000 0.1641155 0.1641 0.9922621 1.8380
+ | 20.3488 22.0606 -22.0442 0.0001277 CCCCC(=O)NN=C(C)c1ccccn1 1 c1ccncc1 0.0000000 0.0000 0.5627524 0.5628 0.9888819 2.0763
+ | 20.3390 51.7077 52.6190 0.8150528 CC1=C(C=CC=CCC(O)CO)C(=O)C(=O)C1=C(O)C=CC=CN(C)CCO 1 C=C1C=CC(=O)C1=O 1.0000000 1.0000 0.6414310 0.6414 0.7433830 4.3071
+ | 23.0614 23.2945 -23.2795 0.0001166 O=C1C(=O)N(Cc2cnc3ccccc3n2)c2ccccc21 1 O=C1C(=O)N(Cc2cnc3ccccc3n2)c2ccccc21 0.0000000 0.0000 0.4280838 0.4281 0.9888319 2.0793
+ | 26.0560 26.5771 -26.5611 0.0001247 CCCCCCCCCS(=O)(=O)NC1CCCOC1=O 1 O=C1CCCCO1 0.0000000 0.0000 0.5300101 0.5300 0.9667303 2.8051
+ | 19.8281 24.7095 -24.6976 0.0000933 CC(C)=CCN1C(=O)C(=O)c2cc(OCCc3ccccc3)ccc21 1 O=C1Nc2ccc(OCCc3ccccc3)cc2C1=O 0.0000000 0.0000 0.2196329 0.2196 0.9870413 2.1773
+ | 29.8401 29.2229 -29.2099 0.0001013 COc1cccc(C(C)NC(=O)CSc2nncn2-c2ccccc2)c1 1 O=C(CSc1nncn1-c1ccccc1)NCc1ccccc1 0.0000000 0.0000 0.2825835 0.2826 0.9793424 2.4862
+23:19:03 <INFO> Score: 0.10 Agent NLL: 23.31 Valid:  99% Step: 32
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 19.8722 21.7084 -21.6929 0.0001215 CCOC(=O)CN1C(=O)C(=Cc2ccccc2O)SC1=S 1 O=C1NC(=S)SC1=Cc1ccccc1 0.0000000 0.0000 0.4848975 0.4849 0.9859276 2.2318
+ | 8.4338 42.4037 -42.4037 0.0000000 CC1(C)OC(=O)C(=C(O)C=CC=CN2CCCC2)C(=O)O1 1 O=C1OCOC(=O)C1=CC=CC=CN1CCCC1 1.0000000 1.0000 0.5733810 0.5734 0.9267572 3.3467
+ | 21.0822 20.4255 -20.4097 0.0001232 CC(C)c1ccc(-n2c(O)c3n(c2=O)CCC3O)cc1 1 O=c1n(-c2ccccc2)cc2n1CCC2 0.0000000 0.0000 0.5181972 0.5182 0.9428822 3.1735
+ | 29.3480 28.0713 -28.0590 0.0000964 O=C(NCC1CCC1)c1nn(Cc2ccccc2)c2ccccc12 1 O=C(NCC1CCC1)c1nn(Cc2ccccc2)c2ccccc12 0.0000000 0.0000 0.2417475 0.2417 0.9910430 1.9341
+ | 29.3498 28.8787 -28.8613 0.0001362 O=C(CCNC(=O)c1ccc2ccccc2c1)NC(CO)C(=O)O 1 c1ccc2ccccc2c1 0.0000000 0.0000 0.6843810 0.6844 0.9847338 2.2856
+ | 14.3902 15.2625 -15.2453 0.0001346 O=C1CCCCCC1 1 O=C1CCCCCC1 0.0000000 0.0000 0.6578128 0.6578 0.9910117 1.9364
+ | 29.1052 29.9104 -29.8980 0.0000967 Cc1ccc(S(=O)(=O)Oc2cccc3c2CCCCN3C)cc1 1 O=S(=O)(Oc1cccc2c1CCCCN2)c1ccccc1 0.0000000 0.0000 0.2445181 0.2445 0.9871607 2.1712
+ | 11.9751 15.8682 -15.8519 0.0001271 CC1(C)N=C(N)N=C(N)N1OCCCOc1ccc(Cl)cc1 1 C1=NC=NCN1OCCCOc1ccccc1 0.0000000 0.0000 0.5603257 0.5603 0.9710758 2.7110
+ | 34.3046 32.8396 -32.8294 0.0000797 COC(=O)CCCCCn1c(-c2cccnc2)c(C)c2cc(O)ccc21 1 c1cncc(-c2cc3ccccc3[nH]2)c1 0.0000000 0.0000 0.1372804 0.1373 0.9832798 2.3458
+ | 22.7517 49.7928 -49.7760 0.0001314 C=CC1=CC(=C(O)C=CC=CN(CCO)CCO)N(C)C1 1 C=C1C=CCN1 0.0000000 0.0000 0.6890294 0.6890 0.8044492 4.0786
+23:19:04 <INFO> Sampled SMILES CCN(C=CC=CC(O)=C1C(O)CC(=CC=CCC(O)=O)OC1C)=O failed to sanitize.
+23:19:04 <INFO> Sampled SMILES C1(N)C(O)C(C)OC(OC2=c3ccc4c(O)c5c(O)c6cccc(O)c6c(O)c5c4c3=CC2)C1 failed to sanitize.
+23:19:06 <INFO> Score: 0.11 Agent NLL: 22.70 Valid:  98% Step: 33
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 14.3804 42.1026 38.4628 0.6294171 CCCN(O)C=CC=CC(O)=C1C(=O)CCCC1(C)C 1 C=C1CCCCC1=O 1.0000000 1.0000 0.2683070 0.2683 0.8796731 3.7041
+ | 6.6202 33.8753 -33.8753 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)CCCC1(C)C 1 C=C1CCCCC1=O 1.0000000 1.0000 0.3664055 0.3664 0.9124747 3.4729
+ | 25.7983 26.1924 -26.1763 0.0001258 COc1ccc2[nH]c(O)c(-n3[nH]c(C)cc3=O)c2c1 1 O=c1cc[nH]n1-c1c[nH]c2ccccc12 0.0000000 0.0000 0.5443152 0.5443 0.9655552 2.8285
+ | 30.2290 29.4618 -29.4472 0.0001140 O=C(CCO)N1CCC(Cc2nc(-c3cccc(Cl)c3)no2)CC1 1 c1ccc(-c2noc(CC3CCNCC3)n2)cc1 0.0000000 0.0000 0.4008666 0.4009 0.9843639 2.3015
+ | 30.0611 30.8773 -30.8618 0.0001213 COCc1c(C)nc(-c2cccnc2)nc1OCCCN1CCOCC1 1 c1cncc(-c2nccc(OCCCN3CCOCC3)n2)c1 0.0000000 0.0000 0.4846944 0.4847 0.9802042 2.4579
+ | 26.2260 26.7383 -26.7306 0.0000599 Clc1cccc(-c2ccc3nccc(CCC4CCNCC4)c3c2)c1 1 c1ccc(-c2ccc3nccc(CCC4CCNCC4)c3c2)cc1 0.0000000 0.0000 0.0581312 0.0581 0.9856513 2.2446
+ | 10.4355 43.1925 73.6908 0.9131509 O=C1NC(=O)C(=C(O)C=CC=CN2CCOCC2)C(=O)N1 1 O=C1NC(=O)C(=CC=CC=CN2CCOCC2)C(=O)N1 1.0000000 1.0000 0.7897469 0.7897 0.9380899 3.2293
+ | 8.5701 33.2569 71.5689 0.8189513 CN(C)C=CC=CC(O)=C1CCCC1=O 1 C=C1CCCC1=O 1.0000000 1.0000 0.5750480 0.5750 0.9228322 3.3835
+ | 28.0212 26.5864 -26.5735 0.0001008 COc1cc(C[S+]([O-])CC(=O)Nc2ccc(Cl)cc2)cc(OC)c1OC 1 O=C(C[SH+]Cc1ccccc1)Nc1ccccc1 0.0000000 0.0000 0.2833929 0.2834 0.9474538 3.1160
+ | 12.8004 36.5885 63.3585 0.7808357 CCCCN(C)C=CC=CC(O)=C1CC2C(C(C)O)C(=O)N2C1=O 1 C=C1CC2CC(=O)N2C1=O 1.0000000 1.0000 0.5828518 0.5829 0.7017968 4.4425
+23:19:08 <INFO> Score: 0.07 Agent NLL: 21.71 Valid: 100% Step: 34
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.5435 25.6292 -25.6156 0.0001064 COc1ccc(Cc2ccc(Oc3ccccc3)cc2)cc1C1OC(CO)C(O)C(O)C1O 1 c1ccc(Oc2ccc(Cc3cccc(C4CCCCO4)c3)cc2)cc1 0.0000000 0.0000 0.3402004 0.3402 0.9149305 3.4526
+ | 29.4003 34.7765 -34.7619 0.0001136 CC(=O)N1CCC(Oc2ccc(NC(=O)N3CCN(C(=O)CC(C)C)CC3)cc2)C1 1 O=C(Nc1ccc(OC2CCNC2)cc1)N1CCNCC1 0.0000000 0.0000 0.4001269 0.4001 0.9712709 2.7065
+ | 20.8985 20.2891 -20.2739 0.0001190 Cc1nc(=NCCc2ccccc2)nc(C(F)(F)F)[nH]1 1 c1ccc(CCN=c2nc[nH]cn2)cc1 0.0000000 0.0000 0.4623715 0.4624 0.9597083 2.9346
+ | 28.8496 36.9516 -36.9371 0.0001130 N#CC(C#N)=C1C(=O)N(C(=O)COc2ccc3c(c2)NC(=O)CC3)c2ccccc21 1 C=C1C(=O)N(C(=O)COc2ccc3c(c2)NC(=O)CC3)c2ccccc21 0.0000000 0.0000 0.3949573 0.3950 0.9656349 2.8270
+ | 33.4145 33.5905 -33.5754 0.0001175 CC(=O)NC(CC(F)(F)F)C(=O)NC(Cc1ccccc1)C(=O)NCCC(C)C 1 c1ccccc1 0.0000000 0.0000 0.4458008 0.4458 0.9584199 2.9560
+ | 16.6352 20.8228 -20.8111 0.0000916 O=C(C=CC=Cc1ccccc1)C=Cc1ccc(O)c(O)c1 1 O=C(C=CC=Cc1ccccc1)C=Cc1ccccc1 0.0000000 0.0000 0.2085176 0.2085 0.9811107 2.4267
+ | 17.9343 18.6427 -18.6311 0.0000909 Cc1ccc(-c2cc(C(=O)O)c3ccccc3n2)cc1 1 c1ccc(-c2ccc3ccccc3n2)cc1 0.0000000 0.0000 0.2023928 0.2024 0.9945248 1.6112
+ | 27.6314 27.6099 -27.5948 0.0001177 OCC1OC(n2cnc3c(=NCc4ccc(F)c(Cl)c4)[nH]cnc32)C(F)C1O 1 c1ccc(CN=c2[nH]cnc3c2ncn3C2CCCO2)cc1 0.0000000 0.0000 0.5151841 0.5152 0.7526475 4.2751
+ | 18.1864 53.3264 46.2224 0.7777254 Cc1ccc2c(c1)C(=O)C(=C(O)C=CC=CN1CCOCC1)C(=O)C(=O)N2 1 O=C1Nc2ccccc2C(=O)C(=CC=CC=CN2CCOCC2)C1=O 1.0000000 1.0000 0.4857051 0.4857 0.9455530 3.1404
+ | 24.5043 24.4980 -24.4841 0.0001088 Cc1[nH]c(=N)n(C)c1-c1cccc2ccccc12 1 N=c1[nH]cc(-c2cccc3ccccc23)[nH]1 0.0000000 0.0000 0.3507029 0.3507 0.9751499 2.6094
+23:19:09 <INFO> Sampled SMILES c1c(C)cc(C)c(S(=O)(=O)N=C(C(C)C)C(C#N)C=NO)n1COC failed to sanitize.
+23:19:09 <INFO> Sampled SMILES C(CCCN1CCCC1)Nc1c2c3c(n(CCO)cc3CC3C1C=C(C)C3)ccc2 failed to sanitize.
+23:19:11 <INFO> Score: 0.07 Agent NLL: 24.14 Valid:  98% Step: 35
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 16.1038 18.8905 -18.8739 0.0001298 CC1(C)NC(=S)N(c2ccccc2)C1=O 1 O=C1CNC(=S)N1c1ccccc1 0.0000000 0.0000 0.5915875 0.5916 0.9849097 2.2780
+ | 25.5898 27.0051 -26.9883 0.0001316 CCCc1c(O)[nH]c(=NS(=O)(=O)c2ccc(F)cc2)[nH]c1=O 1 O=c1cc[nH]c(=NS(=O)(=O)c2ccccc2)[nH]1 0.0000000 0.0000 0.6257998 0.6258 0.9598048 2.9330
+ | 28.0635 34.1988 -34.1812 0.0001376 CCOCCN1C(=S)C(C)(C)C(=O)N1O 1 O=C1CC(=S)NN1 0.0000000 0.0000 0.7355575 0.7356 0.9143373 3.4575
+ | 15.3734 40.9955 61.1678 0.7981502 CN(C=CC=CC(O)=C1CC(=O)C(=O)c2ccccc2C1=O)CCO 1 C=C1CC(=O)C(=O)c2ccccc2C1=O 1.0000000 1.0000 0.5296746 0.5297 0.9309542 3.3053
+ | 27.4322 29.2815 -29.2674 0.0001102 CN1CCc2cc3c(cc2C1)C1=C(CO3)c2cccc[n+]2CC1 1 c1cc[n+]2c(c1)C1=C(CC2)c2cc3c(cc2OC1)CCNC3 0.0000000 0.0000 0.3732050 0.3732 0.9358034 3.2545
+ | 30.1696 28.5773 -28.5680 0.0000729 CC(C)(C)OC(=O)N1CCC(c2c(C(=O)NC3CC3)cnn2-c2nc3ccccc3s2)CC1 1 O=C(NC1CC1)c1cnn(-c2nc3ccccc3s2)c1C1CCNCC1 0.0000000 0.0000 0.1052615 0.1053 0.9761029 2.5833
+ | 43.7537 42.2920 -42.2847 0.0000575 COc1ccc(-c2ccc(-c3nc4c(CO)cccc4[nH]3)c(-c3ccccc3)c2)cn1 1 c1ccc(-c2cc(-c3cccnc3)ccc2-c2nc3ccccc3[nH]2)cc1 0.0000000 0.0000 0.0515842 0.0516 0.9825217 2.3752
+ | 20.7872 24.6089 -24.5921 0.0001309 COCCN1C(=O)C(=O)N(CC(=O)c2ccc(Br)cc2)C1=O 1 O=C1NC(=O)N(CC(=O)c2ccccc2)C1=O 0.0000000 0.0000 0.6059333 0.6059 0.9873387 2.1620
+ | 25.4539 26.4202 -26.4034 0.0001313 NC1(CN2CCC(O)CC2)CCc2ccccc2C1 1 c1ccc2c(c1)CCC(CN1CCCCC1)C2 0.0000000 0.0000 0.6219587 0.6220 0.9599610 2.9303
+ | 25.9044 25.5214 -25.5066 0.0001151 CC(=O)Nc1ccc(C2CC(=O)N(Cc3ccncc3)C2)cc1 1 O=C1CC(c2ccccc2)CN1Cc1ccncc1 0.0000000 0.0000 0.4142946 0.4143 0.9790664 2.4950
+23:19:14 <INFO> Score: 0.08 Agent NLL: 21.86 Valid: 100% Step: 36
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 32.3260 34.2411 -34.2296 0.0000906 COc1cccc(-c2c(F)ccc3c2OCCc2cn(CCN4CCOCC4)nc2-3)c1 1 c1ccc(-c2cccc3c2OCCc2cn(CCN4CCOCC4)nc2-3)cc1 0.0000000 0.0000 0.2027411 0.2027 0.9715782 2.6993
+ | 17.6648 17.7654 -17.7500 0.0001206 O=S(=O)(c1ccc(Br)cc1)N1CCCC1 1 O=S(=O)(c1ccccc1)N1CCCC1 0.0000000 0.0000 0.4722311 0.4722 0.9944055 1.6253
+ | 7.5585 41.2955 76.1221 0.9173251 CN(C=CC=CC(O)=C1C(=O)NC(=S)NC1=O)CCO 1 C=C1C(=O)NC(=S)NC1=O 1.0000000 1.0000 0.8153736 0.8154 0.9086004 3.5039
+ | 6.1629 39.7664 -39.7664 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)NC(=O)N(C)C1=O 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.7658286 0.7658 0.9445162 3.1534
+ | 10.9729 36.0664 -36.0664 0.0000000 O=C1C(=C(O)C=CC=CN2CCCCC2)C(=O)c2ccccc21 1 O=C1C(=CC=CC=CN2CCCCC2)C(=O)c2ccccc21 1.0000000 1.0000 0.2831301 0.2831 0.9652963 2.8336
+ | 13.4161 50.5138 64.8958 0.9016369 CN1CCC(N2C(=O)NC(=O)C(=C(O)C=CC=CN(CCO)CCO)C2=O)C1 1 C=C1C(=O)NC(=O)N(C2CCNC2)C1=O 1.0000000 1.0000 0.8021613 0.8022 0.8540007 3.8493
+ | 43.2614 46.8031 -46.7926 0.0000816 CC=C1C(=O)OC2C3C(CCC3C3(C)CCC(=O)C(N4CCCC4)=C3OC(C)=O)COC12C 1 C=C1C(=O)OC2C1OCC1CCC(C3C=C(N4CCCC4)C(=O)CC3)C12 0.0000000 0.0000 0.2196096 0.2196 0.4895656 5.0272
+ | 22.4841 31.5091 -31.4913 0.0001391 CCCCC(N)=C1CC(=O)OC1=O 1 C=C1CC(=O)OC1=O 0.0000000 0.0000 0.7560807 0.7561 0.9214989 3.3956
+ | 15.6040 18.8232 -18.8064 0.0001311 COc1cc2c(cc1OC)C(=O)C=CC2=O 1 O=C1C=CC(=O)c2ccccc21 0.0000000 0.0000 0.6089558 0.6090 0.9878466 2.1350
+ | 24.9675 24.1506 -24.1414 0.0000719 CCC1CC23CCN(CC4CC4)C(C2)C1Cc1ccc(O)cc13 1 c1ccc2c(c1)CC1CCC23CCN(CC2CC2)C1C3 0.0000000 0.0000 0.1859018 0.1859 0.3362873 5.4429
+23:19:15 <INFO> Sampled SMILES n1c(N(C)C)c2c3c(ccc(C)c13)C(=O)N(CCN(C)C)C2=O failed to sanitize.
+23:19:18 <INFO> Score: 0.10 Agent NLL: 24.08 Valid:  98% Step: 37
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 29.8649 30.3959 -30.3810 0.0001167 Cc1cc(CN2CCN(C)S2(=O)=O)cc(NC(=O)OC(C)(C)C)c1 1 O=S1(=O)NCCN1Cc1ccccc1 0.0000000 0.0000 0.4327544 0.4328 0.9722163 2.6840
+ | 29.5951 29.7784 -29.7634 0.0001175 CC(=O)N1Cc2ccccc2CC1C(=O)N=c1[nH]nc(-c2ccc(O)cc2)o1 1 O=C(N=c1[nH]nc(-c2ccccc2)o1)C1Cc2ccccc2CN1 0.0000000 0.0000 0.4562439 0.4562 0.9211891 3.3984
+ | 5.6073 41.8120 -41.8120 0.0000000 O=C1NC(=O)C(=C(O)C=CC=CN(CCO)CCO)C(=O)N1 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8626767 0.8627 0.9187340 3.4201
+ | 21.8915 24.0185 -24.0035 0.0001175 C=CC(=O)N=c1[nH]c(=NCc2ccccc2)c2ccccc2[nH]1 1 N=c1[nH]c(=NCc2ccccc2)c2ccccc2[nH]1 0.0000000 0.0000 0.4495421 0.4495 0.9452233 3.1446
+ | 36.6110 38.3129 -38.2966 0.0001274 CCC(C)OC(=O)C1CCCN1C(=O)c1ccccc1N=C(N)N 1 O=C(c1ccccc1)N1CCCC1 0.0000000 0.0000 0.5732957 0.5733 0.9428130 3.1743
+ | 33.7725 33.1983 -33.1866 0.0000912 CCN(CC)C(=S)NN=Cc1cn(Cc2cc(C(=O)O)cc(C(=O)O)c2)c2ccccc12 1 c1ccc(Cn2ccc3ccccc32)cc1 0.0000000 0.0000 0.2067404 0.2067 0.9741820 2.6349
+ | 36.6039 40.9988 -40.9870 0.0000925 CCOC(=O)C(C#N)=C1N=C2CN(C)C=C2C(=O)C1=Cc1ccc(N(C)C)c2ccccc12 1 C=C1N=C2CNC=C2C(=O)C1=Cc1cccc2ccccc12 0.0000000 0.0000 0.2222886 0.2223 0.9206616 3.4031
+ | 25.4159 28.8340 -28.8170 0.0001329 C=C1C(=O)OC(C)(OC(C)=O)C1C(=O)OC(C)C 1 C=C1CCOC1=O 0.0000000 0.0000 0.7007757 0.7008 0.8294078 3.9698
+ | 26.7511 29.2126 -29.1957 0.0001317 CCOCC(=O)N(CC1CCCO1)C(C)CC 1 C1CCOC1 0.0000000 0.0000 0.6330652 0.6331 0.9464498 3.1290
+ | 47.1713 43.1287 -43.1137 0.0001168 CC(C)CNC(=O)C1SC(n2cc(Cl)c3c(=N)[nH]cnc32)C1CO 1 N=c1[nH]cnc2c1ccn2C1CCS1 0.0000000 0.0000 0.5402313 0.5402 0.6642467 4.5555
+23:19:19 <INFO> Sampled SMILES c1c(=NCCCCCC)cncc(OC)[nH]1 failed to sanitize.
+23:19:21 <INFO> Score: 0.11 Agent NLL: 22.33 Valid:  99% Step: 38
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 25.3906 27.5229 -27.5135 0.0000739 CCOC1CCC2C3=CC=C4CC(=O)C=CC4(C)C3CCC12C 1 O=C1C=CC2C(=CC=C3C4CCCC4CCC32)C1 0.0000000 0.0000 0.1340348 0.1340 0.6863750 4.4898
+ | 14.9738 47.2870 37.9123 0.6656198 CCCCN(C)C=CC=CC(O)=C1C(=O)NC(=O)N(Cc2ccc(F)c(F)c2)C1=O 1 C=C1C(=O)NC(=O)N(Cc2ccccc2)C1=O 1.0000000 1.0000 0.3027631 0.3028 0.9550091 3.0097
+ | 9.9897 45.4306 61.0051 0.8315289 CN1C(=O)C(=O)C(=C(O)C=CC=CNc2ccccc2)C1=O 1 O=C1NC(=O)C(=CC=CC=CNc2ccccc2)C1=O 1.0000000 1.0000 0.5871457 0.5871 0.9639415 2.8594
+ | 20.4126 21.4187 -21.4014 0.0001351 CC(C)Oc1ccc(S(=O)(=O)N2CCN(C)CC2)cn1 1 O=S(=O)(c1cccnc1)N1CCNCC1 0.0000000 0.0000 0.6667400 0.6667 0.9874990 2.1536
+ | 38.1958 37.2107 -37.1936 0.0001331 NNC(=O)N1CCN(c2ccnc3c(OC4CCOCC4)ncnc23)CC1 1 c1nc(OC2CCOCC2)c2nccc(N3CCNCC3)c2n1 0.0000000 0.0000 0.6462068 0.6462 0.9630718 2.8755
+ | 10.0660 44.5602 65.8664 0.8627076 CN(C=CC=CC(O)=C1C(=O)OC1(C)C)CCO 1 C=C1COC1=O 1.0000000 1.0000 0.6984204 0.6984 0.8631363 3.8003
+ | 7.3743 33.7628 -33.7628 0.0000000 CN(C)C=CC=CC(O)=C1C(=O)OC(C)(C)C1=O 1 C=C1C(=O)COC1=O 1.0000000 1.0000 0.6622206 0.6622 0.9189180 3.4185
+ | 17.5631 21.9437 -21.9285 0.0001186 CN1C(=O)C(=Nc2ccc(Cl)cc2)C(C)(C)C1=O 1 O=C1CC(=Nc2ccccc2)C(=O)N1 0.0000000 0.0000 0.4556722 0.4557 0.9706494 2.7208
+ | 17.0104 20.2688 -20.2511 0.0001381 Cc1ccc(=NC2CCN(C(=O)CN(C)C)CC2)[nH]n1 1 c1cn[nH]c(=NC2CCNCC2)c1 0.0000000 0.0000 0.7318449 0.7318 0.9401661 3.2056
+ | 16.7746 18.2975 -18.2815 0.0001256 Clc1ccccc1CN1CCOCC1 1 c1ccc(CN2CCOCC2)cc1 0.0000000 0.0000 0.5325911 0.5326 0.9946032 1.6017
+23:19:22 <INFO> Sampled SMILES N(CCCC)=c1oc2c(n1)cc1c(c2)OCO1 failed to sanitize.
+23:19:22 <INFO> Sampled SMILES c1ccccc1-n1c(=C(C#N)C(OC)=O)nc(CCC)c1C#N failed to sanitize.
+23:19:23 <INFO> Score: 0.15 Agent NLL: 21.28 Valid:  98% Step: 39
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DASA DASA (raw) Solubility Solubility (raw) SA SA (raw)
+ | 29.7059 29.5849 -29.5728 0.0000941 COc1ccc(-c2ccc(C(C)N(C)CC(O)C(F)(F)F)cc2)cn1 1 c1ccc(-c2cccnc2)cc1 0.0000000 0.0000 0.2305720 0.2306 0.9463544 3.1302
+ | 35.5896 36.4706 -36.4529 0.0001377 CCOC(=O)NCc1cnc2c(c1)NC(C(N)=O)CN2C(C)=O 1 c1cnc2c(c1)NCCN2 0.0000000 0.0000 0.7293589 0.7294 0.9326637 3.2878
+ | 31.5773 34.3627 -34.3493 0.0001048 CC(C)c1cc(C(C)C)n(CCCCC2(C)N=C(N)N(C)O2)n1 1 C1=NC(CCCCn2cccn2)ON1 0.0000000 0.0000 0.3377501 0.3378 0.8529555 3.8548
+ | 17.7726 48.3084 46.7881 0.7429416 O=C1Nc2c(Cl)cc(Cl)cc2C(=O)C1=C(O)C=CC=CN(CCO)CCO 1 C=C1C(=O)Nc2ccccc2C1=O 1.0000000 1.0000 0.4304591 0.4305 0.9186098 3.4212
+ | 25.6412 24.0864 -24.0779 0.0000665 O=C1CC(c2ccc(Br)cc2)Cc2[nH]c3cccc(Cl)c3c(=O)c21 1 O=C1CC(c2ccccc2)Cc2[nH]c3ccccc3c(=O)c21 0.0000000 0.0000 0.0805048 0.0805 0.9615678 2.9026
+ | 18.8317 45.1477 -45.1339 0.0001077 CC1=C(C#N)c2[nH]c(C#N)cc2C1=C(O)C=CC=CN1CCOCC1 1 C(=CC=C1C=Cc2[nH]ccc21)C=CN1CCOCC1 0.0000000 0.0000 0.3657468 0.3657 0.8571142 3.8329
+ | 9.7689 49.5099 -49.5099 0.0000000 COCN1C(=O)NC(=O)C(=C(O)C=CC=CN(C)CCO)C1=O 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8020374 0.8020 0.9182600 3.4242
+ | 24.5183 38.7718 -38.7552 0.0001297 CCOC(=O)C(Br)=CC(O)=C1OC(=O)C=CC1=O 1 C=C1OC(=O)C=CC1=O 0.0000000 0.0000 0.6215861 0.6216 0.9005451 3.5647
+ | 13.8724 53.7044 -53.7044 0.0000000 CN(C=CC=CC(O)=C1C(=O)N(C)C(=O)N(CCO)C1=O)CCO 1 C=C1C(=O)NC(=O)NC1=O 1.0000000 1.0000 0.8110528 0.8111 0.9226024 3.3856
+ | 25.7827 27.7106 -27.6938 0.0001316 CCOC(=O)C1(NC(=O)CCNC(=O)c2ccco2)CCCC1 1 O=C(CCNC(=O)c1ccco1)NC1CCCC1 0.0000000 0.0000 0.6168055 0.6168 0.9829382 2.3592
+23:19:24 <CRIT> Received exception ('Signal 15'): saving checkpoint and then terminate

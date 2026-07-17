@@ -34,7 +34,9 @@ def get_registry() -> dict[str, Tuple[type, type]]:
 
         try:
             module = importlib.import_module(name)
-        except ImportError as e:
+        except Exception as e:
+            # An optional component that fails to load (missing extra dependency,
+            # binary/ABI mismatch, etc.) must not take down the whole registry.
             logger.error(f"Component {name} could not be imported: {e}")
             continue
 
