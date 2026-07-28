@@ -34,7 +34,7 @@ if not os.path.isfile(_rv_bin):
 REINVENT = [_rv_bin] if _rv_bin else [sys.executable, "-m", "reinvent"]
 
 
-def sh(cmd, log, env):
+def sh(cmd, log, env, critical=True):
     print("▶", " ".join(cmd), "\n")
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                          text=True, bufsize=1, env=env)
@@ -42,6 +42,9 @@ def sh(cmd, log, env):
         print(line, end="", flush=True)
     p.wait()
     print(f"\n{'✓ done' if p.returncode == 0 else f'✗ exit {p.returncode}'}\n")
+    if critical and p.returncode != 0:
+        sys.exit(f"stage failed (exit {p.returncode}) — aborting so later stages "
+                 "don't run on a broken state. Check the log above.")
     return p.returncode
 
 
@@ -53,11 +56,22 @@ def main():
     ap.add_argument("--stage3", action="store_true",
                     help="also run Stage 3 (ChemProp λ if trained, else structural fallback)")
     ap.add_argument("--full", action="store_true", help="TL + Stage 1 + 2 + 3")
+    ap.add_argument("--stage1-checkpoint", default=None,
+                    help="RESUME: skip TL + Stage 1, start Stage 2 from this .chkpt "
+                         "(e.g. a prior run's trial_stage1/stage1.chkpt). Stage 1 gates "
+                         "are unchanged, so reusing the checkpoint is valid and fast.")
     ap.add_argument("--stage2-steps", type=int, default=300,
                     help="RL steps for the slow xTB Stage 2 (lower = cheaper)")
     args = ap.parse_args()
     if args.full:
         args.stage2 = args.stage3 = True
+        args.quick = False
+    # RESUME mode: reuse a prior Stage-1 checkpoint, run only the (improved) Stage 2/3.
+    _resume = args.stage1_checkpoint
+    if _resume:
+        if not os.path.isfile(_resume):
+            sys.exit(f"--stage1-checkpoint not found: {_resume}")
+        args.stage2 = True
         args.quick = False
 
     out = os.path.join(ROOT, "outputs_dasa"); os.makedirs(out, exist_ok=True)
@@ -75,26 +89,38 @@ def main():
                [plugin_dir, ROOT, os.environ.get("PYTHONPATH", "")]).rstrip(os.pathsep),
            "KMP_DUPLICATE_LIB_OK": "TRUE", "OMP_NUM_THREADS": "1"}
 
-    # --- corpus: real extraction if present, else the enumerated library ---
+    # --- corpus: real extraction if present, else the AQUEOUS-focused library
+    # (EWG-aniline / weak-acceptor / peripheral-solubiliser / tethered-amine
+    # designs tuned for water-switchability -- the redesigned target region). ---
     if os.path.isfile(dataset_csv):
         corpus = dc.load_dasa_dataset(dataset_csv)["smiles_open"].tolist()
         print(f"corpus: {len(corpus)} DASAs from {dataset_csv}")
     else:
-        corpus = [r["smiles_open"] for r in dc.enumerate_dasa()]
-        print(f"corpus: {len(corpus)} enumerated DASAs (drop {dataset_csv} for real data)")
+        corpus = [r["smiles_open"] for r in dc.enumerate_dasa_aqueous()]
+        print(f"corpus: {len(corpus)} aqueous-focused DASAs (drop {dataset_csv} for real data)")
 
-    # The reinvent.prior vocabulary has no stereo tokens (/ \), so strip E/Z
-    # before feeding the corpus to TL/inception. DASA connectivity is preserved.
+    # The reinvent.prior vocabulary has no stereo tokens (/ \) and no I/P/B/...,
+    # so strip E/Z and DROP any molecule with an unsupported element before
+    # feeding TL/inception (otherwise token validation crashes the run).
     from rdkit import Chem
-    flat = []
+    flat, dropped = [], 0
     for smi in corpus:
         m = Chem.MolFromSmiles(smi)
-        if m is not None:
-            flat.append(Chem.MolToSmiles(m, isomericSmiles=False))
+        if m is None:
+            continue
+        if not dc.prior_supported(m):
+            dropped += 1
+            continue
+        flat.append(Chem.MolToSmiles(m, isomericSmiles=False))
+    if dropped:
+        print(f"  dropped {dropped} corpus SMILES with prior-unsupported elements")
     tl_smi = os.path.join(out, "trial_corpus.smi")
     with open(tl_smi, "w") as f:
         f.write("\n".join(flat) + "\n")
     print(f"  wrote stereo-free corpus for the model: {len(flat)} SMILES")
+
+    # decomposition-liability SMARTS (task-3) -> custom_alerts in the RL stages
+    _decomp_smarts = ", ".join(f'"{s}"' for s in dc.DECOMPOSITION_SMARTS)
 
     tl_epochs = 15 if args.quick else 50
     s1_steps = 150 if args.quick else 500
@@ -118,12 +144,13 @@ validation_smiles_file = "{tl_smi}"
 standardize_smiles = true
 randomize_smiles = true
 ''')
-    sh(REINVENT + ["-d", args.device, "-l", f"{out}/trial_tl.log", tl_cfg], None, env)
+    if not _resume:                     # RESUME skips transfer learning
+        sh(REINVENT + ["-d", args.device, "-l", f"{out}/trial_tl.log", tl_cfg], None, env)
     agent = tl_model if os.path.isfile(tl_model) else prior
 
     # --- Stage 1: structural + solubility gate ---
     s1_dir = os.path.join(out, "trial_stage1"); os.makedirs(s1_dir, exist_ok=True)
-    s1_chkpt = os.path.join(s1_dir, "stage1.chkpt")
+    s1_chkpt = _resume if _resume else os.path.join(s1_dir, "stage1.chkpt")
     s1_cfg = os.path.join(s1_dir, "stage1.toml")
     with open(s1_cfg, "w") as f:
         f.write(f'''run_type = "staged_learning"
@@ -151,13 +178,30 @@ type = "geometric_mean"
 name = "DASA"
 weight = 1.0
 [[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name = "Color"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASA2ndGen]
+[[stage.scoring.component.DASA2ndGen.endpoint]]
+name = "Gen2"
+weight = 0.6
+[[stage.scoring.component]]
+[stage.scoring.component.custom_alerts]
+[[stage.scoring.component.custom_alerts.endpoint]]
+name = "DecompAlerts"
+weight = 1.0
+params.smarts = [{_decomp_smarts}]
+[[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
 [[stage.scoring.component.AqueousSolubility.endpoint]]
 name = "Solubility"
-weight = 0.7
+weight = 0.5
 params.logs_target = -2.0
 params.logs_width = 1.5
-params.logp_max = 3.0
+params.logp_max = 1.0
+params.logp_min = -2.5
 [[stage.scoring.component]]
 [stage.scoring.component.SAScore]
 [[stage.scoring.component.SAScore.endpoint]]
@@ -176,7 +220,10 @@ smiles_file = "{tl_smi}"
 memory_size = 100
 sample_size = 10
 ''')
-    sh(REINVENT + ["-d", args.device, "-l", f"{s1_dir}/stage1.log", s1_cfg], None, env)
+    if not _resume:                     # RESUME skips Stage 1; reuse its checkpoint
+        sh(REINVENT + ["-d", args.device, "-l", f"{s1_dir}/stage1.log", s1_cfg], None, env)
+    else:
+        print(f"RESUME: skipping TL + Stage 1; Stage 2 starts from {_resume}\n")
 
     # --- Stage 2 (opt-in, slow xTB) ---
     if args.stage2 and not args.quick:
@@ -209,29 +256,39 @@ type = "geometric_mean"
 name = "DASA"
 weight = 1.0
 [[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name = "Color"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASA2ndGen]
+[[stage.scoring.component.DASA2ndGen.endpoint]]
+name = "Gen2"
+weight = 0.6
+[[stage.scoring.component]]
+[stage.scoring.component.custom_alerts]
+[[stage.scoring.component.custom_alerts.endpoint]]
+name = "DecompAlerts"
+weight = 1.0
+params.smarts = [{_decomp_smarts}]
+[[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
 [[stage.scoring.component.AqueousSolubility.endpoint]]
 name = "Solubility"
-weight = 0.6
+weight = 0.5
 params.logs_target = -2.0
 params.logs_width = 1.5
-params.logp_max = 3.0
+params.logp_max = 1.0
+params.logp_min = -2.5
 [[stage.scoring.component]]
-[stage.scoring.component.XTBHomoLumo]
-[[stage.scoring.component.XTBHomoLumo.endpoint]]
-name = "xTB_Gap"
-weight = 0.3
-params.gap_min_ev = 1.50
-params.gap_max_ev = 2.10
-[[stage.scoring.component]]
-[stage.scoring.component.DASASwitchability]
-[[stage.scoring.component.DASASwitchability.endpoint]]
-name = "WaterSwitch"
-weight = 0.8
-params.dipole_target_au = 4.0
-params.dipole_sigma_au = 1.6
-params.solv_diff_target_kcal = 0.0
-params.solv_diff_sigma_kcal = 6.0
+[stage.scoring.component.DASATrap]
+[[stage.scoring.component.DASATrap.endpoint]]
+name = "AntiTrap"
+weight = 0.6
+params.dE_lo_kcal = -2.0
+params.dE_hi_kcal = 18.0
+params.dE_width_kcal = 4.0
+params.use_toluene = false
 [diversity_filter]
 type = "IdenticalMurckoScaffold"
 bucket_size = 10
@@ -274,13 +331,19 @@ type = "geometric_mean"
 name = "DASA"
 weight = 1.0
 [[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name = "Color"
+weight = 1.0
+[[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
 [[stage.scoring.component.AqueousSolubility.endpoint]]
 name = "Solubility"
-weight = 0.6
+weight = 0.5
 params.logs_target = -2.0
 params.logs_width = 1.5
-params.logp_max = 3.0
+params.logp_max = 1.0
+params.logp_min = -2.5
 [[stage.scoring.component]]
 [stage.scoring.component.SAScore]
 [[stage.scoring.component.SAScore.endpoint]]

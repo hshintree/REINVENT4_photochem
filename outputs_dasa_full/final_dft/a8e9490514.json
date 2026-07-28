@@ -1,0 +1,30 @@
+{
+  "label": "ANCHOR DMA-barbituric (trapped)",
+  "smiles": "CN(C)C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+  "lambda_nm": {
+    "water/b3lyp": 338.0,
+    "water/camb3lyp": 337.8,
+    "toluene/b3lyp": 338.4,
+    "toluene/camb3lyp": 336.9
+  },
+  "barrier": {
+    "open": -970.8068786324563,
+    "ts": -970.7395857849235,
+    "closed": -970.7710057504721
+  },
+  "log": [
+    "open geometry ready",
+    "lambda water/b3lyp = 338.0 nm",
+    "lambda water/camb3lyp = 337.8 nm",
+    "lambda toluene/b3lyp = 338.4 nm",
+    "lambda toluene/camb3lyp = 336.9 nm",
+    "barrier[open] DFT-SP done",
+    "barrier[ts] DFT-SP done",
+    "barrier[closed] DFT-SP done",
+    "dG=22.5 fwd=42.2 rev=19.7",
+    "DONE"
+  ],
+  "dG_close_kcal": 22.5,
+  "barrier_fwd_kcal": 42.2,
+  "barrier_rev_kcal": 19.7
+}

@@ -30,7 +30,7 @@ from __future__ import annotations
 from typing import List, Optional, Dict
 import numpy as np
 from rdkit import Chem
-from rdkit.Chem import AllChem
+from rdkit.Chem import AllChem, rdMolDescriptors
 from rdkit.Chem.MolStandardize import rdMolStandardize
 
 # ---------------------------------------------------------------------------
@@ -83,6 +83,30 @@ FORBIDDEN_SMARTS = [
 _FORBIDDEN = [Chem.MolFromSmarts(s) for s in FORBIDDEN_SMARTS]
 _FORBIDDEN = [p for p in _FORBIDDEN if p is not None]
 
+# Task-3: hydrolysis / decomposition liabilities that matter in water. DASAs
+# already revert to amine+furan in protic solvent; these motifs make it worse
+# (fast aqueous hydrolysis), so we filter generated molecules carrying them.
+# NOTE: the amino-triene/enol of the DASA core itself is intrinsically the labile
+# part; the mitigation (tethered/cyclic amine) is handled in scoring, not here.
+DECOMPOSITION_SMARTS = [
+    "[NX3][CX4]([OX2H1])[#6]",          # hemiaminal
+    "[NX3][CX4]([NX3])[#6]",            # aminal
+    "[OX2][CX4]([OX2])[#6]",            # acetal / ketal
+    "[CX3](=O)[OX2][CX3]=O",            # anhydride
+    "[CX3](=O)[F,Cl,Br,I]",            # acyl halide
+    "[CX3H1,CX3]=[NX2][#6;!$([#6]=[#6])]",  # non-conjugated imine (Schiff base)
+    "[CX4]([OX2H])[OX2H]",              # gem-diol
+    "[NX3][OX2H1]",                     # N-O (hydroxylamine)
+    "[CX3](=O)[CX3](=O)[CX3](=O)",      # 1,2,3-tricarbonyl (very electrophilic)
+]
+_DECOMP = [Chem.MolFromSmarts(s) for s in DECOMPOSITION_SMARTS]
+_DECOMP = [p for p in _DECOMP if p is not None]
+
+# Tethered/cyclic amine donor: the N sits in a ring that also contains a triene
+# carbon (or a small ring fused to it) -> rigidified, hydrolytically protected,
+# and raises the A->B barrier. This is the Read de Alaniz aqueous-design motif.
+_TETHER = Chem.MolFromSmarts("[NX3;R]-[CX3;R]=[CX3]")
+
 
 # ---------------------------------------------------------------------------
 # Detection / classification
@@ -101,10 +125,88 @@ def has_forbidden(mol: Chem.Mol) -> bool:
     return any(mol.HasSubstructMatch(p) for p in _FORBIDDEN)
 
 
+# Elements the bundled reinvent.prior can tokenise (ChEMBL drug-like vocab).
+# I, P, B, Si, Se, etc. are NOT supported -> molecules containing them crash
+# TL/inception token validation, so they must never enter the corpus.
+PRIOR_SUPPORTED_ELEMENTS = {"H", "C", "N", "O", "S", "F", "Cl", "Br"}
+
+
+def prior_supported(mol: Chem.Mol) -> bool:
+    """True if every atom is in the reinvent.prior vocabulary (no I/P/B/...)."""
+    if mol is None:
+        return False
+    return all(a.GetSymbol() in PRIOR_SUPPORTED_ELEMENTS for a in mol.GetAtoms())
+
+
+def has_decomposition_liability(mol: Chem.Mol) -> bool:
+    """True if the molecule carries a readily water-hydrolysed motif (beyond the
+    intrinsic DASA core) -- likely to decompose during switching in water."""
+    if mol is None:
+        return True
+    return any(mol.HasSubstructMatch(p) for p in _DECOMP)
+
+
+def is_tethered_amine(mol: Chem.Mol) -> bool:
+    """True if the donor amine is tethered/cyclised onto the triene (the aqueous-
+    stabilising motif that rigidifies the open form and resists hydrolysis)."""
+    return mol is not None and mol.HasSubstructMatch(_TETHER)
+
+
+def has_visible_donor(mol: Chem.Mol) -> bool:
+    """True iff the amino-triene DONOR nitrogen is a genuine amine/enamine donor
+    (bonds only C/H besides the triene, none acylated). An acylated donor (N-C=O
+    enaminone) or an N-O/N-N donor cripples the push-pull chromophore -> UV even
+    with a canonical acceptor -- TD-DFT-confirmed (barbituric candidates with
+    acylated donors computed ~300-360 nm). Mirrors dasa_common.has_visible_donor;
+    the DASAColor gate now requires this AND a canonical acceptor."""
+    if mol is None:
+        return False
+    for match in mol.GetSubstructMatches(_DASA_OPEN):
+        dN, triene_c = match[0], match[1]
+        ok = True
+        for nb in mol.GetAtomWithIdx(dN).GetNeighbors():
+            if nb.GetIdx() == triene_c:
+                continue
+            if nb.GetAtomicNum() not in (1, 6):
+                ok = False
+                break
+            for nb2 in nb.GetNeighbors():
+                b = mol.GetBondBetweenAtoms(nb.GetIdx(), nb2.GetIdx())
+                if b.GetBondTypeAsDouble() == 2.0 and nb2.GetAtomicNum() in (7, 8, 16):
+                    ok = False
+                    break
+            if not ok:
+                break
+        if ok:
+            return True
+    return False
+
+
 def classify_donor(mol: Chem.Mol) -> str:
     for name, patt in _DONOR_PATTERNS.items():
         if patt is not None and mol.HasSubstructMatch(patt):
             return name
+    return "other"
+
+
+def classify_donor_architecture(mol: Chem.Mol) -> str:
+    """The mechanistic donor class that governs water-trapping (for verification
+    stratification): 'tethered' (rigidified enamine ring), 'aniline' (2nd-gen weak
+    aromatic-amine -> neutral closed form, less trapped), 'dialkyl' (1st-gen -> zwitterion
+    -> trapped, but a host-guest candidate), or 'other'. We DFT the top few of EACH so
+    the validation set spans switching *mechanisms*, not just one. See dasa_common."""
+    if mol is None:
+        return "other"
+    if is_tethered_amine(mol):
+        return "tethered"
+    match = mol.GetSubstructMatch(_DASA_OPEN)
+    if match:
+        dN = mol.GetAtomWithIdx(match[0])
+        nbrs = [nb for nb in dN.GetNeighbors() if nb.GetIdx() != match[1]]
+        if any(nb.GetIsAromatic() for nb in nbrs):
+            return "aniline"
+        if nbrs and all(nb.GetSymbol() in ("C", "H") for nb in nbrs):
+            return "dialkyl"
     return "other"
 
 
@@ -204,6 +306,116 @@ ACCEPTOR_LAMBDA_NM = {
 _ARYL_DONOR_REDSHIFT_NM = 40
 _ARYL_DONOR_CLASSES = {"aniline"}
 
+# ---------------------------------------------------------------------------
+# Task-4: AQUEOUS-FOCUSED building blocks (water-switchable design)
+# ---------------------------------------------------------------------------
+# Strategy from the literature: (a) REDUCE charge separation via EWG-substituted
+# aniline donors + WEAK acceptors (methyl-pyrazolone/isoxazolone), so water does
+# not lock the closed zwitterion; (b) DECOUPLE solubility by putting hydrophilic
+# handles on the PERIPHERY (remote glycol/carboxyl/ammonium off the push-pull
+# axis) rather than strengthening the donor; (c) prefer cyclic/tethered amines
+# for hydrolytic stability. Backbones: unsubstituted + central-methyl only
+# (alpha-methyl breaks the iminium closure).
+# DONOR MIX IS DELIBERATELY 2ND-GEN-HEAVY. The water-switchable class is 2nd-gen
+# (WEAK AROMATIC / aniline donor -> reduced charge separation -> NEUTRAL keto closed
+# form that escapes the water trap; Chem Soc Rev 2023, Chem Eur J 2021). A prior run
+# reused a Stage-1 checkpoint that had drifted to 96% tertiary dialkylamine (1st-gen,
+# zwitterionic, trapped) -- so we now SEED the corpus with many aniline/heteroaryl
+# (secondary N-H, weak aromatic) donors and keep only a few tertiary alkyls for
+# diversity / host-guest 1st-gen candidates. The DASA2ndGen component reinforces this.
+AQUEOUS_DONOR_FRAGMENTS = {
+    # --- 2nd-gen: EWG anilines (secondary N-H, weak aromatic -> less charge sep) ---
+    # No 4-IODO: the reinvent.prior vocab lacks an 'I' token; use Br/Cl/CF3/etc.
+    "4-bromoanilino": "N(c1ccc(Br)cc1)",
+    "4-chloroanilino": "N(c1ccc(Cl)cc1)",
+    "4-CF3-anilino": "N(c1ccc(C(F)(F)F)cc1)",
+    "4-cyanoanilino": "N(c1ccc(C#N)cc1)",
+    "3-CF3-anilino": "N(c1cccc(C(F)(F)F)c1)",
+    "3,4-dichloroanilino": "N(c1ccc(Cl)c(Cl)c1)",
+    "4-nitroanilino": "N(c1ccc([N+](=O)[O-])cc1)",
+    "4-methoxycarbonylanilino": "N(c1ccc(C(=O)OC)cc1)",
+    "4-acetylanilino": "N(c1ccc(C(C)=O)cc1)",
+    "4-sulfamoylanilino": "N(c1ccc(S(N)(=O)=O)cc1)",     # H-bonding + water solubility
+    # --- 2nd-gen: electron-poor HETEROARYL amines (even weaker donors) ---
+    "3-aminopyridyl": "N(c1cccnc1)",
+    "4-aminopyridyl": "N(c1ccncc1)",
+    "5-aminopyrimidyl": "N(c1cncnc1)",
+    # --- 1st-gen tertiary alkyls: kept for DIVERSITY / host-guest candidates only ---
+    "morpholino": "C1COCCN1",
+    "N_carboxyethyl_methyl": "CN(CCC(=O)O)",       # ionisable carboxylate tail
+    "N_PEG2_methyl": "CN(CCOCCO)",                  # short glycol tail
+    "N_sulfoethyl_methyl": "CN(CCS(=O)(=O)O)",      # sulfonate (strongly hydrophilic)
+}
+# Weak acceptors keep charge separation in the switchable window (~-20 nm slope).
+AQUEOUS_ACCEPTOR_FRAGMENTS = {
+    "N_phenyl_methylpyrazolone": "=C1C(=O)N(c2ccccc2)N=C1C",
+    "N_methyl_methylpyrazolone": "=C1C(=O)N(C)N=C1C",
+    "methylisoxazolone": "=C1C(=O)ON=C1C",
+    "dimethylbarbituric": "=C1C(=O)N(C)C(=O)N(C)C1=O",   # moderate reference
+}
+AQUEOUS_BACKBONE_FRAGMENTS = {
+    "triene": "/C=C/C=C/C(O)",
+    "central_methyl_triene": "/C=C/C(C)=C/C(O)",
+}
+
+
+# TETHERED-amine heads: the donor N is locked into a 2,3-dihydropyrrole (5-ring)
+# or tetrahydropyridine (6-ring) so the enamine C1=C2 is endocyclic -- the Read
+# de Alaniz aqueous-stabilising motif (rigidifies the open form, raises the A->B
+# barrier, resists hydrolysis). Each head is a full donor+triene up to C(O); the
+# acceptor "=C1..." fragment is appended directly. The N-substituent carries the
+# PERIPHERAL solubiliser, so rigidity and hydrophilicity are combined.
+TETHERED_HEAD_FRAGMENTS = {
+    "tether5_methyl": "CN1CCC(=C1)/C=C/C(O)",
+    "tether6_methyl": "CN1CCCC(=C1)/C=C/C(O)",
+    "tether5_PEG": "OCCOCCN1CCC(=C1)/C=C/C(O)",          # glycol tail
+    "tether5_carboxyethyl": "OC(=O)CCN1CCC(=C1)/C=C/C(O)",  # ionisable
+    "tether5_sulfoethyl": "OS(=O)(=O)CCN1CCC(=C1)/C=C/C(O)",  # sulfonate
+    "tether5_hydroxyethyl": "OCCN1CCC(=C1)/C=C/C(O)",
+}
+
+
+def enumerate_tethered_dasa(
+    heads: Optional[Dict[str, str]] = None,
+    acceptors: Optional[Dict[str, str]] = None,
+) -> List[dict]:
+    """head x acceptor -> validated TETHERED-amine open-form DASAs."""
+    heads = heads if heads is not None else TETHERED_HEAD_FRAGMENTS
+    acceptors = acceptors if acceptors is not None else AQUEOUS_ACCEPTOR_FRAGMENTS
+    seen, out = set(), []
+    for hname, head in heads.items():
+        for aname, acc in acceptors.items():
+            mol = Chem.MolFromSmiles(head + acc)
+            if mol is None or not is_dasa(mol) or has_forbidden(mol):
+                continue
+            can = Chem.MolToSmiles(mol)
+            if can in seen:
+                continue
+            seen.add(can)
+            out.append({
+                "smiles_open": can, "donor_class": "tethered",
+                "acceptor_class": classify_acceptor(mol),
+                "backbone": hname, "est_lambda_nm": ACCEPTOR_LAMBDA_NM.get(aname),
+            })
+    return out
+
+
+def enumerate_dasa_aqueous(include_tethered: bool = True, **kwargs) -> List[dict]:
+    """Enumerate the AQUEOUS-focused DASA library (task-4): EWG-aniline / weak-
+    acceptor / peripheral-solubiliser combos, plus (by default) the tethered-amine
+    scaffolds. Annotates ``tethered`` and ``decomp_liable`` on every row."""
+    kwargs.setdefault("donors", AQUEOUS_DONOR_FRAGMENTS)
+    kwargs.setdefault("acceptors", AQUEOUS_ACCEPTOR_FRAGMENTS)
+    kwargs.setdefault("backbones", AQUEOUS_BACKBONE_FRAGMENTS)
+    rows = enumerate_dasa(**kwargs)
+    if include_tethered:
+        rows = rows + enumerate_tethered_dasa(acceptors=kwargs["acceptors"])
+    for r in rows:
+        m = Chem.MolFromSmiles(r["smiles_open"])
+        r["tethered"] = is_tethered_amine(m)
+        r["decomp_liable"] = has_decomposition_liability(m)
+    return rows
+
 
 def _open_form_smiles(donor: str, backbone: str, acceptor: str) -> str:
     # DONOR  <backbone triene ...C(O)>  =ACCEPTOR
@@ -264,14 +476,63 @@ def enumerate_dasa(
 # ---------------------------------------------------------------------------
 # Best-effort open -> closed electrocyclization (for DFT/inspection ONLY)
 # ---------------------------------------------------------------------------
-def open_to_closed(smiles: str) -> Optional[str]:
-    """Approximate 4-pi electrocyclization: form the C-C bond that closes the
-    amino-triene into a cyclopentene and tautomerise the enol to a ketone.
+def open_to_closed_neutral(smiles: str) -> Optional[str]:
+    """Open triene -> NEUTRAL keto closed form (2nd-generation closed state).
 
-    This is deliberately best-effort -- it returns None on any failure rather
-    than emitting a chemically wrong structure. DASA scoring does NOT depend on
-    it; it exists so the DFT/validation step can render a candidate closed form
-    for a chemist to inspect. Do not treat its output as authoritative.
+    Only reachable when the donor N bears a proton (secondary amine / aniline): the
+    N-H shifts to the acceptor carbon giving a neutral imine (N=C1) + sp3 C6-H. A
+    tertiary dialkylamine (1st-gen) has no such proton -> returns None -> zwitterion
+    is the only closed form -> trapped. Mirrors dasa_common.open_to_closed_neutral;
+    encodes the 1st-vs-2nd-generation water behaviour (Chem Soc Rev 10.1039/D3CS00508A)."""
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None or not is_dasa(mol):
+        return None
+    match = mol.GetSubstructMatch(_DASA_OPEN)
+    if not match or len(match) < 8:
+        return None
+    n, c1, c2, c3, c4, c5, c6 = (match[i] for i in (0, 1, 2, 3, 4, 5, 7))
+    if mol.GetAtomWithIdx(n).GetTotalNumHs() < 1:
+        return None
+    f_open = rdMolDescriptors.CalcMolFormula(mol)
+    rw = Chem.RWMol(mol)
+    B = Chem.BondType
+
+    def setbond(a, b, t):
+        bd = rw.GetBondBetweenAtoms(a, b)
+        if bd is not None:
+            bd.SetBondType(t)
+
+    try:
+        if rw.GetBondBetweenAtoms(c1, c5) is None:
+            rw.AddBond(c1, c5, B.SINGLE)
+        setbond(c1, c2, B.SINGLE); setbond(c2, c3, B.DOUBLE); setbond(c3, c4, B.SINGLE)
+        setbond(c4, c5, B.SINGLE); setbond(c5, c6, B.SINGLE); setbond(n, c1, B.DOUBLE)
+        m2 = rw.GetMol()
+        Chem.SanitizeMol(m2)
+        if any(a.GetFormalCharge() != 0 for a in m2.GetAtoms()):
+            return None
+        if rdMolDescriptors.CalcMolFormula(m2) != f_open:
+            return None
+        return Chem.MolToSmiles(m2)
+    except Exception:
+        return None
+
+
+def open_to_closed(smiles: str) -> Optional[str]:
+    """4-pi conrotatory electrocyclization: open triene -> closed cyclopentenone.
+
+    Models the DASA ring-closure as the literature-accepted metastable
+    **zwitterion**: a new C1-C5 sigma bond forms the cyclopentene ring, the amine
+    becomes an iminium (N+=C1), and the acceptor carbon becomes an enolate/
+    carbanion (C6-) delocalised into the 1,3-dicarbonyl. C5 is the sp3 quaternary
+    carbon retaining the hydroxyl. The product is a CONSTITUTIONAL ISOMER of the
+    open form (electrocyclization conserves all atoms), which is asserted below.
+
+    Validated across Meldrum's, barbituric, indandione, pyrazolone, isoxazolone
+    acceptors and substituted backbones. Returns None on failure. NOTE: the
+    zwitterion is the canonical, most-polar depiction and is ideal for capturing
+    the water-stabilised closed state; the exact neutral<->zwitterion protomer is
+    refined at the DFT stage.
     """
     mol = Chem.MolFromSmiles(smiles)
     if mol is None or not is_dasa(mol):
@@ -279,27 +540,32 @@ def open_to_closed(smiles: str) -> Optional[str]:
     match = mol.GetSubstructMatch(_DASA_OPEN)
     if not match or len(match) < 8:
         return None
-    # match atom order follows DASA_OPEN_SMARTS:
-    #   0:N 1:CH 2:CH 3:CH 4:CH 5:C(enol) 6:O 7:C(acceptor carbon)
-    c1, c5, o_idx, c_acc = match[1], match[5], match[6], match[7]
+    # DASA_OPEN_SMARTS order: 0:N 1:C1 2:C2 3:C3 4:C4 5:C5(enol) 6:O 7:C6(acceptor)
+    n, c1, c2, c3, c4, c5, c6 = (match[i] for i in (0, 1, 2, 3, 4, 5, 7))
+    f_open = rdMolDescriptors.CalcMolFormula(mol)
     rw = Chem.RWMol(mol)
+    B = Chem.BondType
+
+    def setbond(a, b, t):
+        bd = rw.GetBondBetweenAtoms(a, b)
+        if bd is not None:
+            bd.SetBondType(t)
+
     try:
-        # new sigma bond between C1 (alpha to N) and C5 (former enol carbon)
         if rw.GetBondBetweenAtoms(c1, c5) is None:
-            rw.AddBond(c1, c5, Chem.BondType.SINGLE)
-        # the exocyclic C5=C(acceptor) collapses to a single bond (enolate forms)
-        b_acc = rw.GetBondBetweenAtoms(c5, c_acc)
-        if b_acc is not None:
-            b_acc.SetBondType(Chem.BondType.SINGLE)
-        # enol -> ketone: C5-OH becomes C5=O
-        b_o = rw.GetBondBetweenAtoms(c5, o_idx)
-        if b_o is not None:
-            b_o.SetBondType(Chem.BondType.DOUBLE)
-        o = rw.GetAtomWithIdx(o_idx)
-        o.SetNoImplicit(True)
-        o.SetNumExplicitHs(0)
+            rw.AddBond(c1, c5, B.SINGLE)            # close the cyclopentene ring
+        setbond(c1, c2, B.SINGLE)                   # conrotatory bond-order shift
+        setbond(c2, c3, B.DOUBLE)
+        setbond(c3, c4, B.SINGLE)
+        setbond(c4, c5, B.SINGLE)
+        setbond(c5, c6, B.SINGLE)                   # acceptor -> enolate/carbanion
+        setbond(n, c1, B.DOUBLE)                     # amine -> iminium
+        rw.GetAtomWithIdx(n).SetFormalCharge(+1)
+        rw.GetAtomWithIdx(c6).SetFormalCharge(-1)
         m2 = rw.GetMol()
         Chem.SanitizeMol(m2)
+        if rdMolDescriptors.CalcMolFormula(m2) != f_open:   # must be an isomer
+            return None
         return Chem.MolToSmiles(m2)
     except Exception:
         return None

@@ -2,3 +2,4 @@ smiles_open,smiles_closed,donor_class,acceptor_class,lambda_max_open_nm,solvent,
 CN(C)/C=C/C=C/C(O)=C1C(=O)OC(C)(C)OC1=O,,,,560,toluene,100,-56,False,example - replace with real extraction
 OCCN(CCO)/C=C/C=C/C(O)=C1C(=O)NC(=O)NC1=O,,,,575,THF:water 60:40,40,-20,True,example - replace with real extraction
 CC1=NN(c2ccccc2)C(=O)C1=C(O)/C=C/C=C/N1CCOCC1,,,,548,methanol,70,-25,partial,example - replace with real extraction
+

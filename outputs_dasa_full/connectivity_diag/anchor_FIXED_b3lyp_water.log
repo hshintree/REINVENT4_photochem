@@ -1,0 +1,3 @@
+molecule: 37 atoms, 314 basis fns (6-31g*), xc=b3lyp, eps=78.4
+SCF converged=True  E=-970.778759
+HOMO=-4.965 eV  LUMO=-2.313 eV  gap=2.653 eV

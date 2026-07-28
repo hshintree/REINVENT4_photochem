@@ -1,0 +1,19 @@
+switch watch start 16:53:45 for 7 molecules
+[16:53:46] DMA-Meldrum ANCHOR(trapped): dE_water=-5.2 dE_tol=-1.9 (w-tol=-3.3) kcal/mol
+[16:53:48] DMA-barbituric ref: dE_water=-4.7 dE_tol=-4.4 (w-tol=-0.3) kcal/mol
+[16:55:53] your OXAZINE: dE_water=-11.7 dE_tol=-4.3 (w-tol=-7.4) kcal/mol
+[16:55:54] DIHYDROPYRROLE: dE_water=-7.9 dE_tol=-4.1 (w-tol=-3.8) kcal/mol
+[16:55:55] cand A: dE_water=-12.1 dE_tol=-12.1 (w-tol=0.0) kcal/mol
+[16:55:56] cand B: dE_water=-24.2 dE_tol=0.3 (w-tol=-24.5) kcal/mol
+[16:55:58] cand C: dE_water=-19.6 dE_tol=-16.3 (w-tol=-3.3) kcal/mol
+=== ALL DONE ===
+
+RANKED (dE_water high->low; less negative = LESS trapped = better switching):
+  dE_water=   -4.7 tol=   -4.4  DMA-barbituric ref
+  dE_water=   -5.2 tol=   -1.9  DMA-Meldrum ANCHOR(trapped)
+  dE_water=   -7.9 tol=   -4.1  DIHYDROPYRROLE
+  dE_water=  -11.7 tol=   -4.3  your OXAZINE
+  dE_water=  -12.1 tol=  -12.1  cand A
+  dE_water=  -19.6 tol=  -16.3  cand C
+  dE_water=  -24.2 tol=    0.3  cand B
+switch watch exit

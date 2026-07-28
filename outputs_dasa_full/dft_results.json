@@ -1,0 +1,104 @@
+[
+  {
+    "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CC1)NCCCO",
+    "screen_lambda_nm": 333.0,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 333 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CCCC(C(=O)N1CCOCC1)N1CCNCC1C(=O)NC=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 309.0,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 309 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CCN1C(=O)C(=O)N(CC(=O)NC=CC=CC(O)=C2C(=O)NC(=S)N(CC)C2=O)C1=O",
+    "screen_lambda_nm": 321.4,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 321 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CC(=O)SCc1nnc(CCc2nn[nH]n2)n1CC(=O)NC=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 300.0,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 300 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1C(=O)C(=C(O)C=CC=CNC(=O)CNC(=O)CN2CCCC2=O)C(=O)NC1=S",
+    "screen_lambda_nm": 341.2,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 341 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN(CCOCCN(C)CC(=O)N1CCCN(C)CC1)CCONC=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 318.1,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 318 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN(C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O)C(=O)CCN1CCN(C(=O)CN2CCNCC2)CC1",
+    "screen_lambda_nm": 318.3,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 318 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "Cc1nn(C)c(C(=O)NCC(=O)NCC(=O)NC=CC=CC(O)=C2C(=O)N(C)C(=O)N(C)C2=O)c1Cl",
+    "screen_lambda_nm": 311.1,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 311 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN(CC(=O)O)Cc1cn(CCC(=O)NC=CC=CC(O)=C2C(=O)N(C)C(=O)N(C)C2=O)nn1",
+    "screen_lambda_nm": 303.5,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 303 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1CCN(C(=O)c2ccc(S(=O)(=O)NCC(=O)NC=CC=CC(O)=C3C(=O)N(C)C(=O)N(C)C3=O)cc2)CC1",
+    "screen_lambda_nm": 309.0,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 309 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1C(=O)C(=C(O)C=CC=CNC(=O)CCC(=O)NCCNC(=O)CN2CCCCC2)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 311.2,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 311 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1C(=O)C(=CN2CCN(CCC(=O)NC=CC=CC(O)=C3C(=O)N(C)C(=O)N(C)C3=O)C2)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 308.4,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 308 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1C(=O)C(=C(O)C=CC=CNC(=O)COC(=O)Cn2nnc(N3CCN(c4ccccc4)CC3)n2)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 308.9,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 309 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CC(=O)N1CCN(C2CN(C(=O)CCC(=O)N(C)C=CC=CC(O)=C3C(=O)N(C)C(=O)N(C)C3=O)CC2=O)CC1",
+    "screen_lambda_nm": 307.6,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 308 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1CCN(Cc2cnc(C#N)c(=O)n2CC(=O)N(C)C=CC=CC(O)=C2C(=O)N(C)C(=O)N(C)C2=O)CC1",
+    "screen_lambda_nm": 305.3,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 305 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CN1C(=O)C(=C(O)C=CC=CNC(=O)Cn2[nH]nnc2=S)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 306.8,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 307 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  },
+  {
+    "smiles": "CC(O)c1nccc(N2CCN(S(=O)(=O)CC(=O)N(C)C=CC=CC(O)=C3C(=O)N(C)C(=O)N(C)C3=O)CC2)n1",
+    "screen_lambda_nm": 268.4,
+    "rejected": "uv_not_visible",
+    "note": "pre-screen lambda_max 268 nm < 420 nm -> not a visible photoswitch; full DFT skipped"
+  }
+]

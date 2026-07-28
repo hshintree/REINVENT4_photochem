@@ -72,6 +72,11 @@ def quality(smiles, mw_range=(200, 600), sa_max=6.0):
         return False, "forbidden_group", {}
     if not donor_is_real_amine(mol):
         return False, "bad_donor", {}
+    # colour gate: reject non-canonical ("other") acceptors -- those are the
+    # weak/unusual carbon acids the RL used to cheat anti-trap, and they absorb
+    # in the UV, not the visible (see DASAColor / the 311 nm DFT result).
+    if dc.classify_acceptor(mol) == "other":
+        return False, "uv_acceptor", {}
     mw = Descriptors.MolWt(mol)
     if not (mw_range[0] <= mw <= mw_range[1]):
         return False, f"mw_{mw:.0f}", {}
@@ -86,6 +91,7 @@ def quality(smiles, mw_range=(200, 600), sa_max=6.0):
         "MW": round(mw, 1), "SA": round(sa, 2) if _HAS_SA else None,
         "logP": round(Descriptors.MolLogP(mol), 2),
         "donor": dc.classify_donor(mol), "acceptor": dc.classify_acceptor(mol),
+        "donor_arch": dc.classify_donor_architecture(mol),   # mechanism, for DFT stratification
         "canon": Chem.MolToSmiles(mol),
     }
     return True, "ok", props
@@ -111,7 +117,8 @@ def summarize_stage(df, label):
           f"{dasa} DASA-gate pass"
           + (f", top Score {uniq[sc].max():.3f}" if sc else ""))
     # component distributions + saturation warning
-    comps = [c for c in ["DASA", "Solubility", "xTB_Gap", "WaterSwitch", "SA"]
+    comps = [c for c in ["DASA", "Solubility", "xTB_Gap", "AntiTrap",
+                          "WaterSwitch", "DecompAlerts", "SA"]
              if c in uniq.columns]
     for c in comps:
         v = pd.to_numeric(uniq[c], errors="coerce").dropna()
@@ -128,7 +135,10 @@ def summarize_stage(df, label):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default=None, help="outputs dir (auto-detected if omitted)")
-    ap.add_argument("--top", type=int, default=25, help="shortlist size")
+    ap.add_argument("--top", type=int, default=25, help="shortlist size to print")
+    ap.add_argument("--save-top", type=int, default=500,
+                    help="rows to write to verified_candidates.csv (0 = all); "
+                         "keeps the file small — DFT only ever uses the best few hundred")
     ap.add_argument("--xtb-check", type=int, default=0, help="re-score N top hits with xTB")
     args = ap.parse_args()
 
@@ -171,13 +181,14 @@ def main():
             reasons[why.split("_")[0]] = reasons.get(why.split("_")[0], 0) + 1
             continue
         best = grp.sort_values("Score", ascending=False).iloc[0]
+        def col(name):
+            return round(float(best[name]), 3) if name in best and pd.notna(best[name]) else np.nan
         rec = {"SMILES": props["canon"], **props,
                "Score": round(float(best.get("Score", 0)), 3),
-               "Solubility": round(float(best.get("Solubility", np.nan)), 3),
-               "WaterSwitch": round(float(best.get("WaterSwitch", np.nan)), 3)
-                              if "WaterSwitch" in best else np.nan,
-               "xTB_Gap": round(float(best.get("xTB_Gap", np.nan)), 3)
-                          if "xTB_Gap" in best else np.nan,
+               "Solubility": col("Solubility"),
+               "AntiTrap": col("AntiTrap"),        # the calibrated anti-trap metric
+               "WaterSwitch": col("WaterSwitch"),  # legacy (older runs)
+               "xTB_Gap": col("xTB_Gap"),
                "from_stage": int(best["__stage"])}
         rows.append(rec)
     credible = pd.DataFrame(rows).drop_duplicates("SMILES")
@@ -189,13 +200,15 @@ def main():
               "Recalibrate scoring (esp. any SATURATED component) and re-run.")
         return
 
-    # Rank for the water-soluble/switchable goal. WaterSwitch is often saturated,
-    # so weight Solubility + a real xTB_Gap and use WaterSwitch only as a tiebreak.
+    # Rank for the water-soluble/switchable goal: the calibrated AntiTrap metric
+    # is the primary signal (falls back to legacy WaterSwitch, then neutral),
+    # balanced with solubility and a sane open-form gap.
     def obj(r):
         sol = r["Solubility"] if pd.notna(r["Solubility"]) else 0
         gap = r["xTB_Gap"] if pd.notna(r["xTB_Gap"]) else 0.5
-        ws = r["WaterSwitch"] if pd.notna(r["WaterSwitch"]) else 0.5
-        return 0.5 * sol + 0.3 * gap + 0.2 * ws
+        anti = r["AntiTrap"] if pd.notna(r["AntiTrap"]) else (
+            r["WaterSwitch"] if pd.notna(r["WaterSwitch"]) else 0.5)
+        return 0.45 * anti + 0.35 * sol + 0.2 * gap
     credible["water_obj"] = credible.apply(obj, axis=1)
     credible = credible.sort_values("water_obj", ascending=False).reset_index(drop=True)
 
@@ -231,15 +244,16 @@ def main():
         print(f"  novel vs training corpus (top {len(top)}): {100*novel_frac:.0f}%")
     print(f"  scaffold clusters in top {len(top)}: {nclust}")
     print(f"\n  Top {args.top} credible candidates for water-soluble/switchable DASA:")
-    show = [c for c in ["SMILES", "donor", "acceptor", "MW", "SA", "logP",
-                        "Solubility", "xTB_Gap", "WaterSwitch", "from_stage"]
+    show = [c for c in ["SMILES", "donor", "donor_arch", "acceptor", "MW", "SA", "logP",
+                        "Solubility", "AntiTrap", "xTB_Gap", "from_stage"]
             if c in credible.columns]
     print(credible[show].head(args.top).to_string(index=False))
 
-    # Write shortlist + structure grid
+    # Write shortlist + structure grid (capped so the CSV stays small)
     out_csv = os.path.join(base, "verified_candidates.csv")
-    credible.to_csv(out_csv, index=False)
-    print(f"\n  ranked shortlist -> {out_csv}")
+    to_save = credible if args.save_top <= 0 else credible.head(args.save_top)
+    to_save.to_csv(out_csv, index=False)
+    print(f"\n  ranked shortlist -> {out_csv}  ({len(to_save)} of {len(credible)} rows)")
     try:
         grid = Draw.MolsToGridImage(
             mols[:20], molsPerRow=5, subImgSize=(280, 220),

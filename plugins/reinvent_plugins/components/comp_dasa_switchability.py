@@ -55,26 +55,9 @@ from .dasa_common import is_dasa, embed_3d, xtb_properties
 
 _HARTREE_KCAL = 627.509
 
-# Optional per-molecule parallelism for the xTB work. Off by default (serial,
-# unchanged behaviour, proven in the full RL loop). Set DASA_XTB_WORKERS>1 to fan
-# the batch across processes — the speed win on a many-core box (e.g. Modal).
-# Uses a persistent "spawn" pool: spawn (not fork) avoids deadlocks from forking
-# reinvent's torch process, and persisting it amortises worker startup across RL
-# steps. Each worker keeps OMP_NUM_THREADS=1 (xtb/torch OpenMP deadlock otherwise).
-# EXPERIMENTAL: not validated inside a live Modal RL run — if Stage 2 stalls,
-# fall back to serial (DASA_XTB_WORKERS=1) with fewer --stage2-steps.
+# Per-molecule parallelism via THREADS (xtb releases the GIL). See comp_dasa_trap
+# for the rationale -- the spawn process pool BrokenProcessPool'd inside reinvent.
 _XTB_WORKERS = int(os.environ.get("DASA_XTB_WORKERS", "1"))
-_POOL = None
-
-
-def _get_pool():
-    global _POOL
-    if _POOL is None:
-        import multiprocessing as mp
-        from concurrent.futures import ProcessPoolExecutor
-        _POOL = ProcessPoolExecutor(
-            max_workers=_XTB_WORKERS, mp_context=mp.get_context("spawn"))
-    return _POOL
 
 
 def _score_smiles(args):
@@ -122,17 +105,14 @@ class DASASwitchability:
     @molcache
     def __call__(self, mols: List[Chem.Mol]) -> np.array:
         if _XTB_WORKERS > 1:
+            from concurrent.futures import ThreadPoolExecutor
             args = [(
                 Chem.MolToSmiles(m) if m is not None else "",
                 self.dip_target, self.dip_sigma, self.sd_target, self.sd_sigma,
             ) for m in mols]
-            try:
-                scores = list(_get_pool().map(_score_smiles, args))
-                return ComponentResults([np.array(scores, dtype=float)])
-            except Exception:
-                # any pool failure -> fall back to serial (below)
-                global _POOL
-                _POOL = None
+            with ThreadPoolExecutor(max_workers=_XTB_WORKERS) as ex:
+                scores = list(ex.map(_score_smiles, args))
+            return ComponentResults([np.array(scores, dtype=float)])
         return ComponentResults([np.array(
             [self._score(mol) for mol in mols], dtype=float)])
 

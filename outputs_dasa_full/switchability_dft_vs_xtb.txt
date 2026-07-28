@@ -1,0 +1,13 @@
+switch-DFT watch start 17:42:15 (waiting for dft_dE fields)
+[17:42:16] DMA-Meldrum ANCHOR: DFT dE_water=19.3 dE_tol=27.8 | xtb was -5.2
+[17:51:39] DMA-barbituric ref: DFT dE_water=21.9 dE_tol=31.3 | xtb was -4.7
+[poll 4 17:51:45] 2/7 DFT-refined
+[poll 8 18:04:10] 2/7 DFT-refined
+[18:22:46] your OXAZINE: DFT dE_water=22.9 dE_tol=27.9 | xtb was -11.7
+[poll 12 18:34:25] 3/7 DFT-refined
+[18:43:41] cand B: DFT dE_water=28.0 dE_tol=48.1 | xtb was -24.2
+[poll 16 18:46:59] 4/7 DFT-refined
+[18:53:05] DIHYDROPYRROLE: DFT dE_water=29.5 dE_tol=32.5 | xtb was -7.9
+[poll 20 18:59:13] 5/7 DFT-refined
+[poll 24 19:11:24] 5/7 DFT-refined
+[poll 28 19:23:35] 5/7 DFT-refined

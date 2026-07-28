@@ -6,7 +6,7 @@ tags
 .idea
 /configs/config.json
 .env
-
+*.csv
 # Machine Learning Outputs
 *.pt
 *.model

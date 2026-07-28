@@ -1,0 +1,30 @@
+{
+  "label": "aniline-5 (T0.944, visible ~582)",
+  "smiles": "Cn1cc(NC=CC=CC(O)=C2C(=O)NN(CC(=O)NCCN3CC3)C2=O)cn1",
+  "lambda_nm": {
+    "water/b3lyp": 380.4,
+    "water/camb3lyp": 366.2,
+    "toluene/b3lyp": 375.2,
+    "toluene/camb3lyp": 359.6
+  },
+  "barrier": {
+    "open": -1383.8317878916573,
+    "ts": -1383.709805264104,
+    "closed": -1383.783161413291
+  },
+  "log": [
+    "open geometry ready",
+    "lambda water/b3lyp = 380.4 nm",
+    "lambda water/camb3lyp = 366.2 nm",
+    "lambda toluene/b3lyp = 375.2 nm",
+    "lambda toluene/camb3lyp = 359.6 nm",
+    "barrier[open] DFT-SP done",
+    "barrier[ts] DFT-SP done",
+    "barrier[closed] DFT-SP done",
+    "dG=30.5 fwd=76.5 rev=46.0",
+    "DONE"
+  ],
+  "dG_close_kcal": 30.5,
+  "barrier_fwd_kcal": 76.5,
+  "barrier_rev_kcal": 46.0
+}

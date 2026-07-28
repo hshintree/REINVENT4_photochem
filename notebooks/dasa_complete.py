@@ -180,8 +180,8 @@ if os.path.isfile(DATASET_CSV):
     data = dc.load_dasa_dataset(DATASET_CSV)
     print(f"Loaded literature dataset: {len(data)} valid DASAs")
 else:
-    data = pd.DataFrame(dc.enumerate_dasa())
-    print(f"No {os.path.basename(DATASET_CSV)} — using enumerated library: {len(data)} DASAs")
+    data = pd.DataFrame(dc.enumerate_dasa_aqueous())
+    print(f"No {os.path.basename(DATASET_CSV)} — using aqueous-focused library: {len(data)} DASAs")
     print("  (drop your extraction at data/dasa_dataset.csv to switch to real data)")
 corpus_smiles = data["smiles_open"].tolist()
 
@@ -404,6 +404,11 @@ type = "geometric_mean"
 [[stage.scoring.component.DASAScaffold.endpoint]]
 name   = "DASA"
 weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name   = "Color"
+weight = 1.0
 
 [[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
@@ -412,7 +417,8 @@ name   = "Solubility"
 weight = 0.7
 params.logs_target = -2.0
 params.logs_width  = 1.5
-params.logp_max    = 3.0
+params.logp_max    = 1.0
+params.logp_min    = -2.5
 
 [[stage.scoring.component]]
 [stage.scoring.component.SAScore]
@@ -493,6 +499,11 @@ type = "geometric_mean"
 [[stage.scoring.component.DASAScaffold.endpoint]]
 name   = "DASA"
 weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name   = "Color"
+weight = 1.0
 
 [[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
@@ -501,25 +512,19 @@ name   = "Solubility"
 weight = 0.6
 params.logs_target = -2.0
 params.logs_width  = 1.5
-params.logp_max    = 3.0
+params.logp_max    = 1.0
+params.logp_min    = -2.5
+
 
 [[stage.scoring.component]]
-[stage.scoring.component.XTBHomoLumo]
-[[stage.scoring.component.XTBHomoLumo.endpoint]]
-name   = "xTB_Gap"
-weight = 0.3
-params.gap_min_ev = {XTB_GAP_MIN_EV}
-params.gap_max_ev = {XTB_GAP_MAX_EV}
-
-[[stage.scoring.component]]
-[stage.scoring.component.DASASwitchability]
-[[stage.scoring.component.DASASwitchability.endpoint]]
-name   = "WaterSwitch"
-weight = 0.8
-params.dipole_target_au      = 4.0
-params.dipole_sigma_au       = 1.6
-params.solv_diff_target_kcal = 0.0
-params.solv_diff_sigma_kcal  = 6.0
+[stage.scoring.component.DASATrap]
+[[stage.scoring.component.DASATrap.endpoint]]
+name   = "AntiTrap"
+weight = 1.0
+params.dE_water_target_kcal = 10.0
+params.dE_water_width_kcal  = 8.0
+params.dshift_target_kcal   = -3.5
+params.dshift_width_kcal    = 8.0
 
 [diversity_filter]
 type        = "IdenticalMurckoScaffold"
@@ -600,6 +605,11 @@ type = "geometric_mean"
 [[stage.scoring.component.DASAScaffold.endpoint]]
 name   = "DASA"
 weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASAColor]
+[[stage.scoring.component.DASAColor.endpoint]]
+name   = "Color"
+weight = 1.0
 
 [[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
@@ -608,7 +618,8 @@ name   = "Solubility"
 weight = 0.6
 params.logs_target = -2.0
 params.logs_width  = 1.5
-params.logp_max    = 3.0
+params.logp_max    = 1.0
+params.logp_min    = -2.5
 
 [[stage.scoring.component]]
 [stage.scoring.component.SAScore]
@@ -678,7 +689,7 @@ best_df = df_s3 if not df_s3.empty else (df_s2 if not df_s2.empty else df_s1)
 top = get_top(best_df, 200, 0.4)
 print(f"\nTop candidates: {len(top)}")
 if not top.empty:
-    cols = [c for c in ["SMILES", "Score", "DASA", "Solubility", "xTB_Gap", "WaterSwitch"]
+    cols = [c for c in ["SMILES", "Score", "DASA", "Solubility", "xTB_Gap", "AntiTrap"]
             if c in top.columns]
     print(top[cols].head(20).to_string(index=False))
 

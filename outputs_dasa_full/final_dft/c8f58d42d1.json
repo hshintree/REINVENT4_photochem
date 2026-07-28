@@ -1,0 +1,14 @@
+{
+  "label": "tethered-0 (T0.963)",
+  "smiles": "O=C(CN1C(=O)NC(=O)C(=C(O)C=CC2=CN(CCc3ccncn3)CC2=O)C1=O)NCc1ccncc1",
+  "lambda_nm": {
+    "water/b3lyp": 444.6,
+    "water/camb3lyp": 419.4
+  },
+  "barrier": {},
+  "log": [
+    "open geometry ready",
+    "lambda water/b3lyp = 444.6 nm",
+    "lambda water/camb3lyp = 419.4 nm"
+  ]
+}

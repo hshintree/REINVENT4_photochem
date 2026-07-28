@@ -1,0 +1,98 @@
+[
+  {
+    "smiles": "CN(C)C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "screen_lambda_nm": 317.9,
+    "by_functional": {
+      "camb3lyp": {
+        "smiles": "CN(C)C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+        "screen_lambda_nm": 317.9,
+        "lambda_by_solvent": {
+          "toluene": 331.3,
+          "acetone": 336.5,
+          "methanol": 336.8,
+          "acetonitrile": 336.9
+        },
+        "solvatochromic_slope_nm_per_f": 23.2,
+        "polar_minus_nonpolar_nm": 5.6,
+        "closed_absorbs_visible": false
+      },
+      "b3lyp": {
+        "smiles": "CN(C)C=CC=CC(O)=C1C(=O)N(C)C(=O)N(C)C1=O",
+        "screen_lambda_nm": 343.6,
+        "lambda_by_solvent": {
+          "toluene": 358.4,
+          "acetone": 363.9,
+          "methanol": 364.1,
+          "acetonitrile": 364.2
+        },
+        "solvatochromic_slope_nm_per_f": 24.1,
+        "polar_minus_nonpolar_nm": 5.8,
+        "closed_absorbs_visible": false
+      }
+    }
+  },
+  {
+    "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CCO1)NCCCO",
+    "screen_lambda_nm": 332.8,
+    "by_functional": {
+      "camb3lyp": {
+        "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CCO1)NCCCO",
+        "screen_lambda_nm": 332.8,
+        "lambda_by_solvent": {
+          "toluene": 338.7,
+          "acetone": 341.2,
+          "methanol": 341.3,
+          "acetonitrile": 341.4
+        },
+        "solvatochromic_slope_nm_per_f": 11.1,
+        "polar_minus_nonpolar_nm": 2.7,
+        "closed_absorbs_visible": false
+      },
+      "b3lyp": {
+        "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CCO1)NCCCO",
+        "screen_lambda_nm": 370.4,
+        "lambda_by_solvent": {
+          "toluene": 379.3,
+          "acetone": 383.5,
+          "methanol": 383.7,
+          "acetonitrile": 383.8
+        },
+        "solvatochromic_slope_nm_per_f": 18.6,
+        "polar_minus_nonpolar_nm": 4.5,
+        "closed_absorbs_visible": false
+      }
+    }
+  },
+  {
+    "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CC1)NCCCO",
+    "screen_lambda_nm": 333.0,
+    "by_functional": {
+      "camb3lyp": {
+        "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CC1)NCCCO",
+        "screen_lambda_nm": 333.0,
+        "lambda_by_solvent": {
+          "toluene": 343.7,
+          "acetone": 347.8,
+          "methanol": 348.0,
+          "acetonitrile": 348.1
+        },
+        "solvatochromic_slope_nm_per_f": 18.2,
+        "polar_minus_nonpolar_nm": 4.4,
+        "closed_absorbs_visible": false
+      },
+      "b3lyp": {
+        "smiles": "O=C(CN1C=C(C=CC(O)=C2NCCC2=O)CC1)NCCCO",
+        "screen_lambda_nm": 366.3,
+        "lambda_by_solvent": {
+          "toluene": 377.9,
+          "acetone": 382.7,
+          "methanol": 383.0,
+          "acetonitrile": 383.0
+        },
+        "solvatochromic_slope_nm_per_f": 21.3,
+        "polar_minus_nonpolar_nm": 5.1,
+        "closed_absorbs_visible": false
+      }
+    }
+  }
+]
