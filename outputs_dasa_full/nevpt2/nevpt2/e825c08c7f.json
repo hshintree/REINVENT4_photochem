@@ -1,0 +1,15 @@
+{
+  "label": "REF ChemSci-1 Me2N/barbituric",
+  "smiles": "CN(C)C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+  "lambda_exp_nm": 567,
+  "log": [
+    "start",
+    "NEVPT2 lambda 506.0 nm vs exp 567 -> -61.0 nm / 0.2639 eV",
+    "CAS(10,10) worst-pi 0.217  CASSCF dE 2.7623 eV  twist 40.5 deg  395.2s",
+    "DONE"
+  ],
+  "basis": "6-31g",
+  "truncated": true,
+  "heavy": 18,
+  "twist_deg": 40.5,
+  "nao": 

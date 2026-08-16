@@ -1,0 +1,9 @@
+{
+  "label": "CAND aniline-quinolinyl (corrected)",
+  "smiles": "O=C(CN1C(=O)NC(=O)C(=CC(O)=CC=CNc2ccc3ncccc3c2)C1=O)NCCN1CCNC1=O",
+  "lambda_exp_nm": null,
+  "solvent": "dichloromethane",
+  "log": [
+    "start"
+  ]
+}

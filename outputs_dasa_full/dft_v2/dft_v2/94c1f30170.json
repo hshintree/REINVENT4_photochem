@@ -1,0 +1,9 @@
+{
+  "label": "CAND tethered-0 (corrected)",
+  "smiles": "O=C(CN1C(=O)NC(=O)C(=CC(O)=CC2=CN(CCc3ccncn3)CC2=O)C1=O)NCc1ccncc1",
+  "lambda_exp_nm": null,
+  "solvent": "dichloromethane",
+  "log": [
+    "start"
+  ]
+}

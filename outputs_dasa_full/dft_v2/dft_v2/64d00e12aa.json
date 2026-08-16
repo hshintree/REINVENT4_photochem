@@ -1,0 +1,96 @@
+{
+  "label": "REC-3 barbituric/aniline",
+  "smiles": "CN1C(=O)C(=CC(O)=CC=CN2C(=O)Cc3cc(NC(=O)CO)ccc32)C(=O)N(C)C1=O",
+  "lambda_exp_nm": null,
+  "solvent": "toluene",
+  "log": [
+    "start",
+    "calc 434.2 nm (candidate, no measurement)",
+    "heavy=25 truncated=True twist=2.3814128952311364 rule=lowest bright H->L slope=1.5920470283623196 aborted_at=None",
+    "DONE"
+  ],
+  "truncated": true,
+  "truncated_smiles": "O=C1NC(=O)C(=C/C(O)=C/C=C/N2C(=O)Cc3ccccc32)C(=O)N1",
+  "heavy_atoms": 25,
+  "twist_mmff_deg": 2.3814128952311364,
+  "dft_opt": false,
+  "twist_dft_deg": null,
+  "states": [
+    {
+      "state": 1,
+      "ev": 2.85573454812984,
+      "nm": 434.15835019117776,
+      "f": 1.3503548623410109,
+      "homo_lumo_weight": 0.8955956221248482,
+      "dominant": "H->L"
+    },
+    {
+      "state": 2,
+      "ev": 3.5992965800061905,
+      "nm": 344.4675848295523,
+      "f": 0.0002635908622638854,
+      "homo_lumo_weight": 5.2030045513740246e-05,
+      "dominant": "H-3->L"
+    },
+    {
+      "state": 3,
+      "ev": 3.6576041373109587,
+      "nm": 338.97626792152556,
+      "f": 0.1738770722080778,
+      "homo_lumo_weight": 0.04013256351166414,
+      "dominant": "H-1->L"
+    },
+    {
+      "state": 4,
+      "ev": 3.881993530152541,
+      "nm": 319.3825518692405,
+      "f": 0.014726709224668916,
+      "homo_lumo_weight": 0.0031589600953944013,
+      "dominant": "H-2->L"
+    },
+    {
+      "state": 5,
+      "ev": 4.132215056807687,
+      "nm": 300.0427090447297,
+      "f": 0.00029582976145016296,
+      "homo_lumo_weight": 5.972569128943975e-05,
+      "dominant": "H-4->L"
+    },
+    {
+      "state": 6,
+      "ev": 4.314040041751851,
+      "nm": 287.39672974767376,
+      "f": 0.03854207880443661,
+      "homo_lumo_weight": 0.0007610587150655837,
+      "dominant": "H->L+1"
+    }
+  ],
+  "homo_lumo_gap_ev": 2.6770204743386943,
+  "selected": {
+    "state": 1,
+    "ev": 2.85573454812984,
+    "nm": 434.15835019117776,
+    "f": 1.3503548623410109,
+    "homo_lumo_weight": 0.8955956221248482,
+    "dominant": "H->L"
+  },
+  "selection_rule": "lowest bright H->L",
+  "lambda_calc_nm": 434.15835019117776,
+  "solvent_series": [
+    {
+      "solvent": "toluene",
+      "onsager": 0.2396,
+      "lambda_nm": 434.2
+    },
+    {
+      "solvent": "water",
+      "onsager": 0.4905,
+      "lambda_nm": 434.6
+    }
+  ],
+  "solvatochromic_slope_nm_per_onsager": 1.5920470283623196,
+  "solvatochromic_total_shift_nm": 0.3994620534170963,
+  "negatively_solvatochromic": false,
+  "charge_transfer_alive": false,
+  "wall_s": 889.6
+}

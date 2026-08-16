@@ -1,0 +1,97 @@
+{
+  "label": "REF ChemSci-1 Me2N/barbituric",
+  "smiles": "CN(C)C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+  "lambda_exp_nm": 567,
+  "solvent": "chloroform",
+  "log": [
+    "start",
+    "calc 435.8 nm vs exp 567 -> -131.2 nm",
+    "heavy=18 truncated=True twist=40.49173839607903 rule=lowest bright H->L slope=17.958076022433556 aborted_at=None",
+    "DONE"
+  ],
+  "truncated": true,
+  "truncated_smiles": "CN(C)/C=C/C=C(\\O)C=C1C(=O)NC(=O)NC1=O",
+  "heavy_atoms": 18,
+  "twist_mmff_deg": 40.49173839607903,
+  "dft_opt": false,
+  "twist_dft_deg": null,
+  "states": [
+    {
+      "state": 1,
+      "ev": 2.844714154551506,
+      "nm": 435.8402752052505,
+      "f": 1.0193246708002714,
+      "homo_lumo_weight": 0.940607249140388,
+      "dominant": "H->L"
+    },
+    {
+      "state": 2,
+      "ev": 3.616872845665149,
+      "nm": 342.7936377376272,
+      "f": 5.1032063282326775e-05,
+      "homo_lumo_weight": 0.00021041668453430576,
+      "dominant": "H-1->L"
+    },
+    {
+      "state": 3,
+      "ev": 4.301261378046832,
+      "nm": 288.25055978416304,
+      "f": 0.0338058774644662,
+      "homo_lumo_weight": 0.0005636454703095833,
+      "dominant": "H-3->L"
+    },
+    {
+      "state": 4,
+      "ev": 4.442126656009428,
+      "nm": 279.10978142028205,
+      "f": 0.02006537769177002,
+      "homo_lumo_weight": 0.0003252594166241601,
+      "dominant": "H-2->L"
+    },
+    {
+      "state": 5,
+      "ev": 4.6158866344017735,
+      "nm": 268.6030005068973,
+      "f": 0.06281201894897681,
+      "homo_lumo_weight": 0.0025844564829202374,
+      "dominant": "H->L+2"
+    },
+    {
+      "state": 6,
+      "ev": 4.89159634370815,
+      "nm": 253.46347345171972,
+      "f": 0.01739163390362618,
+      "homo_lumo_weight": 0.0002293421060199738,
+      "dominant": "H-5->L"
+    }
+  ],
+  "homo_lumo_gap_ev": 2.679505413163439,
+  "selected": {
+    "state": 1,
+    "ev": 2.844714154551506,
+    "nm": 435.8402752052505,
+    "f": 1.0193246708002714,
+    "homo_lumo_weight": 0.940607249140388,
+    "dominant": "H->L"
+  },
+  "selection_rule": "lowest bright H->L",
+  "lambda_calc_nm": 435.8402752052505,
+  "solvent_series": [
+    {
+      "solvent": "chloroform",
+      "onsager": 0.356,
+      "lambda_nm": 435.8
+    },
+    {
+      "solvent": "water",
+      "onsager": 0.4905,
+      "lambda_nm": 438.3
+    }
+  ],
+  "solvatochromic_slope_nm_per_onsager": 17.958076022433556,
+  "solvatochromic_total_shift_nm": 2.414431559105253,
+  "negatively_solvatochromic": false,
+  "charge_transfer_alive": false,
+  "wall_s": 451.2,
+  "error_nm": -131.15972479474948
+}

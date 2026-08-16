@@ -117,8 +117,8 @@ def summarize_stage(df, label):
           f"{dasa} DASA-gate pass"
           + (f", top Score {uniq[sc].max():.3f}" if sc else ""))
     # component distributions + saturation warning
-    comps = [c for c in ["DASA", "Solubility", "xTB_Gap", "AntiTrap",
-                          "WaterSwitch", "DecompAlerts", "SA"]
+    comps = [c for c in ["DASA", "Color", "Integrity", "TrapEscape", "Solubility",
+                          "xTB_Gap", "AntiTrap", "WaterSwitch", "DecompAlerts", "SA"]
              if c in uniq.columns]
     for c in comps:
         v = pd.to_numeric(uniq[c], errors="coerce").dropna()
@@ -186,7 +186,9 @@ def main():
         rec = {"SMILES": props["canon"], **props,
                "Score": round(float(best.get("Score", 0)), 3),
                "Solubility": col("Solubility"),
-               "AntiTrap": col("AntiTrap"),        # the calibrated anti-trap metric
+               "TrapEscape": col("TrapEscape"),    # structural trap-escape (current)
+               "Integrity": col("Integrity"),      # chromophore-integrity gate
+               "AntiTrap": col("AntiTrap"),        # legacy xTB DASATrap (disabled by default)
                "WaterSwitch": col("WaterSwitch"),  # legacy (older runs)
                "xTB_Gap": col("xTB_Gap"),
                "from_stage": int(best["__stage"])}
@@ -203,12 +205,26 @@ def main():
     # Rank for the water-soluble/switchable goal: the calibrated AntiTrap metric
     # is the primary signal (falls back to legacy WaterSwitch, then neutral),
     # balanced with solubility and a sane open-form gap.
+    # NOTE: every fallback here is a CONSTANT, so a missing column silently makes
+    # this term contribute nothing to the ranking. That happened: the runner emits
+    # "TrapEscape" but this read only "AntiTrap" (the disabled xTB component), so
+    # anti fell back to 0.5 for every row and -- with Solubility saturated at 0.949
+    # -- the shortlist was effectively unranked. Prefer TrapEscape, and warn loudly
+    # rather than silently ranking on nothing.
     def obj(r):
         sol = r["Solubility"] if pd.notna(r["Solubility"]) else 0
         gap = r["xTB_Gap"] if pd.notna(r["xTB_Gap"]) else 0.5
-        anti = r["AntiTrap"] if pd.notna(r["AntiTrap"]) else (
-            r["WaterSwitch"] if pd.notna(r["WaterSwitch"]) else 0.5)
+        for key in ("TrapEscape", "AntiTrap", "WaterSwitch"):
+            if key in r and pd.notna(r[key]):
+                anti = r[key]
+                break
+        else:
+            anti = 0.5
         return 0.45 * anti + 0.35 * sol + 0.2 * gap
+
+    if "TrapEscape" not in credible.columns or credible["TrapEscape"].isna().all():
+        print("  WARNING: no trap-escape column found — the ranking below is driven "
+              "by solubility/SA alone and is NOT a water-switchability ranking.")
     credible["water_obj"] = credible.apply(obj, axis=1)
     credible = credible.sort_values("water_obj", ascending=False).reset_index(drop=True)
 
@@ -245,7 +261,7 @@ def main():
     print(f"  scaffold clusters in top {len(top)}: {nclust}")
     print(f"\n  Top {args.top} credible candidates for water-soluble/switchable DASA:")
     show = [c for c in ["SMILES", "donor", "donor_arch", "acceptor", "MW", "SA", "logP",
-                        "Solubility", "AntiTrap", "xTB_Gap", "from_stage"]
+                        "Solubility", "TrapEscape", "Integrity", "from_stage"]
             if c in credible.columns]
     print(credible[show].head(args.top).to_string(index=False))
 

@@ -1,0 +1,15 @@
+{
+  "label": "CAND REC-2 benzoxazine/isoxazolone",
+  "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCOc2ccc(C(=O)NCCS(N)(=O)=O)cc21",
+  "lambda_exp_nm": null,
+  "log": [
+    "start",
+    "NEVPT2 lambda 503.4 nm (candidate)",
+    "CAS(10,10) worst-pi 0.686  CASSCF dE 2.5025 eV  twist 4.4 deg  536.1s",
+    "DONE"
+  ],
+  "basis": "6-31g",
+  "truncated": true,
+  "heavy": 22,
+  "twist_deg": 4.4,
+  "nao": 

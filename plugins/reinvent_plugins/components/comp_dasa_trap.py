@@ -1,42 +1,45 @@
-"""DASA anti-trapping score (GFN2-xTB, implicit solvent) — the real switchability metric.
+"""DASATrap — high-resolution xTB tautomer-preference score (Stage 2 refinement).
 
-Water-switchable DASAs fail primarily because the polar closed cyclopentenone
-ZWITTERION is thermodynamically favoured in water: the open<->closed equilibrium
-locks closed ("dark switching"). This component computes that equilibrium directly:
+ROLE, stated plainly, because this component has changed meaning:
 
-    dE_water = E(closed_zwitterion, ALPB water) - E(open, ALPB water)   [kcal/mol]
+  * IT NO LONGER SCORES dG(closed - open). That observable inverted the objective
+    (it rewarded the trapped 1st-gen alkyl 0.82 over the 2nd-gen aniline 0.21) and
+    the component was disabled on 2026-07-28 because of it.
+  * IT NOW SCORES  ddE = E(zwitterion) - E(keto)  in ALPB water, i.e. WHICH CLOSED
+    TAUTOMER WINS. That is the quantity carrying the trap physics: the zwitterion is
+    the water-locked state, the neutral keto form is the escape route.
 
-  * dE_water strongly negative  -> closed deeply favoured in water = TRAPPED (bad).
-  * dE_water near zero / positive -> open form accessible in water = switchable.
+Why the change is a re-reading rather than a fix: the old energies were not wrong.
+dG(closed-open) reproduces the measured CHCl3 dark equilibria correctly (ChemSci-1
+open-favoured at 86% linear; ChemSci-14 closed-favoured at 57% cyclic). What was
+wrong was the assumption that "escapes the water trap" means "more open-favoured".
+It does not. A 2nd-generation DASA can sit majority-closed in the dark and still
+switch perfectly well, because its closed form is NEUTRAL rather than an
+electrostatically locked zwitterion. The trap is a lock, not a free-energy sign.
 
-GEOMETRY-OPTIMISED (the important upgrade): each form is GFN2-xTB `--opt`-relaxed
-in its solvent before the energy is read. The previous version used SINGLE POINTS on
-MMFF geometries, which was noisy enough to INVERT the truth -- its "anti-trap winners"
-turned out (on optimised geometries) to be the MOST trapped. Validated against a
-known anchor: first-gen DMA-Meldrum (experimentally >99% closed in water) optimises to
-dE_water ~ -5 kcal/mol, exactly the trapped regime.
+Validated (GFN2/ALPB water, geometry-optimised, kcal/mol):
 
-BANDED, not maximised: the score is a WINDOW on dE_water (double sigmoid), rewarding
-the switchable regime (roughly [dE_lo, dE_hi], default [-2, +18] kcal/mol -- i.e.
-clearly less trapped than the -5 first-gen anchor, without an unbounded "more positive
-is always better" pressure that the RL would exploit by inventing unphysical closed
-forms). The colour+donor gate (DASAColor) independently guarantees a real chromophore,
-so anti-trap pressure can no longer cheat by killing the donor.
+    ChemSci-1  Me2N/barbituric   1st-gen, TRAPPED     ddE  -4.0   zwitterionic
+    ChemSci-14 aniline/barb      2nd-gen, escapes     ddE  +0.9   neutral keto
+    indoline/barbituric          2nd-gen, escapes     ddE +11.3   strongly neutral
 
-Water-only by default (`use_toluene=false`): 2 xTB opts/molecule (open+closed in water).
-Set use_toluene=true to also reward a controlled water-vs-toluene response (4 opts/mol,
-slower -- reserve for a short stage or the DFT verifier). Requires the `xtb` CLI on PATH
-(conda-forge `xtb`); falls back to the old single-point energy if it is missing.
+Correctly ordered with NO sign flip -- it is a different subtraction of the same
+energies.
 
-    [[stage.scoring.component]]
-    [stage.scoring.component.DASATrap]
-    [[stage.scoring.component.DASATrap.endpoint]]
-    name = "AntiTrap"
-    weight = 0.6
-    params.dE_lo_kcal    = -2.0    # below this = trapped (anchor: first-gen ~ -5)
-    params.dE_hi_kcal    = 18.0    # above this = suspiciously open-only (soft cap)
-    params.dE_width_kcal = 4.0     # sigmoid shoulder width
-    params.use_toluene   = false   # water-only (fast). true = + water-vs-toluene term
+RELATIONSHIP TO DASATrapEscape: they measure the SAME physical quantity at
+different fidelity. `dasa_common.delta_pka` estimates the tautomer preference from
+substituent pKa (free, per-molecule, runs in Stage 1); this computes it from GFN2
+energies on optimised geometries (~4 xTB opts/molecule, Stage 2 only). Use the cheap
+one to shape the population and this one to discriminate WITHIN it -- which is also
+the answer to losing the only high-resolution gradient when this stage was disabled.
+
+BANDED, not maximised. Large positive ddE means the zwitterion is far above the keto
+form, which happens when the donor is very weakly basic -- and a donor that weak
+stops pushing electron density through the triene, killing the visible chromophore.
+Both ends of this coordinate fail, so it gets a window.
+
+Requires the `xtb` CLI on PATH (conda-forge `xtb`); falls back to single-point
+energies if missing. Water-only by default (`use_toluene=false`).
 """
 
 __all__ = ["DASATrap"]
@@ -53,7 +56,7 @@ from pydantic.dataclasses import dataclass
 from .component_results import ComponentResults
 from reinvent_plugins.mol_cache import molcache
 from .add_tag import add_tag
-from .dasa_common import (is_dasa, open_to_closed, open_to_closed_neutral,
+from .dasa_common import (is_dasa, open_to_closed, open_to_closed_keto,
                           embed_3d, xtb_properties)
 
 _H_KCAL = 627.509
@@ -131,24 +134,37 @@ def _score_smiles(args):
         return 0.0
     if mol.GetNumHeavyAtoms() > _MAX_HEAVY:
         return 0.0
-    # The REAL closed form is the lower-energy of the zwitterion (1st/3rd-gen) and
-    # the neutral keto tautomer (2nd-gen, only for N-H/aniline donors). Using min()
-    # stops us from mis-scoring 2nd-gen water-switchers against the wrong (too-high,
-    # over-trapped) zwitterion -- the fix demanded by the generation literature.
-    closed_forms = [c for c in (open_to_closed(mol), open_to_closed_neutral(mol))
-                    if c is not None]
-    if not closed_forms:
+    # THE OBSERVABLE: E(zwitterion) - E(keto), NOT E(closed) - E(open).
+    #
+    # This component previously scored dG(closed - open) in ALPB water and got the
+    # objective exactly backwards -- it rewarded the trapped 1st-gen alkyl (0.82)
+    # over the 2nd-gen aniline escape architecture (0.21). The energies were not
+    # wrong; the QUESTION was. dG(closed-open) reproduces the measured CHCl3 dark
+    # equilibria correctly (ChemSci-1 open-favoured, ChemSci-14 closed-favoured),
+    # but "escapes the water trap" does NOT mean "more open-favoured": a 2nd-gen
+    # DASA can sit majority-closed in the dark and still switch, because its closed
+    # form is NEUTRAL rather than a water-locked zwitterion. The trap is an
+    # electrostatic lock, not a free-energy sign.
+    #
+    # The tautomer competition is what carries the physics, and xTB gets it right
+    # on all three validated compounds (kcal/mol, E_zwit - E_keto):
+    #     ChemSci-1  Me2N/barbituric  (1st-gen, trapped)   -4.0   zwitterionic
+    #     ChemSci-14 aniline/barb     (2nd-gen, escapes)   +0.9   neutral keto
+    #     indoline/barbituric         (2nd-gen, escapes)  +11.3   strongly neutral
+    # Correctly ordered with NO sign flip -- it is a different subtraction.
+    # This is the high-resolution, per-molecule version of dasa_common.delta_pka.
+    zwit, keto = open_to_closed(mol), open_to_closed_keto(mol)
+    if zwit is None or keto is None:
         return 0.0
-    eo_w = _energy_opt(mol, "water")
-    if eo_w is None:
+    e_z = _energy_opt(zwit, "water")
+    e_k = _energy_opt(keto, "water")
+    if e_z is None or e_k is None:
         return 0.0
-    ec_opts = [_energy_opt(c, "water") for c in closed_forms]
-    ec_opts = [e for e in ec_opts if e is not None]
-    if not ec_opts:
-        return 0.0
-    ec_w = min(ec_opts)                      # lowest-energy closed tautomer = real closed state
-    dE_water = (ec_w - eo_w) * _H_KCAL
-    score = _band(dE_water, lo, hi, w)
+    ddE = (e_z - e_k) * _H_KCAL          # >0 => keto favoured => escapes the trap
+    score = _band(ddE, lo, hi, w)
+    eo_w = _energy_opt(mol, "water")     # open form, for the optional solvent term
+    ec_w = min(e_z, e_k)
+    closed_forms = [zwit, keto]
     if use_tol:
         eo_t = _energy_opt(mol, "toluene")
         ect = [_energy_opt(c, "toluene") for c in closed_forms]

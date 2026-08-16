@@ -48,11 +48,75 @@ def sh(cmd, log, env, critical=True):
     return p.returncode
 
 
+def _guard_legacy_checkpoint(path: str) -> None:
+    """REFUSE to resume from a checkpoint trained on the pre-2026-07-28 core.
+
+    Until 2026-07-28 the corpus encoded a constitutional isomer of a DASA (hydroxyl
+    on the carbon bonded to the acceptor rather than on C2). A generator trained on
+    that corpus has learned the WRONG scaffold, so resuming from it silently
+    reintroduces it through the back door -- every downstream gate would pass,
+    because the gates were what we fixed, not the prior. This aborts rather than
+    warns: a warning in a detached Modal run is a warning nobody reads.
+
+    Detection is by sampling the checkpoint's own vocabulary-free output is not
+    possible here, so we check the sibling summary CSV the stage wrote, which
+    contains the molecules that checkpoint was producing.
+    """
+    import glob
+    try:
+        from rdkit import Chem, RDLogger
+        RDLogger.DisableLog("rdApp.*")
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import dasa_chem as _dc
+    except Exception:
+        print("WARNING: could not import dasa_chem to validate the checkpoint core.")
+        return
+    import csv
+    d = os.path.dirname(os.path.abspath(path))
+    csvs = sorted(glob.glob(os.path.join(d, "*_1.csv")))
+    if not csvs:
+        print(f"NOTE: no summary CSV beside {path}; cannot verify its core. "
+              "If it predates 2026-07-28, do NOT resume from it.")
+        return
+    legacy = current = 0
+    with open(csvs[0]) as fh:
+        rows = list(csv.DictReader(fh))
+    key = next((k for k in (rows[0] if rows else {}) if k.lower() in ("smiles", "smi")), None)
+    for r in rows[:3000]:
+        m = Chem.MolFromSmiles(r[key]) if key else None
+        if m is None:
+            continue
+        legacy += _dc.is_legacy_core(m)
+        current += _dc.is_dasa(m)
+    if legacy > current:
+        sys.exit(
+            f"REFUSING to resume from {path}\n"
+            f"  Its output ({os.path.basename(csvs[0])}) is {legacy} legacy-core vs "
+            f"{current} corrected-core molecules.\n"
+            f"  That generator was trained on the pre-2026-07-28 wrong DASA skeleton "
+            f"(hydroxyl on the\n  carbon bonded to the acceptor instead of on C2). "
+            f"Resuming would reintroduce it.\n"
+            f"  Run a fresh TL + Stage 1 on the corrected corpus instead.")
+    print(f"checkpoint core OK ({current} corrected / {legacy} legacy in "
+          f"{os.path.basename(csvs[0])})")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--quick", action="store_true", help="short TL + Stage 1 only")
-    ap.add_argument("--stage2", action="store_true", help="also run the slow xTB Stage 2")
+    ap.add_argument("--stage2", action="store_true",
+                    help="run the slow xTB Stage 2 (DASATrap). OPT-IN and OFF by "
+                         "default, including under --full: validated 2026-07-28 "
+                         "against the corrected anchors, GFN2/ALPB-water "
+                         "dG(closed-open) INVERTS the design objective -- it scores "
+                         "the trapped 1st-gen alkyl 0.82 and the 2nd-gen aniline "
+                         "escape architecture 0.21, i.e. it rewards exactly what we "
+                         "are trying to avoid, and fights DASATrapEscape in the same "
+                         "stage. dG in a continuum solvent cannot see the trap, which "
+                         "is an electrostatic LOCK (reverse barrier) on the "
+                         "zwitterion, not a free-energy sign. Use only for "
+                         "experiments, never for a production campaign.")
     ap.add_argument("--stage3", action="store_true",
                     help="also run Stage 3 (ChemProp λ if trained, else structural fallback)")
     ap.add_argument("--full", action="store_true", help="TL + Stage 1 + 2 + 3")
@@ -64,13 +128,17 @@ def main():
                     help="RL steps for the slow xTB Stage 2 (lower = cheaper)")
     args = ap.parse_args()
     if args.full:
-        args.stage2 = args.stage3 = True
+        # --full = TL + Stage 1 + Stage 3. Stage 2 (xTB DASATrap) is NOT included:
+        # it inverts the objective (see --stage2 help). Pass --stage2 explicitly to
+        # add it back for an experiment.
+        args.stage3 = True
         args.quick = False
     # RESUME mode: reuse a prior Stage-1 checkpoint, run only the (improved) Stage 2/3.
     _resume = args.stage1_checkpoint
     if _resume:
         if not os.path.isfile(_resume):
             sys.exit(f"--stage1-checkpoint not found: {_resume}")
+        _guard_legacy_checkpoint(_resume)
         args.stage2 = True
         args.quick = False
 
@@ -183,9 +251,14 @@ weight = 1.0
 name = "Color"
 weight = 1.0
 [[stage.scoring.component]]
-[stage.scoring.component.DASA2ndGen]
-[[stage.scoring.component.DASA2ndGen.endpoint]]
-name = "Gen2"
+[stage.scoring.component.DASAIntegrity]
+[[stage.scoring.component.DASAIntegrity.endpoint]]
+name = "Integrity"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASATrapEscape]
+[[stage.scoring.component.DASATrapEscape.endpoint]]
+name = "TrapEscape"
 weight = 0.6
 [[stage.scoring.component]]
 [stage.scoring.component.custom_alerts]
@@ -212,8 +285,23 @@ transform.high = 8.0
 transform.low = 2.0
 transform.k = 0.4
 [diversity_filter]
-type = "IdenticalMurckoScaffold"
-bucket_size = 25
+type = "ScaffoldSimilarity"
+# SIZING MATTERS AS MUCH AS THE AXIS. bucket_size 25 with minsimilarity 0.6 was a
+# near-ban on the target class: ~22% of DASA scaffold PAIRS score >=0.6 atom-pair
+# Tanimoto, so the whole family collapses into a handful of buckets, fills them in
+# the first few hundred molecules, and every later DASA is zeroed. Measured effect:
+# the DASA gate pass rate fell from 80.6% to 7.1% (Stage 1) and 98.6% to 2.1%
+# (Stage 3) -- the generator was driven off the scaffold. minsimilarity 0.8 merges
+# only near-duplicates, and bucket_size 400 is scaled to a 64k-molecule stage.
+# IdenticalMurckoScaffold bucketed on EXACT Murcko scaffold, so the previous run
+# reported healthy diversity while Butina found 275 of 300 shortlisted molecules in
+# ONE cluster: swapping a heteroaryl ring changes the Murcko scaffold but not the
+# chemistry. ScaffoldSimilarity buckets by atom-pair Tanimoto instead, which is the
+# axis we actually mean by "diverse", so a family of look-alikes shares a bucket and
+# gets penalised. This matters most once every band is satisfied: a satisfied
+# constraint stops pushing, and diversity is then the only remaining objective.
+minsimilarity = 0.8
+bucket_size = 400
 minscore = 0.4
 [inception]
 smiles_file = "{tl_smi}"
@@ -261,9 +349,14 @@ weight = 1.0
 name = "Color"
 weight = 1.0
 [[stage.scoring.component]]
-[stage.scoring.component.DASA2ndGen]
-[[stage.scoring.component.DASA2ndGen.endpoint]]
-name = "Gen2"
+[stage.scoring.component.DASAIntegrity]
+[[stage.scoring.component.DASAIntegrity.endpoint]]
+name = "Integrity"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASATrapEscape]
+[[stage.scoring.component.DASATrapEscape.endpoint]]
+name = "TrapEscape"
 weight = 0.6
 [[stage.scoring.component]]
 [stage.scoring.component.custom_alerts]
@@ -285,13 +378,21 @@ params.logp_min = -2.5
 [[stage.scoring.component.DASATrap.endpoint]]
 name = "AntiTrap"
 weight = 0.6
-params.dE_lo_kcal = -2.0
-params.dE_hi_kcal = 18.0
-params.dE_width_kcal = 4.0
+params.dE_lo_kcal = [0.0]
+params.dE_hi_kcal = [20.0]
+params.dE_width_kcal = [3.0]
 params.use_toluene = false
 [diversity_filter]
-type = "IdenticalMurckoScaffold"
-bucket_size = 10
+type = "ScaffoldSimilarity"
+# IdenticalMurckoScaffold bucketed on EXACT Murcko scaffold, so the previous run
+# reported healthy diversity while Butina found 275 of 300 shortlisted molecules in
+# ONE cluster: swapping a heteroaryl ring changes the Murcko scaffold but not the
+# chemistry. ScaffoldSimilarity buckets by atom-pair Tanimoto instead, which is the
+# axis we actually mean by "diverse", so a family of look-alikes shares a bucket and
+# gets penalised. This matters most once every band is satisfied: a satisfied
+# constraint stops pushing, and diversity is then the only remaining objective.
+minsimilarity = 0.8
+bucket_size = 400
 minscore = 0.5
 ''')
         sh(REINVENT + ["-d", args.device, "-l", f"{s2_dir}/stage2.log", s2_cfg], None, env)
@@ -336,6 +437,16 @@ weight = 1.0
 name = "Color"
 weight = 1.0
 [[stage.scoring.component]]
+[stage.scoring.component.DASAIntegrity]
+[[stage.scoring.component.DASAIntegrity.endpoint]]
+name = "Integrity"
+weight = 1.0
+[[stage.scoring.component]]
+[stage.scoring.component.DASATrapEscape]
+[[stage.scoring.component.DASATrapEscape.endpoint]]
+name = "TrapEscape"
+weight = 0.6
+[[stage.scoring.component]]
 [stage.scoring.component.AqueousSolubility]
 [[stage.scoring.component.AqueousSolubility.endpoint]]
 name = "Solubility"
@@ -354,8 +465,16 @@ transform.high = 8.0
 transform.low = 2.0
 transform.k = 0.4
 [diversity_filter]
-type = "IdenticalMurckoScaffold"
-bucket_size = 10
+type = "ScaffoldSimilarity"
+# IdenticalMurckoScaffold bucketed on EXACT Murcko scaffold, so the previous run
+# reported healthy diversity while Butina found 275 of 300 shortlisted molecules in
+# ONE cluster: swapping a heteroaryl ring changes the Murcko scaffold but not the
+# chemistry. ScaffoldSimilarity buckets by atom-pair Tanimoto instead, which is the
+# axis we actually mean by "diverse", so a family of look-alikes shares a bucket and
+# gets penalised. This matters most once every band is satisfied: a satisfied
+# constraint stops pushing, and diversity is then the only remaining objective.
+minsimilarity = 0.8
+bucket_size = 400
 minscore = 0.5
 ''')
         sh(REINVENT + ["-d", args.device, "-l", f"{s3_dir}/stage3.log", s3_cfg], None, env)

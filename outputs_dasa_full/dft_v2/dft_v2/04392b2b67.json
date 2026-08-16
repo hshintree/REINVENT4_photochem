@@ -1,0 +1,97 @@
+{
+  "label": "REF NatComm-10 indoline/barbituric",
+  "smiles": "O=C1N(C)C(=O)C(=CC(O)=CC=CN2CCc3ccccc32)C(=O)N1C",
+  "lambda_exp_nm": 615,
+  "solvent": "dichloromethane",
+  "log": [
+    "start",
+    "calc 442.2 nm vs exp 615 -> -172.8 nm",
+    "heavy=24 truncated=True twist=0.87699066275988 rule=lowest bright H->L slope=6.558573377650009 aborted_at=None",
+    "DONE"
+  ],
+  "truncated": true,
+  "truncated_smiles": "O=C1NC(=O)C(=C/C(O)=C/C=C/N2CCc3ccccc32)C(=O)N1",
+  "heavy_atoms": 24,
+  "twist_mmff_deg": 0.87699066275988,
+  "dft_opt": false,
+  "twist_dft_deg": null,
+  "states": [
+    {
+      "state": 1,
+      "ev": 2.8038569371879873,
+      "nm": 442.1912486175016,
+      "f": 1.980670996927634,
+      "homo_lumo_weight": 0.9203150491636125,
+      "dominant": "H->L"
+    },
+    {
+      "state": 2,
+      "ev": 3.7234170306893746,
+      "nm": 332.98472606772407,
+      "f": 0.16094178483442573,
+      "homo_lumo_weight": 0.020487070626038897,
+      "dominant": "H-1->L"
+    },
+    {
+      "state": 3,
+      "ev": 3.7796723355836033,
+      "nm": 328.0286992942634,
+      "f": 4.994012016239341e-05,
+      "homo_lumo_weight": 7.161456653918231e-06,
+      "dominant": "H-3->L"
+    },
+    {
+      "state": 4,
+      "ev": 3.9520003677227877,
+      "nm": 313.724920201467,
+      "f": 0.009458859847794744,
+      "homo_lumo_weight": 0.00014562970515073884,
+      "dominant": "H-2->L"
+    },
+    {
+      "state": 5,
+      "ev": 4.261702469230716,
+      "nm": 290.9262223141084,
+      "f": 0.0454532353178023,
+      "homo_lumo_weight": 3.208577933845589e-05,
+      "dominant": "H->L+1"
+    },
+    {
+      "state": 6,
+      "ev": 4.419347683812612,
+      "nm": 280.548417709099,
+      "f": 0.3130317371254981,
+      "homo_lumo_weight": 0.003420362116165481,
+      "dominant": "H->L+2"
+    }
+  ],
+  "homo_lumo_gap_ev": 2.460277392127902,
+  "selected": {
+    "state": 1,
+    "ev": 2.8038569371879873,
+    "nm": 442.1912486175016,
+    "f": 1.980670996927634,
+    "homo_lumo_weight": 0.9203150491636125,
+    "dominant": "H->L"
+  },
+  "selection_rule": "lowest bright H->L",
+  "lambda_calc_nm": 442.1912486175016,
+  "solvent_series": [
+    {
+      "solvent": "dichloromethane",
+      "onsager": 0.4205,
+      "lambda_nm": 442.2
+    },
+    {
+      "solvent": "water",
+      "onsager": 0.4905,
+      "lambda_nm": 442.7
+    }
+  ],
+  "solvatochromic_slope_nm_per_onsager": 6.558573377650009,
+  "solvatochromic_total_shift_nm": 0.4592818129034413,
+  "negatively_solvatochromic": false,
+  "charge_transfer_alive": false,
+  "wall_s": 821.4,
+  "error_nm": -172.80875138249837
+}

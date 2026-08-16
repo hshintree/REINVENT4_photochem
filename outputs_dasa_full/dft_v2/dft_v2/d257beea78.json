@@ -1,0 +1,9 @@
+{
+  "label": "CAND rigid-1",
+  "smiles": "CN1C(=O)NC(=O)C(=CC(O)=CC=CN2CCCn3c2nc2c3c(=O)[nH]c(=O)n2C)C1=O",
+  "lambda_exp_nm": null,
+  "solvent": "dichloromethane",
+  "log": [
+    "start"
+  ]
+}

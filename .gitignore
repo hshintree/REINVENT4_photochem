@@ -12,6 +12,7 @@ tags
 *.model
 *.chkpt
 *.tfevents*
+*.log
 outputs/
 # Coverage.py output
 .coverage

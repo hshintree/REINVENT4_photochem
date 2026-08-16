@@ -1,0 +1,15 @@
+{
+  "label": "REF NatComm-10 indoline/barbituric",
+  "smiles": "O=C1N(C)C(=O)C(=CC(O)=CC=CN2CCc3ccccc32)C(=O)N1C",
+  "lambda_exp_nm": 615,
+  "log": [
+    "start",
+    "NEVPT2 lambda 590.0 nm vs exp 615 -> -25.0 nm / 0.0854 eV",
+    "CAS(10,10) worst-pi 0.954  CASSCF dE 2.2236 eV  twist 0.9 deg  2142.1s",
+    "DONE"
+  ],
+  "basis": "6-31g",
+  "truncated": true,
+  "heavy": 24,
+  "twist_deg": 0.9,
+  "nao": 
