@@ -1,3 +1,8 @@
+> **This fork hosts the water-switchable DASA discovery project.**
+> Start at **[DASA.md](DASA.md)** — pipeline, scoring, literature basis,
+> runbook, and the high-throughput synthesis workflow.
+> Everything below is upstream REINVENT 4 documentation.
+
 REINVENT 4
 ==========
 
