@@ -1,0 +1,37 @@
+{
+  "D1-H  parent": {
+    "smiles": "C1Cc2ccccc2N1C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -2.03963607679907,
+    "ddE_vs_parent": 0.0
+  },
+  "D1-M  C5-methyl": {
+    "smiles": "C1Cc2ccccc2N1C(C)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -3.4258169597305823,
+    "ddE_vs_parent": -1.3861808829315123
+  },
+  "D1-Et C5-ethyl": {
+    "smiles": "C1Cc2ccccc2N1C(CC)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -3.258313874808664,
+    "ddE_vs_parent": -1.218677798009594
+  },
+  "D1-iPr C5-isopropyl": {
+    "smiles": "C1Cc2ccccc2N1C(C(C)C)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -7.567515291426389,
+    "ddE_vs_parent": -5.527879214627319
+  },
+  "C4-methyl": {
+    "smiles": "C1Cc2ccccc2N1C=C(C)C=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -13.759024822124047,
+    "ddE_vs_parent": -11.719388745324977
+  },
+  "C3-methyl": {
+    "smiles": "C1Cc2ccccc2N1C=CC(C)=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -14.378335119086842,
+    "ddE_vs_parent": -12.338699042287772
+  },
+  "C1-methyl": {
+    "smiles": "C1Cc2ccccc2N1C=CC=C(O)C(C)=C1C(=O)OC(C)(C)OC1=O",
+    "dE": -7.90982439720392,
+    "ddE_vs_parent": -5.87018832040485
+  }
+}

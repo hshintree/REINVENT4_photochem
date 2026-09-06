@@ -20,6 +20,7 @@ import os
 import sys
 
 from rdkit import Chem, RDLogger
+from rdkit.Chem import rdMolDescriptors
 
 RDLogger.DisableLog("rdApp.*")
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -246,12 +247,103 @@ def test_planar_conformer_search():
               if tw is not None else f"{label}: no conformer")
 
 
+def test_closed_stereochemistry_is_enumerated():
+    """The closed cyclopentenone has sp3 ring centres that `_cyclize` does not set.
+    Measured 2026-09-06: the configuration nobody pins is worth 5-25 kcal/mol,
+    against a 4.4 kcal/mol total range for DASA dark equilibria. Any closed-form
+    energy taken on ONE arbitrary embedding is a draw, not a measurement, so
+    `closed_stereoisomers` must enumerate them and must do so deterministically."""
+    print("\n[11] closed-form stereochemistry is enumerated deterministically")
+    A = "=C1C(=O)N(C)C(=O)N(C)C1=O"
+    anilino = f"CN(c1ccccc1)C=CC=C(O)C{A}"
+
+    iso = dc.closed_stereoisomers(anilino)
+    check(len(iso) > 1, f"more than one closed diastereomer found ({len(iso)})")
+    forms = {d["form"] for d in iso}
+    check(forms == {"zwitterion", "keto"}, f"both tautomers enumerated ({forms})")
+    check(all(dc.is_cyclopentenone_closed(Chem.MolFromSmiles(d["smiles"])) for d in iso),
+          "every enumerated isomer is still a 4,5-disubstituted cyclopentenone")
+
+    # Deterministic: the answer must not depend on how the input was written.
+    # NOTE 2026-09-06: closed_stereoisomers is lru_cached, so calling it twice in
+    # one process tests the MEMO, not the enumeration. Clear the cache between
+    # calls or this assertion is vacuous -- it was, until a P5 unit came up short
+    # and sent me looking. (Enumeration did turn out to be deterministic across
+    # processes; the test was still not testing it.)
+    dc._closed_stereoisomers_cached.cache_clear()
+    again = dc.closed_stereoisomers(Chem.MolToSmiles(Chem.MolFromSmiles(anilino)))
+    check([d["smiles"] for d in iso] == [d["smiles"] for d in again],
+          "enumeration is independent of the input SMILES writing (memo cleared)")
+    dc._closed_stereoisomers_cached.cache_clear()
+    third = dc.closed_stereoisomers(anilino)
+    check([d["smiles"] for d in iso] == [d["smiles"] for d in third],
+          "enumeration is reproducible with a cold memo (tryEmbedding is not random)")
+
+    # a symmetric dialkyl donor has no ammonium stereocentre; an aniline does
+    sym = dc.closed_stereoisomers(r"CN(C)/C=C/C=C(\O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+                                  form="zwitterion")
+    asym = [d for d in iso if d["form"] == "zwitterion"]
+    check(sym and sym[0]["n_centres"] == 2,
+          f"Me2N zwitterion has 2 ring stereocentres (got {sym[0]['n_centres'] if sym else None})")
+    check(asym and asym[0]["n_centres"] == 3,
+          f"aniline zwitterion adds the ammonium N (got {asym[0]['n_centres'] if asym else None})")
+
+    # the manifold helper must report the spread, which is the diagnostic that
+    # tells you whether a closed-form energy means anything
+    fake = {d["smiles"]: -100.0 + 0.001 * i for i, d in enumerate(iso)}
+    man = dc.closed_manifold(anilino, lambda s: fake.get(s))
+    check(man is not None and man["n_isomers"] == len(iso),
+          "closed_manifold scores every enumerated isomer")
+    check(man is not None and man["spread_kcal"] > 0,
+          "closed_manifold reports a non-zero spread when isomers differ")
+    check(man is not None and man["ensemble_kcal"] <= man["lowest_kcal"] + 1e-9,
+          "ensemble energy is at or below the single lowest isomer")
+
+
+def test_enol_closed_form():
+    """C_enol must be a true isomer of the open form for EVERY substitution pattern,
+    not just the unsubstituted parent. The first implementation hard-coded hydrogen
+    counts and silently returned None for any C5-substituted DASA -- i.e. exactly the
+    compounds the Chem. Commun. 2022 substituent study is about."""
+    print("\n[12] C_enol closed form (derived connectivity - see _cyclize_enol)")
+    A = "=C1C(=O)OC(C)(C)OC1=O"
+    D = "C1Cc2ccccc2N1"
+    cases = {
+        "D1-H unsubstituted": f"{D}C=CC=C(O)C{A}",
+        "D1-M 5-methyl":      f"{D}C(C)=CC=C(O)C{A}",
+        "5-isopropyl":        f"{D}C(C(C)C)=CC=C(O)C{A}",
+        "4-methyl":           f"{D}C=C(C)C=C(O)C{A}",
+        "3-methyl":           f"{D}C=CC(C)=C(O)C{A}",
+    }
+    for label, smi in cases.items():
+        o = Chem.MolFromSmiles(smi)
+        e = dc.open_to_closed_enol(smi)
+        em = Chem.MolFromSmiles(e) if e else None
+        check(em is not None, f"{label}: C_enol builds")
+        if em is None:
+            continue
+        check(rdMolDescriptors.CalcMolFormula(em) == rdMolDescriptors.CalcMolFormula(o),
+              f"{label}: C_enol is a true constitutional isomer")
+        check(dc.is_enol_closed(em), f"{label}: carries a cyclopentene enol C=C-OH")
+
+    # all three closed forms are isomers of one another (one proton, three homes)
+    smi = cases["D1-H unsubstituted"]
+    forms = [dc.open_to_closed_enol(smi), dc.open_to_closed(smi), dc.open_to_closed_keto(smi)]
+    check(all(f is not None for f in forms), "enol / zwitterion / keto all build")
+    fs = {rdMolDescriptors.CalcMolFormula(Chem.MolFromSmiles(f)) for f in forms if f}
+    check(len(fs) == 1, f"all three closed forms share one formula ({fs})")
+    check(len({Chem.CanonSmiles(f) for f in forms if f}) == 3,
+          "and they are three DISTINCT structures")
+
+
 def main() -> int:
     for fn in (test_measured_compounds_are_recognised, test_negatives_rejected,
                test_closed_forms, test_donor_axes, test_colour_gate,
                test_corpus_is_clean, test_trap_escape_reproduces_generation_ordering,
                test_integrity_gate, test_acceptor_evidence_tiers,
-               test_planar_conformer_search):
+               test_planar_conformer_search,
+               test_closed_stereochemistry_is_enumerated,
+               test_enol_closed_form):
         fn()
     print("\n" + "=" * 70)
     if _failures:

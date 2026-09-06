@@ -35,6 +35,7 @@ inside the reinvent subprocess without this directory on PYTHONPATH.
 """
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import List, Optional, Dict
 import numpy as np
 from rdkit import Chem
@@ -286,7 +287,7 @@ def planar_conformer(smiles: str, n_confs: int = 20, seed: int = 42,
     p = AllChem.ETKDGv3()
     p.randomSeed = seed
     p.pruneRmsThresh = 0.3
-    if AllChem.EmbedMultipleConfs(m, numConfs=n_confs, params=p) == 0:
+    if len(AllChem.EmbedMultipleConfs(m, numConfs=n_confs, params=p)) == 0:
         return None, None
     try:
         energies = AllChem.MMFFOptimizeMoleculeConfs(m, maxIters=2000)
@@ -693,6 +694,104 @@ def _cyclize(mol, proton_to: str):
         return None
 
 
+def _cyclize_enol(mol):
+    """Open triene -> the ENOL closed isomer (C_enol), the 4-pi product BEFORE any
+    proton transfer.
+
+    Open:   R2N-Ca(H)=Cb(H)-Cc(H)=Cd(OH)-Ce(H)=Cf(acceptor)
+    C_enol: ring Ca-Cb-Cc-Cd-Ce closed by a new Ca-Ce sigma bond, with
+
+              Ca  sp3, bears NR2 and 1 H
+              Cb  sp3, 2 H          (gains the H that Ce loses)
+              Cc=Cd double, Cd still carrying the -OH  -> a genuine ENOL
+              Ce  sp2, no H, keeps the exocyclic Ce=Cf to the acceptor
+
+    One proton shift (O -> Cf) converts it to C_keto; O -> N gives C_zwit. So the
+    three closed isomers are related by where that single proton sits, which is why
+    C_enol is the species named as "the first closed form isomer" in Stricker et al.,
+    Chem 2023, 9, 1994 and in Peterson, Chem. Sci. 2023, 14, 13025.
+
+    *** CONNECTIVITY DERIVED, NOT SOURCED. *** The atom-by-atom arrangement above is
+    my own derivation from proton bookkeeping and the requirement that a single
+    proton shift reaches C_keto; I have not seen it drawn. Peterson/Stricker/Read de
+    Alaniz, Chem. Commun. 2022, 58, 2303 cite their Fig. S2 (ESI) for the mechanism
+    -- CHECK THIS AGAINST THAT FIGURE before trusting any number computed from it.
+    Getting a closed-form connectivity wrong is exactly the error that cost this
+    project its first eight months.
+
+    NOTE ON SCOPE: C_enol is a KINETIC species on the path to the closed form, not
+    the thermodynamic product. The Chem. Commun. 2022 equilibrium DFT -- by the group
+    that measured these compounds -- uses only the keto closed form C, and our own
+    keto-only manifold reproduces nine measured CDCl3 equilibria at rho=+0.748. So
+    C_enol is expected to matter for BARRIERS, not for the dark equilibrium, and my
+    earlier guess that it explains the +1.12 kcal/mol equilibrium offset is probably
+    wrong.
+    """
+    ix = _core_idx(mol)
+    if ix is None:
+        return None
+    f_open = rdMolDescriptors.CalcMolFormula(mol)
+    rw = Chem.RWMol(mol)
+    B = Chem.BondType
+
+    def sb(a, b, t):
+        bd = rw.GetBondBetweenAtoms(ix[a], ix[b])
+        if bd is not None:
+            bd.SetBondType(t)
+
+    try:
+        if rw.GetBondBetweenAtoms(ix["Ca"], ix["Ce"]) is None:
+            rw.AddBond(ix["Ca"], ix["Ce"], B.SINGLE)   # the new sigma bond
+        sb("Ca", "Cb", B.SINGLE)      # Ca -> sp3, bears the amine
+        sb("Cb", "Cc", B.SINGLE)      # Cb -> sp3, CH2
+        sb("Cc", "Cd", B.DOUBLE)      # the enol double bond
+        sb("Cd", "O", B.SINGLE)       # OH RETAINED -- this is what makes it the enol
+        sb("Cd", "Ce", B.SINGLE)
+        sb("Ce", "Cf", B.DOUBLE)      # exocyclic conjugation to the acceptor kept
+
+        for k in ("Ca", "Cb", "Cc", "Cd", "Ce"):
+            a = rw.GetAtomWithIdx(ix[k])
+            a.SetNumExplicitHs(0)
+            a.SetNoImplicit(False)
+        o = rw.GetAtomWithIdx(ix["O"])          # keep the hydroxyl proton
+        o.SetNumExplicitHs(1)
+        o.SetNoImplicit(True)
+        # Do NOT hard-code hydrogen counts on the chain. The first version set
+        # Ca=1H, Cb=2H, Ce=0H, which is right only for an UNSUBSTITUTED triene: on
+        # D1-M, whose whole point is a methyl at C5, Ca already has four
+        # substituents and forcing an H on it blew the valence and returned None --
+        # silently excluding exactly the compounds the substituent study is about.
+        # Clearing them lets RDKit derive each count from the bond orders set above,
+        # which gives the same answer for the parent and the right one for every
+        # substituted analogue.
+
+        m2 = rw.GetMol()
+        Chem.SanitizeMol(m2)
+        if rdMolDescriptors.CalcMolFormula(m2) != f_open:   # must be a true isomer
+            return None
+        return m2
+    except Exception:
+        return None
+
+
+def open_to_closed_enol(smiles: str) -> Optional[str]:
+    """Closed form C_enol: the 4-pi product with the hydroxyl still intact.
+    See _cyclize_enol -- the connectivity is DERIVED and needs checking against
+    Chem. Commun. 2022, 58, 2303, Fig. S2."""
+    m = _cyclize_enol(Chem.MolFromSmiles(smiles) if isinstance(smiles, str) else smiles)
+    return Chem.MolToSmiles(m) if m is not None else None
+
+
+def is_enol_closed(mol) -> bool:
+    """Structural check: cyclopentene ring carrying an enol C=C-OH."""
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    if mol is None:
+        return False
+    return mol.HasSubstructMatch(
+        Chem.MolFromSmarts("[CX4;R][CX4;R][CX3;R]=[CX3;R]([OX2H1])[CX3;R]"))
+
+
 def open_to_closed(smiles: str) -> Optional[str]:
     """Closed form (b): ammonium + acceptor enolate -- the polar, water-trapped
     state favoured by BASIC (alkyl) amines. Returns SMILES or None."""
@@ -906,3 +1005,178 @@ def dasa_retrosynthesis(smiles):
                          "needs a bespoke synthesis"}
     return {"amine": amine, "carbon_acid": acid,
             "route": "furfural + carbon acid (Knoevenagel), then amine (Stenhouse)"}
+
+
+# ---------------------------------------------------------------------------
+# Closed-form STEREOCHEMISTRY
+# ---------------------------------------------------------------------------
+# `_cyclize` builds a 4,5-disubstituted cyclopentenone but never sets the
+# configuration of the two new sp3 ring carbons (nor, in the zwitterion, of the
+# ammonium nitrogen). Measured 2026-09-06 on anilino/1,3-dimethylbarbituric:
+#
+#     open form        closed form   unassigned centres   isomers   E spread
+#     anilino C5-H     zwitterion            3               8      7.44 kcal/mol
+#     anilino C5-H     keto                  2               4      5.43
+#     anilino C5-Me    zwitterion            3               8     25.06
+#     anilino C4-Me    zwitterion            3               8     13.29
+#
+# So the configuration nobody sets is worth 5-25 kcal/mol, while the whole
+# measured range of DASA dark equilibria is 4.4 kcal/mol and the effects we want
+# to resolve are ~1. Embedding an unspecified closed form and taking whatever
+# ETKDG produces is therefore not a measurement -- it is a draw from a
+# distribution wider than the signal. That is what invalidated the C5/C4
+# substituent ladder in notebooks/data/steric_groundtruth.json.
+#
+# Note on the ammonium nitrogen: N+(aryl)(alkyl)(ring-C)(H) is a genuine
+# stereocentre, but it epimerises by deprotonation/reprotonation, so enumerating
+# it is a computational convenience for finding the minimum, NOT a claim that the
+# invertomers are separable. The two RING carbons are the chemically meaningful
+# pair -- the conrotatory 4-pi closure is stereospecific in principle, but Hemmer
+# JACS 2018 reports the closed-form 1H NMR as "a mixture of diastereomers", so
+# both are populated in practice and the thermodynamically correct treatment is a
+# Boltzmann sum over the whole manifold rather than a single isomer.
+#
+# ADDITIVE: `open_to_closed` / `open_to_closed_keto` are unchanged, so every
+# existing caller and sentinel keeps its current behaviour.
+
+_R_KCAL = 1.98720425e-3          # kcal / (mol K)
+_HARTREE_KCAL = 627.5094740631
+
+
+@lru_cache(maxsize=4096)
+def _closed_stereoisomers_cached(canon: str, form: str, max_isomers: int) -> tuple:
+    return tuple(_closed_stereoisomers_impl(canon, form, max_isomers))
+
+
+def closed_stereoisomers(smiles, form: str = "both",
+                         max_isomers: int = 16) -> List[dict]:
+    """Memoised wrapper. tryEmbedding costs up to 175 s on a caged donor and both
+    the planner and the reporter enumerate, so the result is cached per process."""
+    mol = Chem.MolFromSmiles(smiles) if isinstance(smiles, str) else smiles
+    if mol is None:
+        return []
+    return [dict(d) for d in
+            _closed_stereoisomers_cached(Chem.MolToSmiles(mol), form, max_isomers)]
+
+
+def _closed_stereoisomers_impl(smiles, form: str = "both",
+                               max_isomers: int = 16) -> List[dict]:
+    """Every diastereomer of the closed form(s), in a deterministic order.
+
+    form: "zwitterion" | "keto" | "both".
+
+    Returns a list of dicts with keys ``smiles``, ``form``, ``n_centres`` and
+    ``index``, sorted by (form, canonical SMILES) so the order does not depend on
+    RDKit's enumeration order or on the input SMILES writing. Empty list if the
+    closed form cannot be built.
+    """
+    from rdkit.Chem.EnumerateStereoisomers import (EnumerateStereoisomers,
+                                                   StereoEnumerationOptions)
+    mol = Chem.MolFromSmiles(smiles) if isinstance(smiles, str) else smiles
+    if mol is None or not is_dasa(mol):
+        return []
+    wanted = ("zwitterion", "keto") if form == "both" else (form,)
+    # tryEmbedding: RDKit marks ring-fusion / BRIDGEHEAD atoms (adamantane, and
+    # any caged donor) as unassigned stereocentres and will happily emit
+    # combinations that no 3D structure can satisfy. Measured 2026-09-06: 32 of 32
+    # adamantyl closed isomers were unembeddable, which stalled a campaign and
+    # cached 19 spurious failures. Embedding each candidate here costs a little at
+    # enumeration time and removes the impossible ones before any xTB is spent.
+    opts = StereoEnumerationOptions(onlyUnassigned=True, unique=True,
+                                    maxIsomers=max_isomers, tryEmbedding=True)
+    out: List[dict] = []
+    for name, proton_to in (("zwitterion", "N"), ("keto", "Cf")):
+        if name not in wanted:
+            continue
+        closed = _cyclize(mol, proton_to)
+        if closed is None:
+            continue
+        centres = Chem.FindMolChiralCenters(closed, includeUnassigned=True,
+                                            useLegacyImplementation=False)
+        n_centres = sum(1 for _i, tag in centres if tag == "?")
+        smis = set()
+        for iso in EnumerateStereoisomers(closed, options=opts):
+            try:
+                Chem.SanitizeMol(iso)
+            except Exception:
+                continue
+            if not is_cyclopentenone_closed(iso):
+                continue
+            smis.add(Chem.MolToSmiles(iso))
+        for s in sorted(smis):
+            out.append({"smiles": s, "form": name, "n_centres": n_centres})
+    out.sort(key=lambda d: (d["form"], d["smiles"]))
+    for i, d in enumerate(out):
+        d["index"] = i
+    return [tuple(sorted(d.items())) for d in out]
+
+
+def closed_manifold(smiles, energy_fn, form: str = "both", T: float = 298.15,
+                    max_isomers: int = 16) -> Optional[dict]:
+    """Boltzmann-weighted energy of the ENTIRE closed manifold.
+
+    ``energy_fn(smiles) -> energy in Hartree or None`` is supplied by the caller,
+    so this module stays free of any quantum-chemistry dependency.
+
+    A dark equilibrium is measured against the whole closed population, not
+    against one isomer, so the quantity that matches the experiment is
+
+        E_ens = E_min - RT ln( sum_i exp(-(E_i - E_min)/RT) )
+
+    which is what ``ensemble`` returns. ``spread`` is the max-min across isomers:
+    treat any result whose spread exceeds the effect being studied as
+    uninterpretable rather than as a measurement.
+    """
+    isomers = closed_stereoisomers(smiles, form=form, max_isomers=max_isomers)
+    if not isomers:
+        return None
+    rt = _R_KCAL * T
+    scored = []
+    for d in isomers:
+        e = energy_fn(d["smiles"])
+        if e is not None:
+            scored.append({**d, "energy_hartree": float(e)})
+    if not scored:
+        return None
+    e_kcal = np.array([s["energy_hartree"] for s in scored]) * _HARTREE_KCAL
+    e_min = float(e_kcal.min())
+    rel = e_kcal - e_min
+    w = np.exp(-rel / rt)
+    z = float(w.sum())
+    for s, r, wi in zip(scored, rel, w / z):
+        s["rel_kcal"] = float(r)
+        s["weight"] = float(wi)
+    best = scored[int(np.argmin(e_kcal))]
+    return {
+        "isomers": scored,
+        "n_isomers": len(scored),
+        "lowest": best,
+        "lowest_kcal": e_min,
+        "ensemble_kcal": e_min - rt * float(np.log(z)),
+        "spread_kcal": float(e_kcal.max() - e_min),
+        "n_centres": {f: next((d["n_centres"] for d in isomers if d["form"] == f), 0)
+                      for f in {d["form"] for d in isomers}},
+    }
+
+# Which closed tautomer actually exists is set by the SOLVENT, not by the molecule.
+# Lerch, Feringa, Buma et al., Angew. Chem. Int. Ed. 2018, 57, 8063 (M06-2X/SMD,
+# Fig. 1c): in POLAR PROTIC solvents the cyclization product is the zwitterion B;
+# in APROTIC solvents it "stops at the formation of a neutral form B'". The
+# proton transfer to nitrogen is mediated by the protic solvent.
+#
+# Ignoring this is not a small error. Our 2026-09-06 campaign ran every molecule
+# in toluene with BOTH tautomers in the manifold; the zwitterion of a pyrazol-5-one
+# acceptor came out 17-20 kcal/mol BELOW the neutral form, which is backwards for
+# eps=2.4, and it destroyed the ranking. Restricting the manifold to the neutral
+# form for aprotic solvents -- no new calculation, just the correct state set --
+# moved the correlation against nine measured CDCl3 equilibria from
+# rho=+0.353 (p=0.35) to rho=+0.748 (p=0.020).
+_PROTIC_SOLVENTS = {"water", "methanol", "ethanol", "meoh", "etoh", "h2o",
+                    "isopropanol", "ipa", "tert-butanol", "t-buoh", "acetic acid"}
+
+
+def closed_forms_for_solvent(solvent: str) -> str:
+    """"zwitterion" is only reachable in a protic solvent; aprotic media stop at
+    the neutral keto form (Angew. Chem. Int. Ed. 2018, 57, 8063). Returns a value
+    for the `form` argument of closed_stereoisomers / closed_manifold."""
+    return "both" if (solvent or "").strip().lower() in _PROTIC_SOLVENTS else "keto"

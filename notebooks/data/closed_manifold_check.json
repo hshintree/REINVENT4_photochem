@@ -1,0 +1,158 @@
+[
+  {
+    "label": "Me2N C5-H",
+    "smiles": "CN(C)C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 8,
+    "dE_ensemble": 3.1752495310647646,
+    "dE_lowest": 3.912900057810475,
+    "spread_kcal": 2.7863035662230686,
+    "per_form": {
+      "zwitterion": 4.720632286298496,
+      "keto": 3.912900057810475
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "Me2N C5-Me",
+    "smiles": "CN(C)C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 8,
+    "dE_ensemble": 0.7584002302464796,
+    "dE_lowest": 1.4384284438929171,
+    "spread_kcal": 3.221659149894549,
+    "per_form": {
+      "zwitterion": 1.4384284438929171,
+      "keto": 1.786965687671909
+    },
+    "lowest_form": "zwitterion"
+  },
+  {
+    "label": "Me2N C4-Me",
+    "smiles": "CN(C)C=C(C)C=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 8,
+    "dE_ensemble": -12.540533644227253,
+    "dE_lowest": -12.130155299535545,
+    "spread_kcal": 7.068078241529292,
+    "per_form": {
+      "zwitterion": -6.4534956355710165,
+      "keto": -12.130155299535545
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "Me2N accNEt",
+    "smiles": "CN(C)C=CC=C(O)C=C1C(=O)N(CC)C(=O)N(C)C1=O",
+    "n_isomers": 12,
+    "dE_ensemble": 2.8316488275886513,
+    "dE_lowest": 3.8436140646517742,
+    "spread_kcal": 2.865167394418677,
+    "per_form": {
+      "zwitterion": 4.735881437722128,
+      "keto": 3.8436140646517742
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "indoline C5-H",
+    "smiles": "CC1Cc2ccccc2N1C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 24,
+    "dE_ensemble": 0.3491697167555685,
+    "dE_lowest": 0.8450732562196208,
+    "spread_kcal": 12.905912150301447,
+    "per_form": {
+      "zwitterion": 4.403543548338348,
+      "keto": 0.8450732562196208
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "indoline C5-Me",
+    "smiles": "CC1Cc2ccccc2N1C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 24,
+    "dE_ensemble": -2.3289097567248973,
+    "dE_lowest": -1.6336642858295818,
+    "spread_kcal": 10.991092481279338,
+    "per_form": {
+      "zwitterion": -1.6336642858295818,
+      "keto": -1.166446906841884
+    },
+    "lowest_form": "zwitterion"
+  },
+  {
+    "label": "indoline C4-Me",
+    "smiles": "CC1Cc2ccccc2N1C=C(C)C=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 24,
+    "dE_ensemble": -15.33873911552655,
+    "dE_lowest": -14.92391021734511,
+    "spread_kcal": 16.24969711402082,
+    "per_form": {
+      "zwitterion": -11.211879739574215,
+      "keto": -14.92391021734511
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "indoline accNEt",
+    "smiles": "CC1Cc2ccccc2N1C=CC=C(O)C=C1C(=O)N(CC)C(=O)N(C)C1=O",
+    "n_isomers": 32,
+    "dE_ensemble": -0.6019160305513651,
+    "dE_lowest": -0.11479267011600314,
+    "spread_kcal": 13.804698276086128,
+    "per_form": {
+      "zwitterion": 4.11477731254854,
+      "keto": -0.11479267011600314
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "anilino C5-H",
+    "smiles": "CN(c1ccccc1)C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 12,
+    "dE_ensemble": -1.4053828524556593,
+    "dE_lowest": -0.9920301425008802,
+    "spread_kcal": 9.961471285183507,
+    "per_form": {
+      "zwitterion": 5.785079545996268,
+      "keto": -0.9920301425008802
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "anilino C5-Me",
+    "smiles": "CN(c1ccccc1)C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 12,
+    "dE_ensemble": 2.4681895563262515,
+    "dE_lowest": 3.0813155953364912,
+    "spread_kcal": 4.1485302875735215,
+    "per_form": {
+      "zwitterion": 3.3591486562872888,
+      "keto": 3.0813155953364912
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "anilino C4-Me",
+    "smiles": "CN(c1ccccc1)C=C(C)C=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "n_isomers": 12,
+    "dE_ensemble": -13.014389981843124,
+    "dE_lowest": -12.934785990517412,
+    "spread_kcal": 11.96709622144408,
+    "per_form": {
+      "zwitterion": -4.18974001621973,
+      "keto": -12.934785990517412
+    },
+    "lowest_form": "keto"
+  },
+  {
+    "label": "anilino accNEt",
+    "smiles": "CN(c1ccccc1)C=CC=C(O)C=C1C(=O)N(CC)C(=O)N(C)C1=O",
+    "n_isomers": 16,
+    "dE_ensemble": -2.041228620117181,
+    "dE_lowest": -1.3466907714901026,
+    "spread_kcal": 10.182683455677761,
+    "per_form": {
+      "zwitterion": 5.620901101923664,
+      "keto": -1.3466907714901026
+    },
+    "lowest_form": "keto"
+  }
+]

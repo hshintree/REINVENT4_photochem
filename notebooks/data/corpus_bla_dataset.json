@@ -1,0 +1,2018 @@
+[
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(Br)cc1",
+    "label": "C000_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.028776689232912656,
+    "d_mid": -0.014325415090376215
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(Br)cc1",
+    "label": "C001_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.032653147730649534,
+    "d_mid": -0.017732620067435922
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(Br)cc1",
+    "label": "C002_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.016366651489948092,
+    "d_mid": -0.002867304146136229
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(Br)cc2)C(=O)N(C)C1=O",
+    "label": "C003_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.009527515304034617,
+    "d_mid": 0.001052277198163365
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Br)cc1",
+    "label": "C004_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.028530076690974182,
+    "d_mid": -0.01569285306754753
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Br)cc1",
+    "label": "C005_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03314961886709966,
+    "d_mid": -0.020139589464626573
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(Br)cc1",
+    "label": "C006_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.014505383308476727,
+    "d_mid": -0.0015709813425175412
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(Br)cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C007_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.010159363187236092,
+    "d_mid": -0.001045662238886358
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(Cl)cc1",
+    "label": "C008_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.02595943174641957,
+    "d_mid": -0.011926950874141973
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(Cl)cc1",
+    "label": "C009_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.0299745729690708,
+    "d_mid": -0.01542201052851655
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(Cl)cc1",
+    "label": "C010_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.013358221053809904,
+    "d_mid": -0.00021785171214361299
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(Cl)cc2)C(=O)N(C)C1=O",
+    "label": "C011_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.006561385691867372,
+    "d_mid": 0.003665614219845903
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)cc1",
+    "label": "C012_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.025324435467258377,
+    "d_mid": -0.012548508862608276
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)cc1",
+    "label": "C013_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.029693124706536844,
+    "d_mid": -0.016587187422232752
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)cc1",
+    "label": "C014_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.011361663801570554,
+    "d_mid": 0.0013745463431071858
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(Cl)cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C015_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.0027773448610743934,
+    "d_mid": 0.007215718848534003
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C016_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.032555518178910337,
+    "d_mid": -0.017582868135033625
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C017_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.036258546514689405,
+    "d_mid": -0.02074095262231701
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C018_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.02060513088222682,
+    "d_mid": -0.00669479218572433
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(C(F)(F)F)cc2)C(=O)N(C)C1=O",
+    "label": "C019_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.014302766591714366,
+    "d_mid": -0.003139315581493607
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C020_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03253363977917356,
+    "d_mid": -0.019313524398349102
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C021_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.037206563261239944,
+    "d_mid": -0.02402480066419188
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(C(F)(F)F)cc1",
+    "label": "C022_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.019241841534865634,
+    "d_mid": -0.006302111172449498
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(C(F)(F)F)cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C023_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.011673087806781224,
+    "d_mid": -0.0017521544927383559
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(C#N)cc1",
+    "label": "C024_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03148629233097178,
+    "d_mid": -0.01642134956951824
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(C#N)cc1",
+    "label": "C025_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03515292816765725,
+    "d_mid": -0.01954526879923657
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(C#N)cc1",
+    "label": "C026_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.019263450602189147,
+    "d_mid": -0.005308038757670719
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(C#N)cc2)C(=O)N(C)C1=O",
+    "label": "C027_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.013008824517474205,
+    "d_mid": -0.0018672885845800735
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(C#N)cc1",
+    "label": "C028_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.031912325242622774,
+    "d_mid": -0.018952330098871206
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(C#N)cc1",
+    "label": "C029_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.035611690739494994,
+    "d_mid": -0.022090405974236393
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(C#N)cc1",
+    "label": "C030_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.02290335279150968,
+    "d_mid": -0.011136456945318063
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(C#N)cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C031_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.009578999526368648,
+    "d_mid": 0.0009429169385590797
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1cccc(C(F)(F)F)c1",
+    "label": "C032_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03177379029492555,
+    "d_mid": -0.016963724497925936
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1cccc(C(F)(F)F)c1",
+    "label": "C033_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03553551258132237,
+    "d_mid": -0.020239315878759268
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1cccc(C(F)(F)F)c1",
+    "label": "C034_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.01981995360391009,
+    "d_mid": -0.006072266613725619
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2cccc(C(F)(F)F)c2)C(=O)N(C)C1=O",
+    "label": "C035_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.013411543043881702,
+    "d_mid": -0.0023987819927244747
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1cccc(C(F)(F)F)c1",
+    "label": "C036_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03223813542599152,
+    "d_mid": -0.01954454899803726
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1cccc(C(F)(F)F)c1",
+    "label": "C037_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.035772685308756325,
+    "d_mid": -0.022485938355077506
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1cccc(C(F)(F)F)c1",
+    "label": "C038_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01849967503093608,
+    "d_mid": -0.005559877697537408
+  },
+  {
+    "smiles": "CC(C=CNc1cccc(C(F)(F)F)c1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C039_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.010597601409081614,
+    "d_mid": -0.0005337539869736396
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C040_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.029595309588076102,
+    "d_mid": -0.01512577467482945
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C041_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.033522459783450254,
+    "d_mid": -0.018464849222004753
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C042_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.01727923532592568,
+    "d_mid": -0.0037626395271181945
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(Cl)c(Cl)c2)C(=O)N(C)C1=O",
+    "label": "C043_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.010554474887519927,
+    "d_mid": 8.9866273639716e-05
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C044_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.02796510591108614,
+    "d_mid": -0.014567023638287546
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C045_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03377538260688406,
+    "d_mid": -0.02050189181461981
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(Cl)c(Cl)c1",
+    "label": "C046_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.020008685004622162,
+    "d_mid": -0.008242889938183673
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(Cl)c(Cl)c1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C047_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.007476909398625553,
+    "d_mid": 0.002516589551347259
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C048_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03573087137477349,
+    "d_mid": -0.019111049163123228
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C049_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.0392540701378401,
+    "d_mid": -0.021988566978269786
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C050_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.02412277840395194,
+    "d_mid": -0.008900828121543691
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc([N+](=O)[O-])cc2)C(=O)N(C)C1=O",
+    "label": "C051_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.018540440966904326,
+    "d_mid": -0.00608843372469603
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C052_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03677361131745305,
+    "d_mid": -0.022617027707150905
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C053_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03998698128909406,
+    "d_mid": -0.025259381817255067
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc([N+](=O)[O-])cc1",
+    "label": "C054_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.02986794922942071,
+    "d_mid": -0.017648273032940365
+  },
+  {
+    "smiles": "CC(C=CNc1ccc([N+](=O)[O-])cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C055_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.016150901176489763,
+    "d_mid": -0.005179350718509612
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "label": "C056_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03029161767954669,
+    "d_mid": -0.015381199710599924
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(C)N=C2C)cc1",
+    "label": "C057_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03408156080278668,
+    "d_mid": -0.018624311571005414
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "label": "C058_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.01796465498220745,
+    "d_mid": -0.00412642256311635
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "label": "C059_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.011403996090676438,
+    "d_mid": -0.0004171480840724495
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "label": "C060_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.029848435862727785,
+    "d_mid": -0.016363898642078656
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(C)N=C2C)cc1",
+    "label": "C061_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.034659026961107786,
+    "d_mid": -0.021279981113399904
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)ON=C2C)cc1",
+    "label": "C062_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.02140859236422199,
+    "d_mid": -0.00961943932279663
+  },
+  {
+    "smiles": "COC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "label": "C063_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.012516867184204639,
+    "d_mid": -0.0031474070884238703
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "label": "C064_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.029602765778405704,
+    "d_mid": -0.014710225459568571
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(C)N=C2C)cc1",
+    "label": "C065_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.033181198180084026,
+    "d_mid": -0.0176883049879748
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "label": "C066_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.017216440701143254,
+    "d_mid": -0.0034535879380315215
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "label": "C067_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.010544863199310361,
+    "d_mid": 0.00043157900947021766
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "label": "C068_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.029047181885008433,
+    "d_mid": -0.015608844479491513
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(C)N=C2C)cc1",
+    "label": "C069_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.033949264000257884,
+    "d_mid": -0.020445495530205582
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)ON=C2C)cc1",
+    "label": "C070_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.015588457169693593,
+    "d_mid": -0.0024767528814662043
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC(C)=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "label": "C071_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.007621612501575337,
+    "d_mid": 0.002581465189781973
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C072_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.031919257258088196,
+    "d_mid": -0.017034131920739215
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C073_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03599204710677184,
+    "d_mid": -0.02130227437261456
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C074_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.019933131298562223,
+    "d_mid": -0.006115832035366919
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(S(N)(=O)=O)cc2)C(=O)N(C)C1=O",
+    "label": "C075_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.013316161546978567,
+    "d_mid": -0.0024020992793403195
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C076_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.039017216006451694,
+    "d_mid": -0.026958495969604757
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C077_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.043774284838141275,
+    "d_mid": -0.031671966585374856
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccc(S(N)(=O)=O)cc1",
+    "label": "C078_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.019596050854592262,
+    "d_mid": -0.006628441897693849
+  },
+  {
+    "smiles": "CC(C=CNc1ccc(S(N)(=O)=O)cc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C079_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.012094858966517963,
+    "d_mid": -0.0020475211342649846
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2ccccc21",
+    "label": "C080_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.01490454282157505,
+    "d_mid": -0.0026895295673525776
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2ccccc21",
+    "label": "C081_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.01941989445912884,
+    "d_mid": -0.006755807895172161
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2ccccc21",
+    "label": "C082_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.002000652081093346,
+    "d_mid": 0.009411582841977406
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3ccccc32)C(=O)N(C)C1=O",
+    "label": "C083_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": -0.006287384821450637,
+    "d_mid": 0.014369576957146357
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc21",
+    "label": "C084_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01695603721080774,
+    "d_mid": -0.00509187204254169
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc21",
+    "label": "C085_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.022505518709424077,
+    "d_mid": -0.010587535890435484
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc21",
+    "label": "C086_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.00027688203123887867,
+    "d_mid": 0.012159345707828173
+  },
+  {
+    "smiles": "CC(C=CN1CCc2ccccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C087_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.009906690018776976,
+    "d_mid": 0.019506819383779517
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCCc2ccccc21",
+    "label": "C088_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.015373102804890015,
+    "d_mid": -0.003485112258362566
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCCc2ccccc21",
+    "label": "C089_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.019790947469802145,
+    "d_mid": -0.007302806544720264
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCCc2ccccc21",
+    "label": "C090_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.0018418644587154809,
+    "d_mid": 0.009377808334331439
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCCc3ccccc32)C(=O)N(C)C1=O",
+    "label": "C091_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": -0.00650994301120833,
+    "d_mid": 0.014502282695725732
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCCc2ccccc21",
+    "label": "C092_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.014360764198728004,
+    "d_mid": -0.0025328198904837063
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCCc2ccccc21",
+    "label": "C093_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.02055937457963597,
+    "d_mid": -0.00891683213557104
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCCc2ccccc21",
+    "label": "C094_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.002088839375004925,
+    "d_mid": 0.014382802249644833
+  },
+  {
+    "smiles": "CC(C=CN1CCCc2ccccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C095_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.005628624648061242,
+    "d_mid": 0.015360690984809633
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(F)ccc21",
+    "label": "C096_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.019218116280794062,
+    "d_mid": -0.006559478356218396
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2cc(F)ccc21",
+    "label": "C097_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.023358588218774345,
+    "d_mid": -0.010182838666469074
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(F)ccc21",
+    "label": "C098_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.0062391038089220086,
+    "d_mid": 0.00555077615324806
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(F)ccc32)C(=O)N(C)C1=O",
+    "label": "C099_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": -0.0015940229734972,
+    "d_mid": 0.010199933488977075
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(F)ccc21",
+    "label": "C100_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.022677717314754986,
+    "d_mid": -0.010647102146908116
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(F)ccc21",
+    "label": "C101_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.027602742989999873,
+    "d_mid": -0.015244374502462632
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2cc(F)ccc21",
+    "label": "C102_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.00565905948271217,
+    "d_mid": 0.009460030935667163
+  },
+  {
+    "smiles": "CC(C=CN1CCc2cc(F)ccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C103_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.00378713140084308,
+    "d_mid": 0.013357377911056956
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C104_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.025372009063624468,
+    "d_mid": -0.01185665442531203
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C105_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.029367533884379737,
+    "d_mid": -0.015420612165409908
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C106_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.012287416043178956,
+    "d_mid": 0.00019794602469369593
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(C(F)(F)F)ccc32)C(=O)N(C)C1=O",
+    "label": "C107_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.005093722791793542,
+    "d_mid": 0.00446917513018974
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C108_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.031215072526737275,
+    "d_mid": -0.019200358380812244
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C109_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03616826693418784,
+    "d_mid": -0.02400141946988743
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C(F)(F)F)ccc21",
+    "label": "C110_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.012387299245364192,
+    "d_mid": 0.0028853824425947305
+  },
+  {
+    "smiles": "CC(C=CN1CCc2cc(C(F)(F)F)ccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C111_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.005494571781460955,
+    "d_mid": 0.004082196423612849
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(C#N)ccc21",
+    "label": "C112_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.024585543794942044,
+    "d_mid": -0.010952380835677289
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2cc(C#N)ccc21",
+    "label": "C113_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.02850243959020826,
+    "d_mid": -0.0143335369336679
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(C#N)ccc21",
+    "label": "C114_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.011347235387774601,
+    "d_mid": 0.0010865030851090474
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(C#N)ccc32)C(=O)N(C)C1=O",
+    "label": "C115_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.004217660317038963,
+    "d_mid": 0.005351444786219073
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C#N)ccc21",
+    "label": "C116_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.029988799069627037,
+    "d_mid": -0.017732689634912147
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C#N)ccc21",
+    "label": "C117_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.034970492139652753,
+    "d_mid": -0.022645109322365187
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2cc(C#N)ccc21",
+    "label": "C118_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.011168602400105643,
+    "d_mid": 0.004079462386676447
+  },
+  {
+    "smiles": "CC(C=CN1CCc2cc(C#N)ccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C119_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.004186486245737475,
+    "d_mid": 0.005547259392517212
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C120_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.02443834704820813,
+    "d_mid": -0.011025494809133285
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C121_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.02883689425732494,
+    "d_mid": -0.015433179551311182
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C122_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.011635460843816725,
+    "d_mid": 0.0007048109979561623
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(S(N)(=O)=O)ccc32)C(=O)N(C)C1=O",
+    "label": "C123_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.004389187390366978,
+    "d_mid": 0.004999993477099229
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C124_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.030256930236064683,
+    "d_mid": -0.017716956109904203
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C125_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03588172188808891,
+    "d_mid": -0.0233407208966101
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2cc(S(N)(=O)=O)ccc21",
+    "label": "C126_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.015310819598928216,
+    "d_mid": -0.003118396855340988
+  },
+  {
+    "smiles": "CC(C=CN1CCc2cc(S(N)(=O)=O)ccc21)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C127_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.006361708731265958,
+    "d_mid": 0.003327789371450063
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1Cc2ccccc2C1",
+    "label": "C128_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.009899964613545365,
+    "d_mid": 0.001250667823739171
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1Cc2ccccc2C1",
+    "label": "C129_dialkyl_amine_pyrazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_triene",
+    "BLA": 0.014327213874610667,
+    "d_mid": -0.002717873256333325
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1Cc2ccccc2C1",
+    "label": "C130_dialkyl_amine_isoxazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_triene",
+    "BLA": -0.002490906121256131,
+    "d_mid": 0.013123262093882593
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2Cc3ccccc3C2)C(=O)N(C)C1=O",
+    "label": "C131_dialkyl_amine_barbituric_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_triene",
+    "BLA": -0.010906300791475143,
+    "d_mid": 0.018301862710255135
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1Cc2ccccc2C1",
+    "label": "C132_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.0093471718379734,
+    "d_mid": 0.0045026218303207965
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1Cc2ccccc2C1",
+    "label": "C133_dialkyl_amine_pyrazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_central_methyl_triene",
+    "BLA": 0.014082454203372619,
+    "d_mid": -7.58534644207387e-05
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1Cc2ccccc2C1",
+    "label": "C134_dialkyl_amine_isoxazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_central_methyl_triene",
+    "BLA": -0.003573924405281259,
+    "d_mid": 0.01765930048222719
+  },
+  {
+    "smiles": "CC(C=CN1Cc2ccccc2C1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C135_dialkyl_amine_barbituric_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_central_methyl_triene",
+    "BLA": -0.01392749427583384,
+    "d_mid": 0.025440225283944295
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2ccccc2C1",
+    "label": "C136_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.009702818766692767,
+    "d_mid": 0.0011541827160417295
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCc2ccccc2C1",
+    "label": "C137_dialkyl_amine_pyrazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_triene",
+    "BLA": 0.013933551500966201,
+    "d_mid": -0.0026817922956836604
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2ccccc2C1",
+    "label": "C138_dialkyl_amine_isoxazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_triene",
+    "BLA": -0.0025923641809781905,
+    "d_mid": 0.012855992167052355
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3ccccc3C2)C(=O)N(C)C1=O",
+    "label": "C139_dialkyl_amine_barbituric_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_triene",
+    "BLA": -0.011088199922187458,
+    "d_mid": 0.018201366304525513
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc2C1",
+    "label": "C140_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.009457502025580045,
+    "d_mid": 0.004216729672062547
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc2C1",
+    "label": "C141_dialkyl_amine_pyrazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_central_methyl_triene",
+    "BLA": 0.014003248588476014,
+    "d_mid": -0.00023511636442896666
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCc2ccccc2C1",
+    "label": "C142_dialkyl_amine_isoxazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_central_methyl_triene",
+    "BLA": -0.009106101810180123,
+    "d_mid": 0.02087787553525966
+  },
+  {
+    "smiles": "CC(C=CN1CCc2ccccc2C1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C143_dialkyl_amine_barbituric_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_central_methyl_triene",
+    "BLA": -0.020115559531439065,
+    "d_mid": 0.02915467225176105
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1cccnc1",
+    "label": "C144_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.030025708718512067,
+    "d_mid": -0.015501110564868359
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1cccnc1",
+    "label": "C145_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03387906009710773,
+    "d_mid": -0.018821793862348057
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1cccnc1",
+    "label": "C146_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.018154882473973455,
+    "d_mid": -0.0045683081537470915
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2cccnc2)C(=O)N(C)C1=O",
+    "label": "C147_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.011666520000181757,
+    "d_mid": -0.00080401707367872
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1cccnc1",
+    "label": "C148_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.029585764059820496,
+    "d_mid": -0.016571407639584868
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1cccnc1",
+    "label": "C149_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03414230053799616,
+    "d_mid": -0.020960146198806928
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1cccnc1",
+    "label": "C150_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01631787545348229,
+    "d_mid": -0.0033669010228170038
+  },
+  {
+    "smiles": "CC(C=CNc1cccnc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C151_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.008151708265531799,
+    "d_mid": 0.0019550451791778833
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccncc1",
+    "label": "C152_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03268614529269098,
+    "d_mid": -0.017714603167370502
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1ccncc1",
+    "label": "C153_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03627996913219356,
+    "d_mid": -0.02076561860827364
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccncc1",
+    "label": "C154_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.020712294117630092,
+    "d_mid": -0.006811459258684538
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccncc2)C(=O)N(C)C1=O",
+    "label": "C155_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.014236295020400469,
+    "d_mid": -0.003114652978322363
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1ccncc1",
+    "label": "C156_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.0325448031486697,
+    "d_mid": -0.01952281302083425
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1ccncc1",
+    "label": "C157_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03698514138724174,
+    "d_mid": -0.02387644540233569
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1ccncc1",
+    "label": "C158_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.019153757607268673,
+    "d_mid": -0.006202102455712399
+  },
+  {
+    "smiles": "CC(C=CNc1ccncc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C159_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.011524352618957234,
+    "d_mid": -0.0014586702563887943
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1cncnc1",
+    "label": "C160_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.03785779682744339,
+    "d_mid": -0.022014698672879973
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CNc1cncnc1",
+    "label": "C161_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.04124353401276015,
+    "d_mid": -0.02490735772665409
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1cncnc1",
+    "label": "C162_aniline_isoxazolone_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.026712927422521515,
+    "d_mid": -0.012009856967445831
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2cncnc2)C(=O)N(C)C1=O",
+    "label": "C163_aniline_barbituric_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": 0.021066971538590495,
+    "d_mid": -0.009001251869349192
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CNc1cncnc1",
+    "label": "C164_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.03844696292211558,
+    "d_mid": -0.024971304009822948
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CNc1cncnc1",
+    "label": "C165_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.042113413525137755,
+    "d_mid": -0.028413089716995188
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CNc1cncnc1",
+    "label": "C166_aniline_isoxazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.025990222830947207,
+    "d_mid": -0.012909787511988124
+  },
+  {
+    "smiles": "CC(C=CNc1cncnc1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C167_aniline_barbituric_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01856746844431889,
+    "d_mid": -0.007993414018829581
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCOCC1",
+    "label": "C168_morpholine_pyrazolone_triene",
+    "donor": "morpholine",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.013732935711849859,
+    "d_mid": -0.0029114838614539007
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN1CCOCC1",
+    "label": "C169_morpholine_pyrazolone_triene",
+    "donor": "morpholine",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.017685969168833138,
+    "d_mid": -0.0058745788250897935
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCOCC1",
+    "label": "C170_morpholine_isoxazolone_triene",
+    "donor": "morpholine",
+    "acceptor": "isoxazolone",
+    "backbone": "triene",
+    "BLA": 0.0006422697735148919,
+    "d_mid": 0.01018113911746732
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCOCC2)C(=O)N(C)C1=O",
+    "label": "C171_morpholine_barbituric_triene",
+    "donor": "morpholine",
+    "acceptor": "barbituric",
+    "backbone": "triene",
+    "BLA": -0.007898014352458294,
+    "d_mid": 0.015429178330669924
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN1CCOCC1",
+    "label": "C172_morpholine_pyrazolone_central_methyl_triene",
+    "donor": "morpholine",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.014075835008071858,
+    "d_mid": -0.00044995635506173137
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN1CCOCC1",
+    "label": "C173_morpholine_pyrazolone_central_methyl_triene",
+    "donor": "morpholine",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01888387376789713,
+    "d_mid": -0.0050408654222116045
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN1CCOCC1",
+    "label": "C174_morpholine_isoxazolone_central_methyl_triene",
+    "donor": "morpholine",
+    "acceptor": "isoxazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.0005431994590316958,
+    "d_mid": 0.014703750042988961
+  },
+  {
+    "smiles": "CC(C=CN1CCOCC1)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C175_morpholine_barbituric_central_methyl_triene",
+    "donor": "morpholine",
+    "acceptor": "barbituric",
+    "backbone": "central_methyl_triene",
+    "BLA": -0.015398945165617572,
+    "d_mid": 0.024654117237244533
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)CCC(=O)O",
+    "label": "C176_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.011197814876331647,
+    "d_mid": -0.00027190255501441385
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN(C)CCC(=O)O",
+    "label": "C177_dialkyl_amine_pyrazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_triene",
+    "BLA": 0.015674166714171545,
+    "d_mid": -0.00442656478485115
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)CCC(=O)O",
+    "label": "C178_dialkyl_amine_isoxazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_triene",
+    "BLA": -0.0012562785571723634,
+    "d_mid": 0.011721192840982608
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCC(=O)O",
+    "label": "C179_dialkyl_amine_barbituric_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_triene",
+    "BLA": -0.009554153858723824,
+    "d_mid": 0.016782211470304453
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN(C)CCC(=O)O",
+    "label": "C180_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.01532710664089576,
+    "d_mid": -0.0013977221751397817
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN(C)CCC(=O)O",
+    "label": "C181_dialkyl_amine_pyrazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_central_methyl_triene",
+    "BLA": 0.01669438171599613,
+    "d_mid": -0.0029274070404021746
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN(C)CCC(=O)O",
+    "label": "C182_dialkyl_amine_isoxazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_central_methyl_triene",
+    "BLA": -0.00646665435472249,
+    "d_mid": 0.01784349270949792
+  },
+  {
+    "smiles": "CC(C=CN(C)CCC(=O)O)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C183_dialkyl_amine_barbituric_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_central_methyl_triene",
+    "BLA": -0.012417693587602363,
+    "d_mid": 0.024112685163578895
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)CCOCCO",
+    "label": "C184_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.011295590676336564,
+    "d_mid": -0.00017464877157258307
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN(C)CCOCCO",
+    "label": "C185_dialkyl_amine_pyrazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_triene",
+    "BLA": 0.01728355312294516,
+    "d_mid": -0.005735697738714629
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)CCOCCO",
+    "label": "C186_dialkyl_amine_isoxazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_triene",
+    "BLA": -0.0009214998275670627,
+    "d_mid": 0.01146505879688653
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCOCCO",
+    "label": "C187_dialkyl_amine_barbituric_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_triene",
+    "BLA": -0.01088805993253783,
+    "d_mid": 0.017975159980247124
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN(C)CCOCCO",
+    "label": "C188_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.00696331287305707,
+    "d_mid": 0.004388871336107991
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN(C)CCOCCO",
+    "label": "C189_dialkyl_amine_pyrazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_central_methyl_triene",
+    "BLA": 0.04019613681474321,
+    "d_mid": -0.03636582732508353
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN(C)CCOCCO",
+    "label": "C190_dialkyl_amine_isoxazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_central_methyl_triene",
+    "BLA": -0.0004084376335740103,
+    "d_mid": 0.01462564236643793
+  },
+  {
+    "smiles": "CC(C=CN(C)CCOCCO)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C191_dialkyl_amine_barbituric_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_central_methyl_triene",
+    "BLA": -0.015016840913868457,
+    "d_mid": 0.023586169864578288
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)CCS(=O)(=O)O",
+    "label": "C192_aniline_pyrazolone_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "triene",
+    "BLA": 0.015517951833279753,
+    "d_mid": -0.004451029755941249
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC=CN(C)CCS(=O)(=O)O",
+    "label": "C193_dialkyl_amine_pyrazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_triene",
+    "BLA": 0.019736320991644574,
+    "d_mid": -0.008311769431583294
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)CCS(=O)(=O)O",
+    "label": "C194_dialkyl_amine_isoxazolone_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_triene",
+    "BLA": 0.002827131673742711,
+    "d_mid": 0.007614520832287308
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCS(=O)(=O)O",
+    "label": "C195_dialkyl_amine_barbituric_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_triene",
+    "BLA": -0.005427346953058576,
+    "d_mid": 0.0126521987487902
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=C(C)C=CN(C)CCS(=O)(=O)O",
+    "label": "C196_aniline_pyrazolone_central_methyl_triene",
+    "donor": "aniline",
+    "acceptor": "pyrazolone",
+    "backbone": "central_methyl_triene",
+    "BLA": 0.014213883118517678,
+    "d_mid": -0.004019973611218308
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=C(C)C=CN(C)CCS(=O)(=O)O",
+    "label": "C197_dialkyl_amine_pyrazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "pyrazolone_central_methyl_triene",
+    "BLA": 0.023598530962267494,
+    "d_mid": -0.010604946712293506
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=C(C)C=CN(C)CCS(=O)(=O)O",
+    "label": "C198_dialkyl_amine_isoxazolone_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "isoxazolone_central_methyl_triene",
+    "BLA": 0.0040746315945645595,
+    "d_mid": 0.009062824504399103
+  },
+  {
+    "smiles": "CC(C=CN(C)CCS(=O)(=O)O)=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "label": "C199_dialkyl_amine_barbituric_central_methyl_triene",
+    "donor": "dialkyl",
+    "acceptor": "amine",
+    "backbone": "barbituric_central_methyl_triene",
+    "BLA": -0.012276183776753324,
+    "d_mid": 0.021591586936303697
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(C)CC1",
+    "label": "C200_tethered_pyrazolone_tether5_methyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_methyl",
+    "BLA": 0.0008153673337789602,
+    "d_mid": 0.01115830791279393
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(C)CC1",
+    "label": "C201_tethered_pyrazolone_tether5_methyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_methyl",
+    "BLA": 0.005294817636307014,
+    "d_mid": 0.007259846966579664
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(C)CC1",
+    "label": "C202_tethered_isoxazolone_tether5_methyl",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether5_methyl",
+    "BLA": -0.011643637995452094,
+    "d_mid": 0.022672309687869374
+  },
+  {
+    "smiles": "CN1C=C(C=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)CC1",
+    "label": "C203_tethered_barbituric_tether5_methyl",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether5_methyl",
+    "BLA": -0.02019276312286933,
+    "d_mid": 0.02789499415195773
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(C)CCC1",
+    "label": "C204_tethered_pyrazolone_tether6_methyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether6_methyl",
+    "BLA": 0.006525077993940087,
+    "d_mid": 0.0005544513275588248
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(C)CCC1",
+    "label": "C205_tethered_pyrazolone_tether6_methyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether6_methyl",
+    "BLA": 0.011217613503355262,
+    "d_mid": -0.0037751770346290403
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(C)CCC1",
+    "label": "C206_tethered_isoxazolone_tether6_methyl",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether6_methyl",
+    "BLA": -0.0062941496739548075,
+    "d_mid": 0.01261625202598271
+  },
+  {
+    "smiles": "CN1C=C(C=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)CCC1",
+    "label": "C207_tethered_barbituric_tether6_methyl",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether6_methyl",
+    "BLA": -0.015189269752765133,
+    "d_mid": 0.01817172346354523
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(CCOCCO)CC1",
+    "label": "C208_tethered_pyrazolone_tether5_PEG",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_PEG",
+    "BLA": 0.005721943870492074,
+    "d_mid": 0.006835164611936673
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(CCOCCO)CC1",
+    "label": "C209_tethered_pyrazolone_tether5_PEG",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_PEG",
+    "BLA": 0.010838119251423972,
+    "d_mid": 0.00220105417837968
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(CCOCCO)CC1",
+    "label": "C210_tethered_isoxazolone_tether5_PEG",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether5_PEG",
+    "BLA": -0.008168861423753393,
+    "d_mid": 0.01947831081623641
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC2=CN(CCOCCO)CC2)C(=O)N(C)C1=O",
+    "label": "C211_tethered_barbituric_tether5_PEG",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether5_PEG",
+    "BLA": -0.014932189378496163,
+    "d_mid": 0.02301061491611711
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(CCC(=O)O)CC1",
+    "label": "C212_tethered_pyrazolone_tether5_carboxyethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_carboxyethyl",
+    "BLA": 0.005407980444348093,
+    "d_mid": 0.007074008599803339
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(CCC(=O)O)CC1",
+    "label": "C213_tethered_pyrazolone_tether5_carboxyethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_carboxyethyl",
+    "BLA": 0.009800291131831118,
+    "d_mid": 0.0032759927945469336
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(CCC(=O)O)CC1",
+    "label": "C214_tethered_isoxazolone_tether5_carboxyethyl",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether5_carboxyethyl",
+    "BLA": -0.0068686925631664675,
+    "d_mid": 0.018330628643284275
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC2=CN(CCC(=O)O)CC2)C(=O)N(C)C1=O",
+    "label": "C215_tethered_barbituric_tether5_carboxyethyl",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether5_carboxyethyl",
+    "BLA": -0.015376260281131593,
+    "d_mid": 0.023550770565917034
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(CCS(=O)(=O)O)CC1",
+    "label": "C216_tethered_pyrazolone_tether5_sulfoethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_sulfoethyl",
+    "BLA": 0.00980900140734775,
+    "d_mid": 0.0031035996355208706
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(CCS(=O)(=O)O)CC1",
+    "label": "C217_tethered_pyrazolone_tether5_sulfoethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_sulfoethyl",
+    "BLA": 0.014191833043814661,
+    "d_mid": -0.0007464404881507569
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(CCS(=O)(=O)O)CC1",
+    "label": "C218_tethered_isoxazolone_tether5_sulfoethyl",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether5_sulfoethyl",
+    "BLA": -0.0026604179893634505,
+    "d_mid": 0.014472311699159413
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC2=CN(CCS(=O)(=O)O)CC2)C(=O)N(C)C1=O",
+    "label": "C219_tethered_barbituric_tether5_sulfoethyl",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether5_sulfoethyl",
+    "BLA": -0.010649359114627055,
+    "d_mid": 0.01926839741311759
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC1=CN(CCO)CC1",
+    "label": "C220_tethered_pyrazolone_tether5_hydroxyethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_hydroxyethyl",
+    "BLA": 0.005894507983473352,
+    "d_mid": 0.006537110787961931
+  },
+  {
+    "smiles": "CC1=NN(C)C(=O)C1=CC(O)=CC1=CN(CCO)CC1",
+    "label": "C221_tethered_pyrazolone_tether5_hydroxyethyl",
+    "donor": "tethered",
+    "acceptor": "pyrazolone",
+    "backbone": "tether5_hydroxyethyl",
+    "BLA": 0.01049428257959284,
+    "d_mid": 0.0025599846177606356
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC1=CN(CCO)CC1",
+    "label": "C222_tethered_isoxazolone_tether5_hydroxyethyl",
+    "donor": "tethered",
+    "acceptor": "isoxazolone",
+    "backbone": "tether5_hydroxyethyl",
+    "BLA": -0.006629017431664996,
+    "d_mid": 0.01806052327582508
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC2=CN(CCO)CC2)C(=O)N(C)C1=O",
+    "label": "C223_tethered_barbituric_tether5_hydroxyethyl",
+    "donor": "tethered",
+    "acceptor": "barbituric",
+    "backbone": "tether5_hydroxyethyl",
+    "BLA": -0.01580083105872987,
+    "d_mid": 0.023778242701663066
+  }
+]

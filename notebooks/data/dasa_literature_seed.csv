@@ -1,11 +1,21 @@
-smiles_open,smiles_closed,donor_class,acceptor_class,lambda_max_open_nm,solvent,pct_open_equilibrium,solvatochromic_slope_nm,switches_in_water,source
-CCN(/C=C/C=C/C(O)=C1C(=O)OC(C)(C)OC1=O)CC,,dialkyl_amine,meldrum,545,toluene,,,False,"Helmy JOC 2014 (Meldrum's, diethylamine)"
-CC1(C)OC(=O)C(=C(O)/C=C/C=C/N2CCOCC2)C(=O)O1,,morpholine,meldrum,545,toluene,,,False,"Helmy JOC 2014 (Meldrum's, morpholine)"
-CCN(/C=C/C=C/C(O)=C1C(=O)N(C)C(=O)N(C)C1=O)CC,,dialkyl_amine,barbituric,570,toluene,,,False,"Helmy JOC 2014 (1,3-dimethylbarbituric, diethylamine)"
-CN1C(=O)C(=C(O)/C=C/C=C/N2CCCC2)C(=O)N(C)C1=O,,dialkyl_amine,barbituric,570,toluene,,,False,"Helmy JOC 2014 (1,3-dimethylbarbituric, pyrrolidine)"
-CCN(/C=C/C=C/C(O)=C1C(=O)c2ccccc2C1=O)CC,,dialkyl_amine,indandione,600,toluene,,,False,"Helmy JOC 2014 (indandione, diethylamine)"
-CN(/C=C/C=C/C(O)=C1C(=O)NC(=O)NC1=O)c1ccccc1,,aniline,barbituric,628,CHCl3,,,False,"Hemmer JACS 2018 (barbituric, aniline)"
-CC1=NOC(=O)C1=C(O)/C=C/C=C/N(C)c1ccccc1,,aniline,isoxazolone,626,CHCl3,,,False,"Hemmer 2021 (methylisoxazolone, aniline)"
-CN(/C=C/C=C/C(O)=C1C(=O)ON=C1C(F)(F)F)c1ccccc1,,aniline,isoxazolone,649,CHCl3,,,False,"Hemmer 2021 (CF3-isoxazolone, aniline)"
-CN(/C=C/C=C/C(O)=C1C(=O)c2ccccc2C1=O)c1ccccc1,,aniline,indandione,654,CHCl3,,,False,"Hemmer 2021 (indandione, aniline)"
-CN(/C=C/C=C/C(O)=C1C(=O)N(c2ccccc2)N=C1C(F)(F)F)c1ccccc1,,aniline,pyrazolone,669,CHCl3,,,False,"Hemmer 2021 (CF3-pyrazolone, aniline)"
+compound_id,smiles_open,smiles_closed,donor_class,acceptor_class,lambda_max_open_nm,lambda_solvent,pct_open_equilibrium,equilibrium_solvent,solvatochromic_slope_nm,switches_in_water,half_life_s,half_life_solvent,structure_confidence,source,source_location
+H1,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)OC(C)(C)OC1=O,,fused_aryl,meldrum,585,CDCl3,45,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425",Fig. 1b (acceptor 1); Fig. 3b + text
+H2,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)N(C)C(=O)N(C)C1=O,,fused_aryl,dimethylbarbituric,615,CH2Cl2,45,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425","Fig. 3b (45% open). lambda 615 nm is from Berraud-Pache Chem Sci 2021, 12, 2916, Table 1 D1-A2 -- the SAME COMPOUND measured in two papers."
+H3,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)N(c2ccccc2)N(c2ccccc2)C1=O,,fused_aryl,pyrazolidinedione,,,80,CDCl3,,False,,,reconstructed,"Hemmer JACS 2018, 140, 10425","Fig. 1b acceptor 3 drawn as 1,2-diphenylpyrazolidinedione; 75-85% band"
+H4,CC1=NOC(=O)C1=C/C(O)=C/C=C/N1c2ccccc2CC1C,,fused_aryl,methylisoxazolone,,,80,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425",text: 'from 80 to 95%' comparing 4 to 5
+H5,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)ON=C1C(F)(F)F,,fused_aryl,CF3_isoxazolone,,,95,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425",text: 'from 80 to 95%'
+H6,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)c2ccccc2C1=O,,fused_aryl,indandione,,,5,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425",Fig. 3b - ONLY acceptor below 1/2; value read off the bar chart
+H7,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)N(c2ccccc2)N=C1C(F)(F)F,,fused_aryl,CF3_pyrazolone,650,CDCl3,97,CDCl3,,False,,,certain,"Hemmer JACS 2018, 140, 10425","text: 'lambda_max ~ 650 nm, >95% triene at equilibrium'"
+C1,CC1Cc2ccccc2N1/C=C/C=C(\O)C=C1C(=O)N(C)C(=S)N(C)C1=O,,fused_aryl,thiobarbituric,647,CH2Cl2,,,,False,,,reconstructed,"Berraud-Pache Chem Sci 2021, 12, 2916","D1-A2d, 647 nm in DCM. A2d is the commercially-available thio-barbituric; which C=O became C=S is inferred"
+M1,CN(C)/C=C/C=C(\O)C=C1C(=O)N(C)C(=O)N(C)C1=O,,dialkyl_amine,dimethylbarbituric,567,CHCl3,86,CDCl3,,False,,,certain,"Mallo Chem Sci 2018, 9, 8242",cmpd 1; 86% open. Also the modal_dft_v2 colour anchor.
+M14,CN1C(=O)C(=C/C(O)=C/C=C/N(C)c2ccccc2)C(=O)N(C)C1=O,,aniline,dimethylbarbituric,588,CHCl3,43,CDCl3,,False,,,reconstructed,"Mallo Chem Sci 2018, 9, 8242",cmpd 14; 57% CYCLIC in the dark -> 43% open. X-ray of its closed form is the NEUTRAL keto. Exact aniline N-substituent inferred.
+P3,CC1(C)OC(=O)C(=CC(O)=CC=C2CCCN2c2ccccc2)C(=O)O1,,tethered_aniline,meldrum,560,toluene,99,MeOH,-56,False,,,reconstructed,"Peterson Chem Sci 2023, 14, 13025",cmpd 3; slope -56 nm; 1H NMR shows only open form in toluene/DMSO/MeOH after 24 h; lambda from 'absorbance of A (560 nm)'. Tether geometry inferred from prose.
+P4,CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=C1CCCN1c1ccccc1,,tethered_aniline,methylpyrazolone,,,70,MeOH,-32,False,,,reconstructed,"Peterson Chem Sci 2023, 14, 13025",cmpd 4; slope -32 nm; 70% open in MeOH
+P5,CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=C1CCCN1c1ccc(I)cc1,,tethered_aniline,methylpyrazolone,575,THF:H2O 60:40,24,MeOH,-20,True,240,THF:H2O 60:40,reconstructed,"Peterson Chem Sci 2023, 14, 13025","cmpd 5; slope -20 nm; 24% open in MeOH; switches in 60:40 THF:water, 95% recovery t(1/2) 240 s, >=10 cycles. THE most water-compatible free DASA reported."
+D1H,CC1(C)OC(=O)C(=C/C(O)=C/C=C/N2CCc3ccccc32)C(=O)O1,,fused_aryl,meldrum,590,toluene,29,toluene,-7,False,,,certain,"Peterson Chem Commun 2022, 58, 2303","D1-H, Table 1: lambda 590 nm, 29% open, slope -7 nm, no recovery over 2000 s"
+D1M,CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCc2ccccc21,,fused_aryl,meldrum,609,toluene,95,toluene,-24,False,136,toluene,certain,"Peterson Chem Commun 2022, 58, 2303","D1-M, Table 1: 5-METHYL on the triene. lambda 609 nm, 95% open, slope -24 nm, t(1/2) 136 s, 99% recovery. Pairs with D1H -> measured ddG = +2.275 kcal/mol. CAVEAT: reverts to amine + furan in MeOH within 10 min (5% loss/7 h in toluene)"
+B1,CN1C(=O)C(=C/C(O)=C/C=C/NC23CC4CC(CC(C4)C2)C3)C(=O)N(C)C1=O,,monoalkyl_amine,dimethylbarbituric,,,,,-79,False,2280,THF:H2O 10:90,reconstructed,"Blandon-Cumbreras JACS 2026, 148, 130",DASA 1; slope -79 nm vs E_T(30); t(1/2) 38 min. 'Acceptor derived from barbituric acid' - N-methylation inferred.
+B2,CC1(C)OC(=O)C(=C/C(O)=C/C=C/NC23CC4CC(CC(C4)C2)C3)C(=O)O1,,monoalkyl_amine,meldrum,,,,,-65,False,1740,THF:H2O 10:90,certain,"Blandon-Cumbreras JACS 2026, 148, 130",DASA 2; slope -65 nm; t(1/2) 29 min
+N9,CN1C(=O)C(=C/C(O)=C/C=C/N2Cc3ccccc3C2)C(=O)N(C)C1=O,,cyclic_benzylic,dimethylbarbituric,573,CH2Cl2,,,,False,,,reconstructed,"Nat Commun 2024, hydroxy parents",cmpd 9; RE-VERIFY
+N10,CN1C(=O)C(=C/C(O)=C/C=C/N2CCc3ccccc32)C(=O)N(C)C1=O,,fused_aryl,dimethylbarbituric,615,CH2Cl2,,,,False,,,reconstructed,"Nat Commun 2024, hydroxy parents",cmpd 10; RE-VERIFY. Cross-checks H2 (615 nm).
+N11,O=C1C(=C/C(O)=C/C=C/N2CCc3ccccc32)C(C(F)(F)F)=NN1c1ccccc1,,fused_aryl,CF3_pyrazolone,646,CH2Cl2,,,,False,,,reconstructed,"Nat Commun 2024, hydroxy parents",RE-VERIFY
