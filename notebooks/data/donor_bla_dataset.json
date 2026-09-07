@@ -1,0 +1,2402 @@
+[
+  {
+    "smiles": "CN(C)C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.011912093680975566,
+    "d_mid": 0.018798077634868626
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.028029189919281938,
+    "d_mid": 0.03206543056293887
+  },
+  {
+    "smiles": "CN(C)C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.01407760456582352,
+    "d_mid": 0.020960700553658063
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.030073572470826093,
+    "d_mid": 0.034518531412292
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.007292187732773181,
+    "d_mid": 0.003458825316238867
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.004784056829238548,
+    "d_mid": 0.013211951219176177
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.005205411788503644,
+    "d_mid": 0.015439717819284438
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N(C)C",
+    "donor": "dimethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.019419442793880526,
+    "d_mid": 0.027381358638705944
+  },
+  {
+    "smiles": "CCN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)CC",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.010645675442468194,
+    "d_mid": 0.01768535488709233
+  },
+  {
+    "smiles": "CCN(CC)C(C)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.02512810825450562,
+    "d_mid": 0.029499878282437386
+  },
+  {
+    "smiles": "CCN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CC",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.013769167588100206,
+    "d_mid": 0.020701756077513345
+  },
+  {
+    "smiles": "CCN(CC)C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.026738287612569467,
+    "d_mid": 0.03133019335042486
+  },
+  {
+    "smiles": "CCN(C=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)CC",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.008200001822679548,
+    "d_mid": 0.0027735631938916594
+  },
+  {
+    "smiles": "CCN(CC)C(C)=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.004169588664719059,
+    "d_mid": 0.012885348876333413
+  },
+  {
+    "smiles": "CCN(C=CC=C(O)C=C1C(=O)ON=C1C)CC",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.004290719028392287,
+    "d_mid": 0.014765872519378664
+  },
+  {
+    "smiles": "CCN(CC)C(C)=CC=C(O)C=C1C(=O)ON=C1C",
+    "donor": "diethylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.01731237697584609,
+    "d_mid": 0.025398966831934988
+  },
+  {
+    "smiles": "CCCN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)CCC",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.010712158351682266,
+    "d_mid": 0.017865464794609043
+  },
+  {
+    "smiles": "CCCN(CCC)C(C)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.027870302010054138,
+    "d_mid": 0.03217048634617714
+  },
+  {
+    "smiles": "CCCN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCC",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.01286920317095297,
+    "d_mid": 0.020162300638110198
+  },
+  {
+    "smiles": "CCCN(CCC)C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.02715662937226293,
+    "d_mid": 0.03181697538730832
+  },
+  {
+    "smiles": "CCCN(C=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)CCC",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.008155957830431326,
+    "d_mid": 0.0028559280507645113
+  },
+  {
+    "smiles": "CCCN(CCC)C(C)=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.00402538244420958,
+    "d_mid": 0.012750939740293621
+  },
+  {
+    "smiles": "CCCN(C=CC=C(O)C=C1C(=O)ON=C1C)CCC",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.004226079871148425,
+    "d_mid": 0.014751766377709252
+  },
+  {
+    "smiles": "CCCN(CCC)C(C)=CC=C(O)C=C1C(=O)ON=C1C",
+    "donor": "dipropylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.01736648329404855,
+    "d_mid": 0.025470920531427854
+  },
+  {
+    "smiles": "CCCCN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)CCCC",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.010840977871201973,
+    "d_mid": 0.0179962332402559
+  },
+  {
+    "smiles": "CCCCN(CCCC)C(C)=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.025199170204334154,
+    "d_mid": 0.029692736278991827
+  },
+  {
+    "smiles": "CCCCN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCCC",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.012951245509504217,
+    "d_mid": 0.02012572107027344
+  },
+  {
+    "smiles": "CCCCN(CCCC)C(C)=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.027393676120414545,
+    "d_mid": 0.032013503206993255
+  },
+  {
+    "smiles": "CCCCN(C=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)CCCC",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.007787564724054619,
+    "d_mid": 0.003135098916107193
+  },
+  {
+    "smiles": "CCCCN(CCCC)C(C)=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.00471283499045394,
+    "d_mid": 0.013405484739746898
+  },
+  {
+    "smiles": "CCCCN(C=CC=C(O)C=C1C(=O)ON=C1C)CCCC",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.004382170168491184,
+    "d_mid": 0.01488739459845645
+  },
+  {
+    "smiles": "CCCCN(CCCC)C(C)=CC=C(O)C=C1C(=O)ON=C1C",
+    "donor": "dibutylamino",
+    "dclass": "dialkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.017518845368089453,
+    "d_mid": 0.02569004624536797
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCCC2)C(=O)O1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.012675726437190393,
+    "d_mid": 0.019690713712237295
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.026398256409492893,
+    "d_mid": 0.030991688161306374
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCCC2)C(=O)N(C)C1=O",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.014394692517786023,
+    "d_mid": 0.02159106911166142
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.028207146679406714,
+    "d_mid": 0.03299588814759091
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.006475550768038074,
+    "d_mid": 0.004524635241477393
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.00549753836138267,
+    "d_mid": 0.014285763212176006
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.006007149716036997,
+    "d_mid": 0.016461948029033557
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCCC1",
+    "donor": "pyrrolidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.018497758980461798,
+    "d_mid": 0.02679698914724371
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCCCC2)C(=O)O1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.012186084906103067,
+    "d_mid": 0.019219092907192037
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.024410086682719934,
+    "d_mid": 0.029153298037622122
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCCCC2)C(=O)N(C)C1=O",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.014296535348341743,
+    "d_mid": 0.021370536084445613
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.026044039594987023,
+    "d_mid": 0.030974941808968204
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.007068458372771369,
+    "d_mid": 0.003829069609841751
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.0030554945113088205,
+    "d_mid": 0.01193817328703406
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.005438872737187683,
+    "d_mid": 0.015879029422380952
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCCCC1",
+    "donor": "piperidino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.017351819552516856,
+    "d_mid": 0.025671878159994277
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCOCC2)C(=O)O1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.005059490716007531,
+    "d_mid": 0.012704069044794153
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.020802865376986057,
+    "d_mid": 0.025727513964310056
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCOCC2)C(=O)N(C)C1=O",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.007898014352458294,
+    "d_mid": 0.015429178330669924
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.02256844242649314,
+    "d_mid": 0.0278441827526541
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.013732935711849859,
+    "d_mid": -0.0029114838614539007
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.00220139455138324,
+    "d_mid": 0.0071324356002782086
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0006422697735148919,
+    "d_mid": 0.01018113911746732
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCOCC1",
+    "donor": "morpholino",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.012865030653520515,
+    "d_mid": 0.021485726811422357
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCCCCC2)C(=O)O1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.01106682459677999,
+    "d_mid": 0.018359299298837506
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.025239457257689724,
+    "d_mid": 0.02999221720335221
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCCCCC2)C(=O)N(C)C1=O",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.01340636875956025,
+    "d_mid": 0.020677334463027552
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.02688413310128923,
+    "d_mid": 0.03173429390996696
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.00835011263420582,
+    "d_mid": 0.002686178728176669
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.003989566923383814,
+    "d_mid": 0.01287010431145763
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": -0.004201826366495798,
+    "d_mid": 0.01470830340425855
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCCCCC1",
+    "donor": "azepano",
+    "dclass": "cyclic_alkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.01737522890093368,
+    "d_mid": 0.025634248572953044
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNC23CC4CC(CC(C4)C2)C3)C(=O)O1",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.0039411923422205675,
+    "d_mid": 0.012460818696222509
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)NC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.021042645050914688,
+    "d_mid": 0.025132232373776597
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNC23CC4CC(CC(C4)C2)C3)C(=O)N(C)C1=O",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.006423320870246441,
+    "d_mid": 0.014890062119190528
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)NC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.022691304072375296,
+    "d_mid": 0.027059234830787204
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.013674966595801807,
+    "d_mid": -0.0015757720079541127
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)NC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.0003230509882869992,
+    "d_mid": 0.008573255703347993
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0014278318062694861,
+    "d_mid": 0.010173991002946359
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)NC12CC3CC(CC(C3)C1)C2",
+    "donor": "adamantylamino",
+    "dclass": "monoalkyl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.013409266382732765,
+    "d_mid": 0.021000657452744154
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN(CCO)CCO)C(=O)O1",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.0012425266632567489,
+    "d_mid": 0.008674943252590994
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0167716438704959,
+    "d_mid": 0.02153196632599319
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN(CCO)CCO)C(=O)N(C)C1=O",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.0045495095197303215,
+    "d_mid": 0.012142019183047692
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.01903668957336513,
+    "d_mid": 0.023871765145922152
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.01696140985248973,
+    "d_mid": -0.0058317281216928585
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0026706471058435266,
+    "d_mid": 0.0064298986357864685
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.0046332897275642715,
+    "d_mid": 0.0062504237055533984
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N(CCO)CCO",
+    "donor": "diethanolamino",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.009279498553824483,
+    "d_mid": 0.017686615774196612
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.007689884138457614,
+    "d_mid": 0.014816308238052356
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.02115909995083265,
+    "d_mid": 0.02596294697925039
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.009929731776880057,
+    "d_mid": 0.017169078280982353
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.023090115978006587,
+    "d_mid": 0.027991851645845722
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.012948082866860888,
+    "d_mid": -0.0018373625147820594
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0006444334933570772,
+    "d_mid": 0.008028888697084069
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.00023255798897015012,
+    "d_mid": 0.010198423469452988
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N(C)CCO",
+    "donor": "N_Me_hydroxyethyl",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.013796530515499006,
+    "d_mid": 0.022170709134259337
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.008557060557123464,
+    "d_mid": 0.015361347818555693
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.022301646771164085,
+    "d_mid": 0.026936093251130666
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.01088805993253783,
+    "d_mid": 0.017975159980247124
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.02412566561837015,
+    "d_mid": 0.029000022040341467
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.011295590676336564,
+    "d_mid": -0.00017464877157258307
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0013547696336715376,
+    "d_mid": 0.00997963862761142
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.0009214998275670627,
+    "d_mid": 0.01146505879688653
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N(C)CCOCCO",
+    "donor": "N_Me_PEG2",
+    "dclass": "dialkyl_polar",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.013777298332468435,
+    "d_mid": 0.022041706676745543
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCc3ccccc32)C(=O)O1",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.0037527731283748533,
+    "d_mid": 0.011872472987671356
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.014504132743698106,
+    "d_mid": 0.020450603940811884
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3ccccc32)C(=O)N(C)C1=O",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.006287384821450637,
+    "d_mid": 0.014369576957146357
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.01706463944255865,
+    "d_mid": 0.022993845038243865
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.01490454282157505,
+    "d_mid": -0.0026895295673525776
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.008915357519716727,
+    "d_mid": 0.00141600151611887
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.002000652081093346,
+    "d_mid": 0.009411582841977406
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCc2ccccc21",
+    "donor": "indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.007006372575719899,
+    "d_mid": 0.01630427694874581
+  },
+  {
+    "smiles": "CC1Cc2ccccc2N1C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.004350393012781728,
+    "d_mid": 0.012559892290104457
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.007674182624206605,
+    "d_mid": 0.013966541350821204
+  },
+  {
+    "smiles": "CC1Cc2ccccc2N1C=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.006612717186570194,
+    "d_mid": 0.01494814400051081
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.017906032954438045,
+    "d_mid": 0.0237606371569552
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.014495679475161616,
+    "d_mid": -0.0023031260947248278
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.008543350631235347,
+    "d_mid": 0.001592622300339519
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0014407947891181827,
+    "d_mid": 0.01001626544087375
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1c2ccccc2CC1C",
+    "donor": "2-methylindoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.0006142233374899497,
+    "d_mid": 0.010099606725614496
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2Cc3ccccc3C2)C(=O)O1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.008434166698095158,
+    "d_mid": 0.01581375618415759
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.023008393761156265,
+    "d_mid": 0.027830334693827785
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2Cc3ccccc3C2)C(=O)N(C)C1=O",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.010906300791475143,
+    "d_mid": 0.018301862710255135
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.02491941693760924,
+    "d_mid": 0.029913486386643262
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.009899964613545365,
+    "d_mid": 0.001250667823739171
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.0023192933285283157,
+    "d_mid": 0.011337498867937557
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.002490906121256131,
+    "d_mid": 0.013123262093882593
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1Cc2ccccc2C1",
+    "donor": "isoindoline",
+    "dclass": "cyclic_benzylic",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.015426516778271893,
+    "d_mid": 0.023920276434256982
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCCc3ccccc32)C(=O)O1",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.0036830324820595894,
+    "d_mid": 0.011532879856999134
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.014649635821629703,
+    "d_mid": 0.01978927816594278
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCCc3ccccc32)C(=O)N(C)C1=O",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.00650994301120833,
+    "d_mid": 0.014502282695725732
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.016797555716937085,
+    "d_mid": 0.02234927809626841
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.015373102804890015,
+    "d_mid": -0.003485112258362566
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.008849139095366887,
+    "d_mid": 0.0011665668908655835
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0018418644587154809,
+    "d_mid": 0.009377808334331439
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCCc2ccccc21",
+    "donor": "tetrahydroquinolino",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.00682775159731519,
+    "d_mid": 0.01567681018402567
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCc3cc(F)ccc32)C(=O)O1",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.00135387298712919,
+    "d_mid": 0.007306627810642619
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.008978598556064643,
+    "d_mid": 0.01534238724191006
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(F)ccc32)C(=O)N(C)C1=O",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": -0.0015940229734972,
+    "d_mid": 0.010199933488977075
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.011551067962224826,
+    "d_mid": 0.01815218702520327
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.019218116280794062,
+    "d_mid": -0.006559478356218396
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.013883198104996053,
+    "d_mid": -0.0028848638693499407
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.0062391038089220086,
+    "d_mid": 0.00555077615324806
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCc2cc(F)ccc21",
+    "donor": "5-F-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0019607081521291203,
+    "d_mid": 0.011897648781368675
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCc3cc(C(F)(F)F)ccc32)C(=O)O1",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.008577039143647713,
+    "d_mid": 0.0008938219558949356
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0005868624568425851,
+    "d_mid": 0.0072046261875731155
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(C(F)(F)F)ccc32)C(=O)N(C)C1=O",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.005093722791793542,
+    "d_mid": 0.00446917513018974
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0036606141715951335,
+    "d_mid": 0.011292010474220238
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.025372009063624468,
+    "d_mid": -0.01185665442531203
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.022358199399373113,
+    "d_mid": -0.010466600118171687
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.012287416043178956,
+    "d_mid": 0.00019794602469369593
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCc2cc(C(F)(F)F)ccc21",
+    "donor": "5-CF3-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.005902918549253178,
+    "d_mid": 0.004833752528883295
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CN2CCc3cc(C#N)ccc32)C(=O)O1",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.007572181407707657,
+    "d_mid": 0.0019900012167004544
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0009314570983771642,
+    "d_mid": 0.008497409740618522
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN2CCc3cc(C#N)ccc32)C(=O)N(C)C1=O",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.004217660317038963,
+    "d_mid": 0.005351444786219073
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.004766382394600477,
+    "d_mid": 0.012125898225917142
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.024585543794942044,
+    "d_mid": -0.010952380835677289
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.021400933685473023,
+    "d_mid": -0.00966161344523564
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.011347235387774601,
+    "d_mid": 0.0010865030851090474
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N1CCc2cc(C#N)ccc21",
+    "donor": "5-CN-indoline",
+    "dclass": "fused_aryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.004507010098558029,
+    "d_mid": 0.006140722480321159
+  },
+  {
+    "smiles": "CN(C=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.002558460017483055,
+    "d_mid": 0.01046901841416581
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)N(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.020543036494406586,
+    "d_mid": 0.02558623206023336
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CN(C)c2ccccc2)C(=O)N(C)C1=O",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.005254485940049625,
+    "d_mid": 0.013438961668324811
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)N(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.022837698454989175,
+    "d_mid": 0.02787534926280455
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CN(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.015944724289975065,
+    "d_mid": -0.004139026198004769
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)N(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.0027073248901079427,
+    "d_mid": 0.006578228849925871
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CN(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.002699047189305359,
+    "d_mid": 0.008413281511277182
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)N(C)c1ccccc1",
+    "donor": "N_methylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.01239442848779948,
+    "d_mid": 0.020975617699181326
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccccc2)C(=O)O1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.006375854708493334,
+    "d_mid": 0.003505428107794195
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.009576899028227004,
+    "d_mid": 0.015710273749652837
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccccc2)C(=O)N(C)C1=O",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.003193110745341343,
+    "d_mid": 0.006649198427277181
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.005656050130298906,
+    "d_mid": 0.012683843246071858
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.022778407000948908,
+    "d_mid": -0.009115591369608378
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.010501065683531374,
+    "d_mid": -0.000170285737122855
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.010281191965025416,
+    "d_mid": 0.0025260167789360466
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccccc1",
+    "donor": "anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.002968550337859144,
+    "d_mid": 0.007136360618716031
+  },
+  {
+    "smiles": "COc1ccc(NC=CC=C(O)C=C2C(=O)OC(C)(C)OC2=O)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0023126017522427933,
+    "d_mid": 0.007125110895318532
+  },
+  {
+    "smiles": "COc1ccc(NC(C)=CC=C(O)C=C2C(=O)OC(C)(C)OC2=O)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.006380410970944439,
+    "d_mid": 0.012780129959781394
+  },
+  {
+    "smiles": "COc1ccc(NC=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": -0.0006823180548392038,
+    "d_mid": 0.01016527157753333
+  },
+  {
+    "smiles": "COc1ccc(NC(C)=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.01492157402428651,
+    "d_mid": 0.020907236977124377
+  },
+  {
+    "smiles": "COc1ccc(NC=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.0195184717186061,
+    "d_mid": -0.006207964303939439
+  },
+  {
+    "smiles": "COc1ccc(NC(C)=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": 0.00803779489237666,
+    "d_mid": 0.0020426133430877513
+  },
+  {
+    "smiles": "COc1ccc(NC=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "measured",
+    "BLA": 0.00690802086807385,
+    "d_mid": 0.005613923469004023
+  },
+  {
+    "smiles": "COc1ccc(NC(C)=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "donor": "4-methoxyanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "measured",
+    "BLA": -0.006040467124488469,
+    "d_mid": 0.01534726424485311
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccc(Br)cc2)C(=O)O1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.013342047753467146,
+    "d_mid": -0.002626921027604423
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.00258179595118313,
+    "d_mid": 0.0095897078115037
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(Br)cc2)C(=O)N(C)C1=O",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.009527515304034617,
+    "d_mid": 0.001052277198163365
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.005416676550248578,
+    "d_mid": 0.012559513638831454
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.028776689232912656,
+    "d_mid": -0.014325415090376215
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": 0.025175390525348007,
+    "d_mid": -0.013302956865837379
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.016366651489948092,
+    "d_mid": -0.002867304146136229
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccc(Br)cc1",
+    "donor": "4-bromoanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": 0.002585539713905849,
+    "d_mid": 0.0076406180787129685
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccc(Cl)cc2)C(=O)O1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.009853704878567404,
+    "d_mid": 0.00035891747687322173
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.005985225071242439,
+    "d_mid": 0.012517824238525765
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(Cl)cc2)C(=O)N(C)C1=O",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.006561385691867372,
+    "d_mid": 0.003665614219845903
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.008806869797128192,
+    "d_mid": 0.015528413075004854
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.02595943174641957,
+    "d_mid": -0.011926950874141973
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": 0.01386121224615633,
+    "d_mid": -0.0030000285725868547
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "analogous",
+    "BLA": 0.013358221053809904,
+    "d_mid": -0.00021785171214361299
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccc(Cl)cc1",
+    "donor": "4-chloroanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "analogous",
+    "BLA": -0.00019320276631140665,
+    "d_mid": 0.010062218050332916
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccc(C(F)(F)F)cc2)C(=O)O1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.018443764277870534,
+    "d_mid": -0.007206753755574891
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.002803864860122518,
+    "d_mid": 0.004888851463799471
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(C(F)(F)F)cc2)C(=O)N(C)C1=O",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.014302766591714366,
+    "d_mid": -0.003139315581493607
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0005338308488744836,
+    "d_mid": 0.008229942587078876
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.032555518178910337,
+    "d_mid": -0.017582868135033625
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.021245370936060715,
+    "d_mid": -0.009360562647987791
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.02060513088222682,
+    "d_mid": -0.00669479218572433
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccc(C(F)(F)F)cc1",
+    "donor": "4-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0071283887840323246,
+    "d_mid": 0.0036702507588537436
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2cccc(C(F)(F)F)c2)C(=O)O1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.01747432994653808,
+    "d_mid": -0.0063445988797841135
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0020423469396815275,
+    "d_mid": 0.005483963606692344
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2cccc(C(F)(F)F)c2)C(=O)N(C)C1=O",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.013411543043881702,
+    "d_mid": -0.0023987819927244747
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0014838043421261382,
+    "d_mid": 0.009097801179110299
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.03177379029492555,
+    "d_mid": -0.016963724497925936
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.020300705882451142,
+    "d_mid": -0.008598767338825697
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.01981995360391009,
+    "d_mid": -0.006072266613725619
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1cccc(C(F)(F)F)c1",
+    "donor": "3-CF3-anilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.00643068022770743,
+    "d_mid": 0.004213633586057197
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)OC(C)(C)OC2=O)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.014434087659047634,
+    "d_mid": -0.0034209060028047578
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC(C)=CC=C(O)C=C2C(=O)OC(C)(C)OC2=O)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.001230036816558977,
+    "d_mid": 0.008546094731819887
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.010544863199310361,
+    "d_mid": 0.00043157900947021766
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC(C)=CC=C(O)C=C2C(=O)N(C)C(=O)N(C)C2=O)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.004339895315168318,
+    "d_mid": 0.011738189763515372
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.029602765778405704,
+    "d_mid": -0.014710225459568571
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC(C)=CC=C(O)C=C2C(=O)N(c3ccccc3)N=C2C)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.026476520171727858,
+    "d_mid": -0.014211116572972582
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.017216440701143254,
+    "d_mid": -0.0034535879380315215
+  },
+  {
+    "smiles": "CC(=O)c1ccc(NC(C)=CC=C(O)C=C2C(=O)ON=C2C)cc1",
+    "donor": "4-acetylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.003621440285356048,
+    "d_mid": 0.006913354567543495
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccc(S(N)(=O)=O)cc2)C(=O)O1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.017523324095125803,
+    "d_mid": -0.00639335307710831
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0019420789843975772,
+    "d_mid": 0.005650288222809108
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccc(S(N)(=O)=O)cc2)C(=O)N(C)C1=O",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.013316161546978567,
+    "d_mid": -0.0024020992793403195
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.0017551496166903213,
+    "d_mid": 0.009381591884048968
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.031919257258088196,
+    "d_mid": -0.017034131920739215
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.020435421003446752,
+    "d_mid": -0.00862415261879268
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.019933131298562223,
+    "d_mid": -0.006115832035366919
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccc(S(N)(=O)=O)cc1",
+    "donor": "4-sulfamoylanilino",
+    "dclass": "aniline",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.014147845320978236,
+    "d_mid": -0.00281864607643989
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2cccnc2)C(=O)O1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.015521442893587034,
+    "d_mid": -0.004645550304692492
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": -0.000672870485603605,
+    "d_mid": 0.007896876527151209
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2cccnc2)C(=O)N(C)C1=O",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.011666520000181757,
+    "d_mid": -0.00080401707367872
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0032936085689039274,
+    "d_mid": 0.0049013540010058865
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.030025708718512067,
+    "d_mid": -0.015501110564868359
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.02611239706541446,
+    "d_mid": -0.01395255285637198
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.018154882473973455,
+    "d_mid": -0.0045683081537470915
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1cccnc1",
+    "donor": "3-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.011551634467274141,
+    "d_mid": -0.00036745427029827304
+  },
+  {
+    "smiles": "CC1(C)OC(=O)C(=CC(O)=CC=CNc2ccncc2)C(=O)O1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "meldrum",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.018478635681751232,
+    "d_mid": -0.007174939704004624
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)OC(C)(C)OC1=O)Nc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "meldrum",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.0026483014243379177,
+    "d_mid": 0.005030679824341133
+  },
+  {
+    "smiles": "CN1C(=O)C(=CC(O)=CC=CNc2ccncc2)C(=O)N(C)C1=O",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.014236295020400469,
+    "d_mid": -0.003114652978322363
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(C)C(=O)N(C)C1=O)Nc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "dimethylbarbituric",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.007671049436492217,
+    "d_mid": 0.0009376248558103928
+  },
+  {
+    "smiles": "CC1=NN(c2ccccc2)C(=O)C1=CC(O)=CC=CNc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.03268614529269098,
+    "d_mid": -0.017714603167370502
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)N(c2ccccc2)N=C1C)Nc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylpyrazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.021077474490321713,
+    "d_mid": -0.009261520334905127
+  },
+  {
+    "smiles": "CC1=NOC(=O)C1=CC(O)=CC=CNc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "triene",
+    "basis": "extrapolation",
+    "BLA": 0.020712294117630092,
+    "d_mid": -0.006811459258684538
+  },
+  {
+    "smiles": "CC(=CC=C(O)C=C1C(=O)ON=C1C)Nc1ccncc1",
+    "donor": "4-aminopyridyl",
+    "dclass": "heteroaryl",
+    "acceptor": "methylisoxazolone",
+    "backbone": "C5_methyl",
+    "basis": "extrapolation",
+    "BLA": 0.007102745099571983,
+    "d_mid": 0.0036637905501257784
+  }
+]

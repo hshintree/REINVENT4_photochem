@@ -457,10 +457,27 @@ AQUEOUS_DONOR_FRAGMENTS = {
     "4-bromoanilino": "N(c1ccc(Br)cc1)",
     "4-chloroanilino": "N(c1ccc(Cl)cc1)",
     "4-CF3-anilino": "N(c1ccc(C(F)(F)F)cc1)",
-    "4-cyanoanilino": "N(c1ccc(C#N)cc1)",
     "3-CF3-anilino": "N(c1cccc(C(F)(F)F)c1)",
     "3,4-dichloroanilino": "N(c1ccc(Cl)c(Cl)c1)",
-    "4-nitroanilino": "N(c1ccc([N+](=O)[O-])cc1)",
+    # REMOVED 2026-09-06: 4-cyanoanilino and 4-nitroanilino. Peterson, Neris &
+    # Read de Alaniz, Chem. Sci. 2023, 14, 13025 tried exactly these two and the
+    # adduct does not form: "we did not observe any formation of the 4-cyano or
+    # 4-nitro aniline analogues after 3 days due to their poor nucleophilicity."
+    #
+    # CAVEAT ADDED SAME DAY: Clerc, Stricker, ... Read de Alaniz, Angew. Chem.
+    # Int. Ed. 2021, 60, 10219 show HFIP promotes the furan ring-opening and
+    # gives "access to previously unattainable" DASAs with "deactivated amine
+    # donors that were previously unreactive" (k 3 -> 56 M-1 h-1 with 1 vol%
+    # HFIP). So 4-cyano / 4-nitro MIGHT be reachable under HFIP conditions --
+    # Peterson's failure was under standard conditions. Not demonstrated for
+    # these two specific amines, so they stay out of the default corpus, but
+    # this is a 'not shown' rather than a 'shown impossible'. Note also that
+    # HFIP INHIBITS 1st-gen alkylamine synthesis (basic amines H-bond to it).
+    # They were being enumerated into every aqueous campaign as if they were
+    # candidates. Do not re-add: the EWG that most reduces charge separation also
+    # kills the amine's nucleophilicity, which is the synthetic ceiling on this
+    # whole design axis. 4-bromo / 4-chloro / 4-iodo do form (cmpd 5 is the
+    # 4-iodoaniline) and are kept.
     "4-methoxycarbonylanilino": "N(c1ccc(C(=O)OC)cc1)",
     "4-acetylanilino": "N(c1ccc(C(C)=O)cc1)",
     "4-sulfamoylanilino": "N(c1ccc(S(N)(=O)=O)cc1)",     # H-bonding + water solubility

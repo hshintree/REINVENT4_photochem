@@ -72,7 +72,12 @@ def procs():
         # that cries wolf is a monitor you stop reading.
         if not cmd.split()[0].endswith(("python", "python3")):
             continue
-        if not any(k in cmd for k in ("campaign.py", "dft_ladder.py", "triene_ladder.py")):
+        # keep this list in step with the scripts that write to the cache --
+        # dft_molecule.py was missing and the monitor reported "no campaign
+        # process running" while it was mid-calculation.
+        if not any(k in cmd for k in ("campaign.py", "dft_ladder.py",
+                                      "triene_ladder.py", "dft_molecule.py",
+                                      "closed_manifold_check.py")):
             continue
         if "watch.py" in cmd:
             continue

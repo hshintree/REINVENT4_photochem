@@ -185,14 +185,23 @@ ROWS = [
     # The paper's headline AMINO DASAs (NH replacing OH) are a DIFFERENT
     # chromophore and must not be mixed in.
     ("N9",  d(D_ISOINDOLINE, A_DIMEBARB), "cyclic_benzylic", "dimethylbarbituric",
-     573, "CH2Cl2", None, None, None, False, None, None, "reconstructed",
-     "Nat Commun 2024, hydroxy parents", "cmpd 9; RE-VERIFY"),
+     573, "CH2Cl2", None, None, -29, False, None, None, "reconstructed",
+     "Nat Commun 2024, hydroxy parents",
+     "cmpd 9 (1st-gen HYDROXY): lambda 573 nm; solvatochromic slope -29 nm/ETN, "
+     "verified in the PMC full text 2026-09-06. Slope measured over 10 solvents "
+     "(PhMe, Et2O, THF, EtOAc, CHCl3, CH2Cl2, acetone, DMSO, MeCN, MeOH) vs "
+     "normalised Dimroth-Reichardt ETN. STRUCTURE still RE-VERIFY."),
     ("N10", d(D_INDOLINE, A_DIMEBARB),    "fused_aryl", "dimethylbarbituric",
-     615, "CH2Cl2", None, None, None, False, None, None, "reconstructed",
-     "Nat Commun 2024, hydroxy parents", "cmpd 10; RE-VERIFY. Cross-checks H2 (615 nm)."),
+     615, "CH2Cl2", None, None, -3, False, None, None, "reconstructed",
+     "Nat Commun 2024, hydroxy parents",
+     "cmpd 10 (2nd-gen HYDROXY): lambda 615 nm; slope -3 nm/ETN, verified in the PMC "
+     "full text 2026-09-06 ('hydroxy counterpart 10 is more neutral'). Consistent "
+     "with Peterson's indoline D1-H at -7 nm. Cross-checks H2 (615 nm)."),
     ("N11", d(D_INDOLINE, A_CF3PYRAZ),    "fused_aryl", "CF3_pyrazolone",
-     646, "CH2Cl2", None, None, None, False, None, None, "reconstructed",
-     "Nat Commun 2024, hydroxy parents", "RE-VERIFY"),
+     646, "CH2Cl2", None, None, -54, False, None, None, "reconstructed",
+     "Nat Commun 2024, hydroxy parents",
+     "cmpd 11 (3rd-gen HYDROXY): lambda 646 nm; slope -54 nm/ETN, verified in the "
+     "PMC full text 2026-09-06. Consistent with Peterson's D2 reference at -46 nm."),
 ]
 
 COLUMNS = ["compound_id", "smiles_open", "smiles_closed", "donor_class",

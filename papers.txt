@@ -50,6 +50,7 @@ Nat Commun 2024, hydroxy parents
    status   NOT re-read - from project memory
    gives    3 compound(s): N9, N10, N11
             3 x lambda_max
+            3 x solvatochromic slope
    structures  {'reconstructed': 3}
 
 Peterson Chem Commun 2022, 58, 2303
@@ -90,10 +91,10 @@ dark equilibrium: n = 14
    distinct acceptor classes 8  {'meldrum': 4, 'dimethylbarbituric': 3, 'pyrazolidinedione': 1, 'methylisoxazolone': 1, 'CF3_isoxazolone': 1, 'indandione': 1, 'CF3_pyrazolone': 1, 'methylpyrazolone': 2}
    structures certain        9/14
 
-solvatochromic slope: n = 7
-   distinct donor classes    3  {'tethered_aniline': 3, 'fused_aryl': 2, 'monoalkyl_amine': 2}
-   distinct acceptor classes 3  {'meldrum': 4, 'methylpyrazolone': 2, 'dimethylbarbituric': 1}
-   structures certain        3/7
+solvatochromic slope: n = 10
+   distinct donor classes    4  {'tethered_aniline': 3, 'fused_aryl': 4, 'monoalkyl_amine': 2, 'cyclic_benzylic': 1}
+   distinct acceptor classes 4  {'meldrum': 4, 'methylpyrazolone': 2, 'dimethylbarbituric': 3, 'CF3_pyrazolone': 1}
+   structures certain        3/10
 
 thermal half-life: n = 4
    distinct donor classes    3  {'tethered_aniline': 1, 'fused_aryl': 1, 'monoalkyl_amine': 2}
