@@ -1060,24 +1060,58 @@ _R_KCAL = 1.98720425e-3          # kcal / (mol K)
 _HARTREE_KCAL = 627.5094740631
 
 
+def _mirror_image(smiles: str) -> str:
+    """Canonical SMILES of the mirror image: invert every tetrahedral tag.
+
+    A closed DASA has no external chiral reference, so a stereoisomer and its
+    mirror image are the SAME physical species and are exactly degenerate in
+    energy. RDKit's EnumerateStereoisomers does not know that and emits both, so
+    the 8 "diastereomers" of a C5-substituted closed DASA are really 4
+    enantiomeric pairs. Left uncorrected this double-counts every state in a
+    Boltzmann sum (a uniform -RT ln 2 = -0.41 kcal/mol at 298 K, which cancels in
+    a difference only if BOTH sides are double-counted to the same degree -- they
+    were not) and, worse, spends half the compute budget re-deriving energies
+    that symmetry already fixes.
+
+    Only tetrahedral tags are inverted. Double-bond (E/Z) stereo is unchanged: it
+    is already reflection-invariant, and the DASA triene geometry is the thing we
+    are trying to distinguish, not average over.
+    """
+    m = Chem.MolFromSmiles(smiles)
+    if m is None:
+        return smiles
+    flip = {Chem.ChiralType.CHI_TETRAHEDRAL_CW: Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
+            Chem.ChiralType.CHI_TETRAHEDRAL_CCW: Chem.ChiralType.CHI_TETRAHEDRAL_CW}
+    for a in m.GetAtoms():
+        t = a.GetChiralTag()
+        if t in flip:
+            a.SetChiralTag(flip[t])
+    return Chem.MolToSmiles(m)
+
+
 @lru_cache(maxsize=4096)
-def _closed_stereoisomers_cached(canon: str, form: str, max_isomers: int) -> tuple:
-    return tuple(_closed_stereoisomers_impl(canon, form, max_isomers))
+def _closed_stereoisomers_cached(canon: str, form: str, max_isomers: int,
+                                 dedupe_enantiomers: bool) -> tuple:
+    return tuple(_closed_stereoisomers_impl(canon, form, max_isomers,
+                                            dedupe_enantiomers))
 
 
 def closed_stereoisomers(smiles, form: str = "both",
-                         max_isomers: int = 16) -> List[dict]:
+                         max_isomers: int = 16,
+                         dedupe_enantiomers: bool = True) -> List[dict]:
     """Memoised wrapper. tryEmbedding costs up to 175 s on a caged donor and both
     the planner and the reporter enumerate, so the result is cached per process."""
     mol = Chem.MolFromSmiles(smiles) if isinstance(smiles, str) else smiles
     if mol is None:
         return []
     return [dict(d) for d in
-            _closed_stereoisomers_cached(Chem.MolToSmiles(mol), form, max_isomers)]
+            _closed_stereoisomers_cached(Chem.MolToSmiles(mol), form, max_isomers,
+                                         dedupe_enantiomers)]
 
 
 def _closed_stereoisomers_impl(smiles, form: str = "both",
-                               max_isomers: int = 16) -> List[dict]:
+                               max_isomers: int = 16,
+                               dedupe_enantiomers: bool = True) -> List[dict]:
     """Every diastereomer of the closed form(s), in a deterministic order.
 
     form: "zwitterion" | "keto" | "both".
@@ -1120,8 +1154,16 @@ def _closed_stereoisomers_impl(smiles, form: str = "both",
             if not is_cyclopentenone_closed(iso):
                 continue
             smis.add(Chem.MolToSmiles(iso))
+        # Collapse enantiomeric pairs to one representative. Deterministic:
+        # keep the lexicographically smaller canonical SMILES, and record the
+        # discarded partner under "mirror" so a caller holding an energy for the
+        # dropped structure can still find it (see complete_manifolds.py).
         for s in sorted(smis):
-            out.append({"smiles": s, "form": name, "n_centres": n_centres})
+            mir = _mirror_image(s) if dedupe_enantiomers else s
+            if dedupe_enantiomers and mir != s and mir in smis and mir < s:
+                continue                       # its partner is the representative
+            out.append({"smiles": s, "form": name, "n_centres": n_centres,
+                        "mirror": (mir if mir != s and mir in smis else None)})
     out.sort(key=lambda d: (d["form"], d["smiles"]))
     for i, d in enumerate(out):
         d["index"] = i

@@ -91,12 +91,35 @@ def sp(smiles, recipe):
 def pick(smiles, n_closed, gap):
     """xTB-rank the keto diastereomers, drop those far above the low cluster, then
     SPAN what remains (xTB ordering within the cluster is not trustworthy)."""
+    # The OPEN form needs an xTB geometry too. The first version only generated
+    # geometries for the closed isomers, so a molecule whose open form had not been
+    # prepped by hand failed its open-form single point instantly ("no xTB geometry")
+    # -- and without the open form there is no dE at all, making the closed points
+    # useless. Ensure it here.
+    cached_optimise(smiles, SOLV, "planar120")
     iso = dc.closed_stereoisomers(smiles, form="keto")
-    es = []
+    es, failed = [], []
     for d in iso:
         r = cached_optimise(d["smiles"], SOLV, "lowest20")
         if r["status"] == "ok":
             es.append((r["energy"], d["smiles"]))
+        else:
+            failed.append((d["smiles"], r.get("error")))
+    if failed:
+        # SILENT TRUNCATION was the bug here. A failed xTB geometry used to be
+        # skipped with no counter and no message, which is worse than it sounds:
+        # the cluster minimum `emin` is taken over the SURVIVORS, so if the true
+        # lowest isomer failed, the 2.5 kcal/mol cutoff is measured from the wrong
+        # zero AND the manifold is short a low-energy state, making dE too
+        # positive. Failures are also CACHED, so a re-run reproduces the same
+        # truncation forever without retrying. Same bug class as the one fixed in
+        # campaign.py's report on 2026-09-06 -- worth grepping for elsewhere.
+        print(f"  ** {len(failed)} of {len(iso)} closed isomers FAILED xTB — the "
+              f"manifold is TRUNCATED and dE will be biased HIGH **")
+        for sm, err in failed:
+            print(f"     {str(err)[:90]}")
+            print(f"     {sm}")
+        print(f"     re-run with `campaign.py --retry-failed` to clear cached failures")
     es.sort()
     emin = es[0][0]
     cluster = [(e, s) for e, s in es if (e - emin) * H2KCAL <= gap]
@@ -105,7 +128,7 @@ def pick(smiles, n_closed, gap):
     else:
         idx = np.linspace(0, len(cluster) - 1, n_closed).round().astype(int)
         chosen = [cluster[i] for i in idx]
-    return iso, es, cluster, chosen
+    return iso, es, cluster, chosen, failed
 
 
 def main():
@@ -123,7 +146,7 @@ def main():
     mol = Chem.MolFromSmiles(smi)
     if not dc.is_dasa(mol) or dc.is_legacy_core(mol):
         print("not a corrected-core DASA"); return 1
-    iso, es, cluster, chosen = pick(smi, a.n_closed, a.gap)
+    iso, es, cluster, chosen, failed = pick(smi, a.n_closed, a.gap)
     print(f"{a.label}\n  {smi}")
     print(f"  {mol.GetNumHeavyAtoms()} heavy atoms | {METHOD}")
     print(f"  {len(iso)} keto diastereomers; {len(cluster)} within {a.gap} kcal/mol of the "
@@ -148,15 +171,31 @@ def main():
               + (f"  {r.get('error')}" if r["status"] != "ok" else ""), flush=True)
 
     op = out.get("open")
-    cl = [r["energy"] for k, r in out.items() if k.startswith("closed") and r["status"] == "ok"]
+    closed_all = [(k, r) for k, r in out.items() if k.startswith("closed")]
+    cl = [r["energy"] for _k, r in closed_all if r["status"] == "ok"]
+    dft_failed = [k for k, r in closed_all if r["status"] != "ok"]
+    if dft_failed:
+        # SECOND silent-drop site in this file. pick() dropping failed xTB
+        # GEOMETRIES was fixed first; this one drops failed DFT SINGLE POINTS the
+        # same way, and it is the more expensive failure -- 45 minutes of compute
+        # vanishing from the Boltzmann sum with nothing in the diagram to say so.
+        # Finding one instance of a pattern is not the same as fixing it.
+        print(f"\n  ** {len(dft_failed)} DFT single point(s) FAILED: "
+              f"{', '.join(dft_failed)} — the manifold below is truncated and dE is "
+              f"biased HIGH. Do not compare this number to a complete one. **")
     if op and op["status"] == "ok" and cl:
         e = np.array(cl) * H2KCAL; emin = e.min()
         dE_low = emin - op["energy"] * H2KCAL
         dE_ens = emin - RT * np.log(np.exp(-(e - emin) / RT).sum()) - op["energy"] * H2KCAL
         print(f"\n  ENERGY DIAGRAM ({SOLV}, kcal/mol relative to the open form)")
+        if failed:
+            print(f"\n  ** DEGRADED: {len(failed)} of {len(iso)} closed isomers failed "
+                  f"xTB; the manifold below is truncated and dE is biased HIGH **")
         print(f"    A  open                        0.00")
         print(f"    C  closed, lowest isomer   {dE_low:+7.2f}")
-        print(f"    C  closed, Boltzmann       {dE_ens:+7.2f}   over {len(cl)} isomers")
+        print(f"    C  closed, Boltzmann       {dE_ens:+7.2f}   over {len(cl)} of "
+              f"{len(closed_all)} attempted isomers"
+              + ("  ** TRUNCATED **" if dft_failed else ""))
         print(f"       diastereomer spread      {e.max()-emin:6.2f}   <- uncertainty, not noise")
         print(f"\n    negative = closed favoured. Peterson's D1-H reference at the full")
         print(f"    6-31+G(d,p) recipe was -6.48 kcal/mol.")

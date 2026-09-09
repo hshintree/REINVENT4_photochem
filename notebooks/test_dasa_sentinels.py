@@ -336,6 +336,46 @@ def test_enol_closed_form():
           "and they are three DISTINCT structures")
 
 
+def test_enantiomers_are_deduplicated():
+    """A closed DASA has no external chiral reference, so a stereoisomer and its
+    mirror image are the same physical species and are exactly degenerate.
+    EnumerateStereoisomers emits both. Left in, they double-count every state in a
+    Boltzmann sum by -RT ln 2 and burn half the DFT budget on symmetry-fixed
+    duplicates. Measured 2026-09-09: two structures that are provably one physical
+    state came out 0.69 kcal/mol apart at M06-2X, which is the conformer-search
+    noise floor of the acceptor-bulk experiment.
+    """
+    print("\n[13] enantiomeric closed isomers are collapsed")
+    smi = ("CC1=NN(C(=O)\\C1=C/C(O)=C/C=C/N(CCCC=C)c2ccccc2)c3ccccc3")  # 3-methyl ladder
+    raw = dc.closed_stereoisomers(smi, form="keto", dedupe_enantiomers=False)
+    ded = dc.closed_stereoisomers(smi, form="keto")
+    check(len(raw) == 8, f"C5-substituted keto enumerates 8 raw isomers (got {len(raw)})")
+    check(len(ded) == 4, f"collapses to 4 physical states (got {len(ded)})")
+
+    kept = {d["smiles"] for d in ded}
+    dropped = {d["smiles"] for d in raw} - kept
+    recorded = {d["mirror"] for d in ded if d.get("mirror")}
+    check(dropped == recorded,
+          "every dropped structure is recorded as a kept one's mirror (lossless)")
+    check(not any(dc._mirror_image(s) in kept - {s} for s in kept),
+          "no enantiomeric pair survives the collapse")
+    check(all(dc._mirror_image(dc._mirror_image(d["smiles"])) == d["smiles"] for d in raw),
+          "_mirror_image is an involution")
+
+    # it must NOT collapse genuine diastereomers, and must not touch E/Z
+    ez = "C/C=C/C"
+    check(dc._mirror_image(Chem.CanonSmiles(ez)) == Chem.CanonSmiles(ez),
+          "double-bond (E/Z) stereo is left alone")
+    achiral = "CCO"
+    check(dc._mirror_image(achiral) == Chem.CanonSmiles(achiral),
+          "an achiral molecule is its own mirror")
+
+    # deterministic: same representative every time, cold memo
+    dc._closed_stereoisomers_cached.cache_clear()
+    again = {d["smiles"] for d in dc.closed_stereoisomers(smi, form="keto")}
+    check(again == kept, "the same representative is chosen on a cold memo")
+
+
 def main() -> int:
     for fn in (test_measured_compounds_are_recognised, test_negatives_rejected,
                test_closed_forms, test_donor_axes, test_colour_gate,
@@ -343,7 +383,8 @@ def main() -> int:
                test_integrity_gate, test_acceptor_evidence_tiers,
                test_planar_conformer_search,
                test_closed_stereochemistry_is_enumerated,
-               test_enol_closed_form):
+               test_enol_closed_form,
+               test_enantiomers_are_deduplicated):
         fn()
     print("\n" + "=" * 70)
     if _failures:

@@ -152,13 +152,23 @@ def main():
         op = dft_single_point(smi, XTB_OPEN)
         if op["status"] != "ok":
             print(f"  {label}: open form incomplete"); continue
-        es = []
-        for d in dc.closed_stereoisomers(smi, form=dc.closed_forms_for_solvent(SOLV)):
+        iso = dc.closed_stereoisomers(smi, form=dc.closed_forms_for_solvent(SOLV))
+        es, failed = [], 0
+        for d in iso:
             r = dft_single_point(d["smiles"], XTB_CLOSED)
             if r["status"] == "ok":
                 es.append(r["energy"] * H2KCAL)
+            else:
+                failed += 1
         if not es:
             print(f"  {label}: closed manifold incomplete"); continue
+        if failed:
+            # Silent truncation: this used to skip failures with no counter, so a
+            # partially-failed manifold produced a dE biased HIGH with nothing in
+            # the output to say so. Only the "(N isomers)" count changed, which is
+            # far too quiet for a number that goes into a published ddE.
+            print(f"  ** {label}: {failed} of {len(iso)} closed isomers FAILED — "
+                  f"manifold TRUNCATED, dE biased HIGH, ddE unreliable **")
         e = np.array(es); emin = e.min()
         res[label] = emin - RT*np.log(np.exp(-(e-emin)/RT).sum()) - op["energy"]*H2KCAL
         print(f"  {label:18s} dE(open->closed) = {res[label]:+7.2f} kcal/mol "

@@ -42,11 +42,23 @@ def snapshot(db=DB):
     if last:
         t = dt.datetime.strptime(last[0], "%Y-%m-%dT%H:%M:%S")
         out["since_last_s"] = (now - t).total_seconds()
-    cut = (now - dt.timedelta(minutes=60)).strftime("%Y-%m-%dT%H:%M:%S")
-    secs = [r[0] for r in c.execute(
-        "SELECT seconds FROM calc WHERE created > ? AND seconds IS NOT NULL", (cut,))]
-    secs.sort()
-    out["median_unit_s"] = secs[len(secs) // 2] if secs else None
+    # Threshold must reflect the SLOWEST kind of unit in flight, not a global
+    # median. The cache mixes ~30 s xTB optimisations with ~40 min DFT single
+    # points; taking one median across both produced a 5-minute threshold and a
+    # STALL WARNING on a perfectly healthy DFT job 16 minutes into a 40-minute
+    # calculation. A monitor that cries wolf is one you stop reading.
+    cut = (now - dt.timedelta(hours=12)).strftime("%Y-%m-%dT%H:%M:%S")
+    per = {}
+    for meth, sec in c.execute(
+            "SELECT method, seconds FROM calc WHERE created > ? AND seconds IS NOT NULL",
+            (cut,)):
+        per.setdefault(meth, []).append(sec)
+    meds = []
+    for meth, v in per.items():
+        v.sort()
+        meds.append(v[len(v) // 2])
+    out["median_unit_s"] = max(meds) if meds else None
+    out["per_method_median"] = {m: sorted(v)[len(v) // 2] for m, v in per.items()}
     c.close()
     return out
 
@@ -96,7 +108,10 @@ def report(db=DB) -> bool:
     w = s["windows"]
     print(f"  commits      2min {w[2]:4d}   5min {w[5]:4d}   15min {w[15]:4d}   60min {w[60]:4d}")
     if s["median_unit_s"]:
-        print(f"  median unit  {s['median_unit_s']:.0f} s (last hour)")
+        print(f"  slowest median unit  {s['median_unit_s']:.0f} s "
+              f"(per method, last 12 h: "
+              + ", ".join(f"{m.split(chr(47))[0][:12]} {v:.0f}s"
+                          for m, v in s.get("per_method_median", {}).items()) + ")")
 
     running = procs()
     if running:
